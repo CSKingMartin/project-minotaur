@@ -1,4 +1,4 @@
-# Optiveloper 2.0
+# Project Minotaur
 
 ## What am I?
 - I am a new prototype for a low-profile, config-light build system for hosting styleguide applications.
@@ -7,13 +7,5 @@
 
 ## How can I help?
 If you have interest in contributing to a lonely, open-soure project please contact me (@CSKingMartin) directly through my Github contact info.
-
-## Why Optiveloper?
-
-Be Optimal.<br />
-Be Optimistic.<br />
-Be Optimus Prime.<br />
-Be an Optiveloper 😊
-
 
 MIT License 2019
