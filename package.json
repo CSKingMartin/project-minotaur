@@ -9,12 +9,18 @@
     "start": "next start ./src",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "directories": {
+    "source": "./src",
+    "dest": "./dist"
+  },
   "author": "CSKingMartin",
   "license": "ISC",
   "dependencies": {
     "@zeit/next-css": "^1.0.1",
     "@zeit/next-mdx": "^1.2.0",
+    "copy-webpack-plugin": "^5.0.2",
     "next": "^8.0.4",
+    "packpath": "^0.1.0",
     "postcss-css-variables": "^0.12.0",
     "postcss-nested": "^4.1.2",
     "react": "^16.8.6",

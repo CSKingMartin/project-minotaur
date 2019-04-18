@@ -1,6 +1,3 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-
 export const PageShell = (props) => {
   const {
     className,
