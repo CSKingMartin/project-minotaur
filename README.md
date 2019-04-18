@@ -10,9 +10,9 @@ If you have interest in contributing to a lonely, open-soure project please cont
 
 ## Why Optiveloper?
 
-Be Optimal.
-Be Optimistic.
-Be Optimus Prime.
+Be Optimal.<br />
+Be Optimistic.<br />
+Be Optimus Prime.<br />
 Be an Optiveloper 😊
 
 
