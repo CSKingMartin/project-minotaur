@@ -4,14 +4,13 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "next ./src",
+    "dev": "gulp",
     "build": "next build ./src",
     "start": "next start ./src",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "directories": {
-    "source": "./src",
-    "dest": "./dist"
+    "source": "./src"
   },
   "author": "CSKingMartin",
   "license": "ISC",
@@ -19,6 +18,11 @@
     "@zeit/next-css": "^1.0.1",
     "@zeit/next-mdx": "^1.2.0",
     "copy-webpack-plugin": "^5.0.2",
+    "fs": "^0.0.1-security",
+    "gulp": "^4.0.0",
+    "gulp-merge": "^0.1.1",
+    "gulp-print": "^5.0.2",
+    "gulp-run-command": "^0.0.9",
     "next": "^8.0.4",
     "packpath": "^0.1.0",
     "postcss-css-variables": "^0.12.0",
