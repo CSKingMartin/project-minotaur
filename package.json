@@ -4,11 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-<<<<<<< HEAD
     "dev": "gulp dev",
-=======
-    "dev": "gulp",
->>>>>>> 44059a43931faaa52fadcfc4de38a1096a3406a0
     "build": "next build ./src",
     "start": "next start ./src",
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -22,16 +18,9 @@
     "@zeit/next-css": "^1.0.1",
     "@zeit/next-mdx": "^1.2.0",
     "copy-webpack-plugin": "^5.0.2",
-<<<<<<< HEAD
     "gulp": "^4.0.0",
     "gulp-clean": "^0.4.0",
     "gulp-rename": "^1.4.0",
-=======
-    "fs": "^0.0.1-security",
-    "gulp": "^4.0.0",
-    "gulp-merge": "^0.1.1",
-    "gulp-print": "^5.0.2",
->>>>>>> 44059a43931faaa52fadcfc4de38a1096a3406a0
     "gulp-run-command": "^0.0.9",
     "next": "^8.0.4",
     "packpath": "^0.1.0",
