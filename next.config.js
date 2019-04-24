@@ -20,17 +20,18 @@ module.exports = withMDX({ })(withCSS({
   webpack: (config, { dev }) => {
     config.resolve.extensions.push('.mdx')
     config.resolve.alias = {
+      utilities: path.resolve(path.join(__dirname, 'lib/utilities')),
       '@atoms': source('atoms'),
       '@molecules': source('molecules'),
       '@organisms': source('organisms'),
       '@templates': source('templates'),
-      '@lib': source('../lib'),
       ...config.resolve.alias
     }
     config.plugins.push(
       new webpack.ProvidePlugin({
         React: 'react',
-        PropTypes: 'prop-types'
+        PropTypes: 'prop-types',
+        utilities: 'utilities'
       }),
       new CopyWebpackPlugin([{
         from: source('static'),

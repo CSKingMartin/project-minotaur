@@ -1,0 +1,43 @@
+:root {
+  /* ConnectiveDX colors */
+  --color-pop-red: #be2e26;
+  --color-robins-egg: #5dc1c1;
+  --color-seafoam: #00b28f;
+  --color-lite-grey: #e6e6e6;
+  --color-abyss: #0f3a45;
+  --color-abyss--light: color(var(--color-abyss) alpha(85%));
+  --color-abyss--sub: #5d767d;
+
+  /* grayscale */
+  --color-white: #fff;
+  --color-gray: #8c8c8c;
+  --color-black: #000;
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+}
+
+p {
+  line-height: 1.75rem;
+  margin-block-start: 1.75rem;
+  margin-block-end: 1.75rem;
+}
+
+.is-red {
+  background-color: var(--color-pop-red);
+  color: var(--color-black);
+}
+
+.is-robin {
+  background-color: var(--color-robins-egg);
+  color: var(--color-black);
+
+  h1, h2, h3 {
+    color: var(--color-white);
+  }
+
+  h4, h5, h6 {
+    color: var(--color-abyss);
+  }
+}

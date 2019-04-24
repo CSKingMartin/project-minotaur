@@ -5,7 +5,7 @@ export const MinotaurWrapper = (props) => {
 	} = props;
 
 	return (
-		<div className="MinotaurWrapper">
+		<div className="MinotaurWrapper is-robin">
 			{children}
 		</div>
 	);
