@@ -1,23 +1,34 @@
-h1 {
-  /* put styles here asshole */
+:root {
+  --font-weight--light: 300;
+  --font-weight--default: 500;
+  --font-weight--bold: 700;
 }
 
-h2 {
-  /* put styles here asshole */
-}
+.MinotaurHeading {
+  &--h1 {
+    font-size: 3rem;
+  }
 
-h3 {
-  /* put styles here asshole */
-}
+  &--h2 {
+    font-size: 2.5rem;
+  }
 
-h4 {
-  /* put styles here asshole */
-}
+  &--h3 {
+    font-size: 2rem;
+  }
 
-h5 {
-  /* put styles here asshole */
-}
+  &--h4 {
+    font-size: 1.5rem;
+    font-weight: var(--font-weight--bold);
+  }
 
-h6 {
-  /* put styles here asshole */
+  &--h5 {
+    font-size: 1.25rem;
+    font-weight: var(--font-weight--bold);
+  }
+
+  &--h6 {
+    font-size: 1.125rem;
+    font-weight: var(--font-weight--bold);
+  }
 }

@@ -1,17 +1,17 @@
 export const MinotaurHeading = (props) => {
 	const {
 		tagName,
-		size,
+		level,
 		weight,
 		className,
 		children
 	} = props;
 
-	const Tag = tagName || size || 'h1';
+	const Tag = tagName || level || 'h1';
 
 	const stack = utilities.createClassStack([
 		'MinotaurHeading',
-		`MinotaurHeading--${size}`,
+		`MinotaurHeading--${level}`,
 		className
 	]);
 

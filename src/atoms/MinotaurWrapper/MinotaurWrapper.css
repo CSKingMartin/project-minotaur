@@ -1,3 +1,10 @@
 .MinotaurWrapper {
-	max-width: 1440px;
+  margin: 0 auto;
+  padding: 1rem;
+  position: relative;
+  width: 100%;
+
+  &--default {
+    max-width: 61.25rem;
+  }
 }

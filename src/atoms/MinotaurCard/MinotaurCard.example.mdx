@@ -1,0 +1,38 @@
+import MinotaurCard from '@atoms/MinotaurCard/MinotaurCard';
+import MinotaurHeading from '@atoms/MinotaurHeading/MinotaurHeading';
+import MinotaurNup from '@atoms/MinotaurNup/MinotaurNup';
+import MinotaurWrapper from '@atoms/MinotaurWrapper/MinotaurWrapper';
+
+<MinotaurWrapper size="default">
+  # Minotaur Card
+
+  This is an example Card component used for Project Minotaur.
+
+  <MinotaurNup variant="two">
+    <MinotaurCard>
+      <MinotaurHeading level="h3">White Headlines</MinotaurHeading>
+      <MinotaurHeading level="h5">Bold White Sub Headlines</MinotaurHeading>
+      <p>Regular black body copy</p>
+    </MinotaurCard>
+    <MinotaurCard className="is-robin">
+      <MinotaurHeading level="h3">White Headlines</MinotaurHeading>
+      <MinotaurHeading level="h5">Bold Abyss Sub Headlines</MinotaurHeading>
+      <p>Regular white black copy</p>
+    </MinotaurCard>
+    <MinotaurCard className="is-seafoam">
+      <MinotaurHeading level="h3">White Headlines</MinotaurHeading>
+      <MinotaurHeading level="h5">Bold White Sub Headlines</MinotaurHeading>
+      <p>Regular white black copy</p>
+    </MinotaurCard>
+    <MinotaurCard className="is-red">
+      <MinotaurHeading level="h3">White Headlines</MinotaurHeading>
+      <MinotaurHeading level="h5">Bold White Sub Headlines</MinotaurHeading>
+    </MinotaurCard>
+    <MinotaurCard className="is-abyss">
+      <MinotaurHeading level="h3">White Headlines</MinotaurHeading>
+      <MinotaurHeading level="h5">Bold Robin's Egg Sub Headlines</MinotaurHeading>
+      <MinotaurHeading level="h5">Bold Seafoam Sub Headlines</MinotaurHeading>
+      <p>Regular white body copy</p>
+    </MinotaurCard>
+  </MinotaurNup>
+</MinotaurWrapper>

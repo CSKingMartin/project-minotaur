@@ -1,6 +1,7 @@
 module.exports = {
   plugins: {
-    'postcss-css-variables': {},
+    'postcss-easy-import': {},
+    'postcss-custom-media': {},
     'postcss-nested': {}
   }
 }

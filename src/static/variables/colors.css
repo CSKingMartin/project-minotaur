@@ -1,0 +1,15 @@
+:root {
+  /* ConnectiveDX colors */
+  --color-pop-red: #be2e26;
+  --color-robins-egg: #5dc1c1;
+  --color-seafoam: #00b28f;
+  --color-lite-grey: #e6e6e6;
+  --color-abyss: #0f3a45;
+  --color-abyss--light: color(var(--color-abyss) alpha(85%));
+  --color-abyss--sub: #5d767d;
+
+  /* grayscale */
+  --color-white: #fff;
+  --color-gray: #8c8c8c;
+  --color-black: #000;
+}

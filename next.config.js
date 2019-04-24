@@ -11,11 +11,7 @@ const { directories } = require(path.resolve(pkgpath.self(), 'package.json'))
 const source = (...paths) => path.resolve(pkgpath.self(), directories.source, ...paths)
 
 module.exports = withMDX({ })(withCSS({
-  cssModules: true,
-  cssLoaderOptions: {
-    importLoaders: 1,
-    localIdentName: '[local]'
-  },
+  cssModules: false,
   pageExtensions: ['js', 'jsx', 'mdx'],
   webpack: (config, { dev }) => {
     config.resolve.extensions.push('.mdx')
@@ -25,6 +21,7 @@ module.exports = withMDX({ })(withCSS({
       '@molecules': source('molecules'),
       '@organisms': source('organisms'),
       '@templates': source('templates'),
+      '@static': source('static'),
       ...config.resolve.alias
     }
     config.plugins.push(
