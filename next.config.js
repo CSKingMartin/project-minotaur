@@ -21,6 +21,7 @@ module.exports = withMDX({ })(withCSS({
       '@molecules': source('molecules'),
       '@organisms': source('organisms'),
       '@templates': source('templates'),
+      '@hanga': source('hanga'),
       '@static': source('static'),
       ...config.resolve.alias
     }
