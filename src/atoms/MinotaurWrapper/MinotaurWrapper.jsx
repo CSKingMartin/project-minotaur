@@ -18,6 +18,10 @@ export const MinotaurWrapper = (props) => {
 	);
 };
 
+MinotaurWrapper.defaultProps = {
+	size: 'default'
+};
+
 MinotaurWrapper.propTypes = {
 	size: PropTypes.oneOf(['default', 'wide']),
 	className: PropTypes.string,

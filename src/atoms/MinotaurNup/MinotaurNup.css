@@ -1,144 +1,32 @@
 :root {
   --gutter-small: 0.5em;
-  --gutter-default: 1em;
+  --gutter-default: 1rem;
   --gutter-large: 2em;
 }
 
 .MinotaurNup {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
+  display: grid;
   position: relative;
+  grid-auto-rows: 1fr;
   width: 100%;
 
-  &.MinotaurNup--gutter-small > * { margin-top: var(--gutter-small); }
-  &.MinotaurNup--gutter-default > * { margin-top: var(--gutter-default); }
-  &.MinotaurNup--gutter-large > * { margin-top: var(--gutter-large); }
-
-  & > * {
-    width: 100%;
-
-    &:first-child {
-      margin-top: 0;
-    }
-  }
+  &.MinotaurNup--gutter-small { grid-gap: var(--gutter-small); }
+  &.MinotaurNup--gutter-default { grid-gap: var(--gutter-default); }
+  &.MinotaurNup--gutter-large { grid-gap: var(--gutter-large); }
 
   @media (--medium-small) {
-    &--two {
-      & > *:nth-child(2) {
-        margin-top: 0;
-      }
-
-      &.MinotaurNup--gutter-default {
-        & > * { width: calc((100% - var(--gutter-default)) / 2); }
-        & > *:nth-child(even) { margin-left: var(--gutter-default); }
-      }
-
-      &.MinotaurNup--gutter-small {
-        & > * { width: calc((100% - var(--gutter-small)) / 2); }
-        & > *:nth-child(even) { margin-left: var(--gutter-small); }
-      }
-
-      &.MinotaurNup--gutter-large {
-        & > * { width: calc((100% - var(--gutter-large)) / 2); }
-        & > *:nth-child(even) { margin-left: var(--gutter-large); }
-      }
-    }
+    &--two { grid-template-columns: 1fr 1fr; }
   }
 
-  &--three {
-
+  @media (--medium) {
+    &--three { grid-template-columns: 1fr 1fr 1fr; }
   }
-}
 
-@media (--medium-small) {
-  .Nup--two {
-    display: flex;
-
-    &.Nup > * { margin-top: 0; }
-
-    &.Nup--gutter-default {
-      & > * { width: calc((100% - var(--nup-gutter-vertical--default)) / 2); }
-      & > * + * { margin-left: var(--nup-gutter-vertical--default); }
-    }
-
-    &.Nup--gutter-small {
-      & > * { width: calc((100% - var(--nup-gutter-vertical--small)) / 2); }
-      & > *:nth-child(even) { margin-left: var(--nup-gutter-vertical--small); }
-    }
-
-    &.Nup--gutter-large {
-      & > * { width: calc((100% - var(--nup-gutter-vertical--large)) / 2); }
-      & > *:nth-child(even) { margin-left: var(--nup-gutter-vertical--large); }
-    }
+  @media (--medium) {
+    &--four { grid-template-columns: 1fr 1fr 1fr 1fr; }
   }
-}
 
-@media (--medium) {
-  .Nup--three {
-    display: flex;
-
-    &.Nup > * { margin-top: 0; }
-
-    &.Nup--gutter-default {
-      & > * { width: calc((100% - var(--nup-gutter-vertical--default) * 2) / 3); }
-      & > * + * { margin-left: var(--nup-gutter-vertical--default); }
-    }
-
-    &.Nup--gutter-small {
-      & > * { width: calc((100% - var(--nup-gutter-vertical--small) * 2) / 3); }
-      & > * + * { margin-left: var(--nup-gutter-vertical--small); }
-    }
-
-    &.Nup--gutter-large {
-      & > * { width: calc((100% - var(--nup-gutter-vertical--large) * 2) / 3); }
-      & > * + * { margin-left: var(--nup-gutter-vertical--large); }
-    }
-  }
-}
-
-@media (--medium-large) {
-  .Nup--four {
-    display: flex;
-
-    &.Nup > * { margin-top: 0; }
-
-    &.Nup--gutter-default {
-      & > * { width: calc((100% - var(--nup-gutter-vertical--default) * 3) / 3); }
-      & > * + * { margin-left: var(--nup-gutter-vertical--default); }
-    }
-
-    &.Nup--gutter-small {
-      & > * { width: calc((100% - var(--nup-gutter-vertical--small) * 3) / 3); }
-      & > * + * { margin-left: var(--nup-gutter-vertical--small); }
-    }
-
-    &.Nup--gutter-large {
-      & > * { width: calc((100% - var(--nup-gutter-vertical--large) * 3) / 3); }
-      & > * + * { margin-left: var(--nup-gutter-vertical--large); }
-    }
-  }
-}
-
-@media (--large) {
-  .Nup--five {
-    display: flex;
-
-    &.Nup > * { margin-top: 0; }
-
-    &.Nup--gutter-default {
-      & > * { width: calc((100% - var(--nup-gutter-vertical--default) * 4) / 3); }
-      & > * + * { margin-left: var(--nup-gutter-vertical--default); }
-    }
-
-    &.Nup--gutter-small {
-      & > * { width: calc((100% - var(--nup-gutter-vertical--small) * 4) / 3); }
-      & > * + * { margin-left: var(--nup-gutter-vertical--small); }
-    }
-
-    &.Nup--gutter-large {
-      & > * { width: calc((100% - var(--nup-gutter-vertical--large) * 4) / 3); }
-      & > * + * { margin-left: var(--nup-gutter-vertical--large); }
-    }
+  @media (--medium) {
+    &--five { grid-template-columns: 1fr 1fr 1fr 1fr 1fr; }
   }
 }
