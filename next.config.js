@@ -29,7 +29,8 @@ module.exports = withMDX({ })(withCSS({
       new webpack.ProvidePlugin({
         React: 'react',
         PropTypes: 'prop-types',
-        utilities: 'utilities'
+        utilities: 'utilities',
+        StatefulContext: 'react-stateful-context'
       }),
       new CopyWebpackPlugin([{
         from: source('static'),

@@ -4558,7 +4558,13 @@ react-loadable@^5.5.0:
   dependencies:
     prop-types "^15.5.0"
 
-react@^16.8.6:
+react-stateful-context@^1.1.1:
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/react-stateful-context/-/react-stateful-context-1.1.1.tgz#022e2f8c52a8f586f8c0ddff7d6392b88ffeb585"
+  dependencies:
+    react "^16.4.2"
+
+react@^16.4.2, react@^16.8.6:
   version "16.8.6"
   resolved "https://registry.yarnpkg.com/react/-/react-16.8.6.tgz#ad6c3a9614fd3a4e9ef51117f54d888da01f2bbe"
   dependencies:
