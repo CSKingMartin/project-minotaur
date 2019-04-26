@@ -1,0 +1,18 @@
+import Editor from '@hanga/Editor/';
+
+<StatefulContext.Provider>
+  <StatefulContext.Consumer>
+    {
+      ({ isDisabled }) =>
+      	<React.Fragment>
+	        <Editor.Toggle defaultValue={false} name="isDisabled"></Editor.Toggle>
+	        <p>
+	          <button disabled={isDisabled}>
+	            This button is {isDisabled ? 'disabled' : 'enabled'}
+	          </button>
+	        </p>
+	      </React.Fragment>
+    }
+  </StatefulContext.Consumer>
+</StatefulContext.Provider>
+
