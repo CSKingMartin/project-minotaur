@@ -1,5 +1,5 @@
 // import Select from './Select'
-// import Text from './Text'
+import Text from './Text'
 import Toggle from './Toggle'
 
 const Editor = ({ name, options, defaultValue, ...props }) => {
@@ -14,8 +14,7 @@ const Editor = ({ name, options, defaultValue, ...props }) => {
     )
   } else {
     return (
-      // <Text name={name} defaultValue={defaultValue || options} {...props} />
-      <div>Not defined yet</div>
+      <Text name={name} defaultValue={defaultValue || options} {...props} />
     )
   }
 }
@@ -27,7 +26,7 @@ Editor.propTypes = {
 }
 
 // Editor.Select = Select
-// Editor.Text = Text
+Editor.Text = Text
 Editor.Toggle = Toggle
 
 export default Editor
