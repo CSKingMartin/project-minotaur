@@ -1,6 +1,3 @@
-import Toggle from '@hanga/Editor/';
-import Text from '@hanga/Editor/';
-import Select from '@hanga/Editor/';
 import Editor from '@hanga';
 
 <StatefulContext.Provider>
@@ -8,7 +5,7 @@ import Editor from '@hanga';
     {
       ({ isDisabled }) =>
         <React.Fragment>
-          <Toggle defaultValue={false} name="isDisabled"></Toggle>
+          <Editor.Toggle defaultValue={false} name="isDisabled"></Editor.Toggle>
           <p>
             <button disabled={isDisabled}>
               This button is {isDisabled ? 'disabled' : 'enabled'}
@@ -22,7 +19,7 @@ import Editor from '@hanga';
     {
       ({ activeText }) =>
         <React.Fragment>
-          <Text defaultValue="Lorem hipsum" label="Active Text" name="activeText"></Text>
+          <Editor.Text defaultValue="Lorem hipsum" label="Active Text" name="activeText"></Editor.Text>
           <p>{activeText}</p>
         </React.Fragment>
     }
@@ -32,7 +29,7 @@ import Editor from '@hanga';
         ({ multiColor }) =>
           <React.Fragment>
             <h2>Test</h2>
-            <Select name="multiColor" label="Color" defaultValue={'green'} options={['red', 'blue', 'green']}></Select>
+            <Editor.Select name="multiColor" label="Color" defaultValue={'green'} options={['red', 'blue', 'green']}></Editor.Select>
             <p style={{ color: multiColor }}>What</p>
           </React.Fragment>
       }

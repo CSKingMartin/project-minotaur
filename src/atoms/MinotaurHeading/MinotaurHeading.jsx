@@ -4,7 +4,8 @@ export const MinotaurHeading = (props) => {
 		level,
 		weight,
 		className,
-		children
+		children,
+		...rest
 	} = props;
 
 	const Tag = tagName || level || 'h1';
@@ -16,7 +17,7 @@ export const MinotaurHeading = (props) => {
 	]);
 
 	return (
-		<Tag className={stack}>{children}</Tag>
+		<Tag className={stack} {...rest}>{children}</Tag>
 	)
 };
 

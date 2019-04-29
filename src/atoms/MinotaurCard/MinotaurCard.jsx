@@ -1,7 +1,8 @@
 export const MinotaurCard = (props) => {
   const {
     className,
-    children
+    children,
+    ...rest
   } = props;
 
   const stack = utilities.createClassStack([
@@ -10,7 +11,7 @@ export const MinotaurCard = (props) => {
   ]);
 
   return (
-    <div className={stack}>{children}</div>
+    <div className={stack} {...rest}>{children}</div>
   );
 };
 
