@@ -1,6 +1,6 @@
 # Project Minotaur
 
-![Minotaur](src/static/images/minotaur-color@1x.png)
+![Minotaur](src/static/images/minotaur-color.png)
 
 =================================================
 
