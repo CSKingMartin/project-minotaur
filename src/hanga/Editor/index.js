@@ -1,8 +1,10 @@
-import Toggle from './Toggle'
-import Editor from './Editor'
+import Toggle from './Toggle';
+import Editor from './Editor';
+import Text from './Text';
 
 export {
-  Toggle
+  Toggle,
+  Text
 }
 
 export default Editor

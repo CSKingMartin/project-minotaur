@@ -1,17 +1,29 @@
-import Editor from '@hanga/Editor/';
+import Toggle from '@hanga/Editor/';
+import Text from '@hanga/Editor/';
+import Editor from '@hanga';
 
 <StatefulContext.Provider>
   <StatefulContext.Consumer>
     {
       ({ isDisabled }) =>
       	<React.Fragment>
-	        <Editor.Toggle defaultValue={false} name="isDisabled"></Editor.Toggle>
+	        <Toggle defaultValue={false} name="isDisabled"></Toggle>
 	        <p>
 	          <button disabled={isDisabled}>
 	            This button is {isDisabled ? 'disabled' : 'enabled'}
 	          </button>
 	        </p>
 	      </React.Fragment>
+    }
+  </StatefulContext.Consumer>
+
+  <StatefulContext.Consumer>
+    {
+      ({ activeText }) =>
+        <React.Fragment>
+          <Text defaultValue="Lorem hipsum" label="Active Text" name="activeText"></Text>
+          <p>{activeText}</p>
+        </React.Fragment>
     }
   </StatefulContext.Consumer>
 </StatefulContext.Provider>
