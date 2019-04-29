@@ -4092,7 +4092,13 @@ postcss-css-variables@^0.12.0:
     extend "^3.0.1"
     postcss "^6.0.8"
 
-postcss-custom-media@^7.0.7, postcss-custom-media@^7.0.8:
+postcss-custom-media@6.0.0:
+  version "6.0.0"
+  resolved "https://registry.yarnpkg.com/postcss-custom-media/-/postcss-custom-media-6.0.0.tgz#be532784110ecb295044fb5395a18006eb21a737"
+  dependencies:
+    postcss "^6.0.1"
+
+postcss-custom-media@^7.0.7:
   version "7.0.8"
   resolved "https://registry.yarnpkg.com/postcss-custom-media/-/postcss-custom-media-7.0.8.tgz#fffd13ffeffad73621be5f387076a28b00294e0c"
   dependencies:
