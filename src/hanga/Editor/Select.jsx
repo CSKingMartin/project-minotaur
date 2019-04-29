@@ -1,4 +1,4 @@
-import EditorWrapper from './EditorWrapper';
+import EditorWrapper from './EditorWrapper'
 
 // Select Editor
 class SelectEditor extends React.Component {
