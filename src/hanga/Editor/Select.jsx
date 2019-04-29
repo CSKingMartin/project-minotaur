@@ -67,7 +67,7 @@ class SelectEditor extends React.Component {
                 ))
             }
           </select>
-          <div />
+          {/*<div />*/}
         </div>
       </EditorWrapper>
     )

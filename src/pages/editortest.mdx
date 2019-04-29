@@ -1,19 +1,20 @@
 import Toggle from '@hanga/Editor/';
 import Text from '@hanga/Editor/';
+import Select from '@hanga/Editor/';
 import Editor from '@hanga';
 
 <StatefulContext.Provider>
   <StatefulContext.Consumer>
     {
       ({ isDisabled }) =>
-      	<React.Fragment>
-	        <Toggle defaultValue={false} name="isDisabled"></Toggle>
-	        <p>
-	          <button disabled={isDisabled}>
-	            This button is {isDisabled ? 'disabled' : 'enabled'}
-	          </button>
-	        </p>
-	      </React.Fragment>
+        <React.Fragment>
+          <Toggle defaultValue={false} name="isDisabled"></Toggle>
+          <p>
+            <button disabled={isDisabled}>
+              This button is {isDisabled ? 'disabled' : 'enabled'}
+            </button>
+          </p>
+        </React.Fragment>
     }
   </StatefulContext.Consumer>
 
@@ -26,5 +27,15 @@ import Editor from '@hanga';
         </React.Fragment>
     }
   </StatefulContext.Consumer>
+  <StatefulContext.Consumer>
+      {
+        ({ multiColor }) =>
+          <React.Fragment>
+            <h2>Test</h2>
+            <Select name="multiColor" label="Color" defaultValue={'green'} options={['red', 'blue', 'green']}></Select>
+            <p style={{ color: multiColor }}>What</p>
+          </React.Fragment>
+      }
+    </StatefulContext.Consumer>
 </StatefulContext.Provider>
 

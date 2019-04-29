@@ -24,7 +24,7 @@ gulp.task('watch', () => {
 		'src/atoms/**/*.example.mdx',
 		'src/molecules/**/*.example.mdx',
 		'src/organisms/**/*.example.mdx'
-	], gulp.series('exportPages'));
+	], ['exportPages']);
 });
 
 gulp.task('next', gulp.parallel([run('next ./src'), 'watch']));
