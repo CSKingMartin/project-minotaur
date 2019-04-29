@@ -1,5 +1,9 @@
 # Project Minotaur
 
+![Minotaur](src/static/images/minotaur-color.png)
+
+=================================================
+
 ## What am I?
 - I am a new prototype for a low-profile, config-light build system for hosting styleguide applications.
 - I use Next.js, Babel, PostCSS, and a few other technologies
