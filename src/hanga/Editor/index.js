@@ -7,6 +7,6 @@ export {
   Toggle,
   Text,
   Select
-}
+};
 
-export default Editor
+export default Editor;

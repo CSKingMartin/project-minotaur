@@ -1,6 +1,23 @@
 import NextLink from 'next/link';
-import MinotaurPageShell from '@atoms/MinotaurPageShell/MinotaurPageShell.jsx';
+import Rhythm from '@atoms/Rhythm';
+import Nup from '@atoms/Nup';
+import Heading from '@atoms/Heading';
+import PageShell from '@atoms/PageShell/PageShell.jsx';
+import Card from '@atoms/Card';
 
-<a href="editortest">Editor Test</a>
-<a href="styleguide/atoms/MinotaurPageShell">PageShell</a>
-<a href="styleguide/atoms/MinotaurWrapper">Wrapper</a>
+<Rhythm>
+	<Heading>Welcome to Minotaur</Heading>
+	<Nup variant="two">
+		<Card>
+			<Rhythm>
+				<Heading level="h4">Hanga examples</Heading>
+				<a href="editortest">Editor Test</a>
+				<a href="specimen-test">Specimen</a>
+			</Rhythm>
+		</Card>
+		<Card>
+			<a href="styleguide/atoms/PageShell">PageShell</a>
+			<a href="styleguide/atoms/Wrapper">Wrapper</a>
+		</Card>
+	</Nup>
+</Rhythm>

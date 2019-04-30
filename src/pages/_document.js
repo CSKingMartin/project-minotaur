@@ -2,7 +2,7 @@
 
 import React from 'react'
 import Document, { Head, Main, NextScript } from 'next/document'
-import { MinotaurPageShell, MinotaurPageShell__main, MinotaurPageShell__header, MinotaurPageShell__footer } from '@atoms/MinotaurPageShell/MinotaurPageShell';
+import { PageShell, PageShell__main, PageShell__header, PageShell__footer } from '@atoms/PageShell/PageShell';
 
 export default class extends Document {
   render () {
@@ -13,18 +13,18 @@ export default class extends Document {
           <link rel="shortcut icon" type="image/x-icon" href="/static/favicon.png" />
         </Head>
         <body>
-          <MinotaurPageShell>
-            <MinotaurPageShell__header>
+          <PageShell>
+            <PageShell__header>
               This is in the header
-            </MinotaurPageShell__header>
-              <MinotaurPageShell__main>
+            </PageShell__header>
+              <PageShell__main>
                 <Main />
-              </MinotaurPageShell__main>
-            <MinotaurPageShell__footer>
+              </PageShell__main>
+            <PageShell__footer>
               This is in the footer
-            </MinotaurPageShell__footer>
+            </PageShell__footer>
             <NextScript />
-          </MinotaurPageShell>
+          </PageShell>
         </body>
       </html>
     )

@@ -1,4 +1,7 @@
 import * as Editor from './Editor/'
+import Specimen from './Specimen/'
 
-
-export default Editor;
+export {
+	Editor,
+	Specimen
+};
