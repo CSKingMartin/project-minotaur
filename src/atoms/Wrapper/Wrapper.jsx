@@ -1,4 +1,4 @@
-export const MinotaurWrapper = (props) => {
+export const Wrapper = (props) => {
 	const {
 		size,
 		className,
@@ -6,8 +6,8 @@ export const MinotaurWrapper = (props) => {
 	} = props;
 
 	const stack = utilities.createClassStack([
-		'MinotaurWrapper',
-		`MinotaurWrapper--${size}`,
+		'Wrapper',
+		`Wrapper--${size}`,
 		className
 	]);
 
@@ -18,14 +18,14 @@ export const MinotaurWrapper = (props) => {
 	);
 };
 
-MinotaurWrapper.defaultProps = {
+Wrapper.defaultProps = {
 	size: 'default'
 };
 
-MinotaurWrapper.propTypes = {
+Wrapper.propTypes = {
 	size: PropTypes.oneOf(['default', 'wide']),
 	className: PropTypes.string,
   children: PropTypes.node
 }
 
-export default MinotaurWrapper;
+export default Wrapper;

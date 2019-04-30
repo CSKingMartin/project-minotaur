@@ -1,4 +1,4 @@
-export const MinotaurCard = (props) => {
+export const Card = (props) => {
   const {
     className,
     children,
@@ -6,7 +6,7 @@ export const MinotaurCard = (props) => {
   } = props;
 
   const stack = utilities.createClassStack([
-    'MinotaurCard', 
+    'Card', 
     className
   ]);
 
@@ -15,9 +15,9 @@ export const MinotaurCard = (props) => {
   );
 };
 
-MinotaurCard.propTypes = {
+Card.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string
 };
 
-export default MinotaurCard;
+export default Card;

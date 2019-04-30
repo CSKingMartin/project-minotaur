@@ -1,4 +1,4 @@
-export const MinotaurNup = (props) => {
+export const Nup = (props) => {
   const {
     variant,
     className,
@@ -6,9 +6,9 @@ export const MinotaurNup = (props) => {
   } = props;
 
   const stack = utilities.createClassStack([
-    'MinotaurNup',
-    `MinotaurNup--${variant}`,
-    'MinotaurNup--gutter-default',
+    'Nup',
+    `Nup--${variant}`,
+    'Nup--gutter-default',
     className
   ]);
 
@@ -17,10 +17,10 @@ export const MinotaurNup = (props) => {
   );
 };
 
-MinotaurNup.propTypes = {
+Nup.propTypes = {
   variant: PropTypes.string,
   className: PropTypes.string,
   children: PropTypes.node
 };
 
-export default MinotaurNup;
+export default Nup;

@@ -4,15 +4,15 @@
   --gutter-large: 2em;
 }
 
-.MinotaurNup {
+.Nup {
   display: grid;
   position: relative;
   grid-auto-rows: 1fr;
   width: 100%;
 
-  &.MinotaurNup--gutter-small { grid-gap: var(--gutter-small); }
-  &.MinotaurNup--gutter-default { grid-gap: var(--gutter-default); }
-  &.MinotaurNup--gutter-large { grid-gap: var(--gutter-large); }
+  &.Nup--gutter-small { grid-gap: var(--gutter-small); }
+  &.Nup--gutter-default { grid-gap: var(--gutter-default); }
+  &.Nup--gutter-large { grid-gap: var(--gutter-large); }
 
   @media (--medium-small) {
     &--two { grid-template-columns: 1fr 1fr; }

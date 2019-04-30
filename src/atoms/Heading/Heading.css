@@ -4,7 +4,7 @@
   --font-weight--bold: 700;
 }
 
-.MinotaurHeading {
+.Heading {
   &--h1 {
     font-size: 3rem;
   }

@@ -1,4 +1,4 @@
-export const MinotaurHeading = (props) => {
+export const Heading = (props) => {
 	const {
 		tagName,
 		level,
@@ -11,8 +11,8 @@ export const MinotaurHeading = (props) => {
 	const Tag = tagName || level || 'h1';
 
 	const stack = utilities.createClassStack([
-		'MinotaurHeading',
-		`MinotaurHeading--${level}`,
+		'Heading',
+		`Heading--${level}`,
 		className
 	]);
 
@@ -21,7 +21,11 @@ export const MinotaurHeading = (props) => {
 	)
 };
 
-MinotaurHeading.propTypes = {
+Heading.defaultProps = {
+	level: 'h1'
+};
+
+Heading.propTypes = {
 	children: PropTypes.node,
 	tagName: PropTypes.oneOfType([
 		PropTypes.string,
@@ -30,4 +34,4 @@ MinotaurHeading.propTypes = {
 	])
 };
 
-export default MinotaurHeading;
+export default Heading;
