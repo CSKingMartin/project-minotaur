@@ -1,0 +1,38 @@
+import { Editor, Specimen } from '@hanga'
+import Button from '@atoms/Button';
+import Heading from '@atoms/Heading';
+import Rhythm from '@atoms/Rhythm';
+import Wrapper from '@atoms/Wrapper';
+
+<StatefulContext.Provider>
+  <Rhythm>
+    <Wrapper>
+      <Rhythm>
+        <Heading>Button</Heading>
+        <p>This is a Button. Buttons do button things! If you click it, something should happen.</p>
+        <Heading level="h3">Default button</Heading>
+      </Rhythm>
+    </Wrapper>
+    <Specimen hideCode hideResizer>
+      <Button>This is a button</Button>
+    </Specimen>
+    <Wrapper>
+      <Heading level="h3">Secondary button</Heading>
+    </Wrapper>
+    <Specimen
+      hideResizer
+      Editors={({ quickEditors }) => (
+        <div>
+          <Editor.Text name="buttonText" defaultValue="Hello, Minotaur"></Editor.Text>
+          <Editor.Select name="variant" label="Variant" defaultValue={'secondary'} options={['default', 'secondary']}></Editor.Select>
+        </div>
+      )}>
+      {({ buttonText, isDisabled, variant }) =>
+        <React.Fragment>
+          <Button variant={variant}>{buttonText}</Button>
+        </React.Fragment>
+      }
+    </Specimen>
+
+  </Rhythm>
+</StatefulContext.Provider>
