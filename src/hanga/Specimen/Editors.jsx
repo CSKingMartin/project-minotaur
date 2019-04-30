@@ -1,7 +1,9 @@
+import Wrapper from '@atoms/Wrapper';
+
 const Editors = ({ children }) => {
 	return (
 		React.Children.toArray(children).filter(a => a).length > 0
-      ? <div className="Editors">{children}</div>
+      ? <Wrapper className="Editors">{children}</Wrapper>
       : <div />
 	);
 };

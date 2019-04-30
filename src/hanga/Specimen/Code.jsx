@@ -32,7 +32,7 @@ const getChildren = (children, context) =>
   typeof children === 'function' ? children(context) : children
 
 const CodeView = ({ type, className, children }) =>
-  <pre className={utilities.createClassStack(['Code__view', type && `Code--${type}`, className])}>
+  <pre className={utilities.createClassStack(['Code__view', type && `language--${type}`, className])}>
     <code dangerouslySetInnerHTML={{ __html: children }} />
   </pre>
 

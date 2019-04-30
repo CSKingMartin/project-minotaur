@@ -1,5 +1,5 @@
 export const Button = (props) => {
-	const = {
+	const {
 		tagName = Tag,
 		className,
 		variant,
@@ -9,7 +9,7 @@ export const Button = (props) => {
 		...rest
 	}	= props;
 
-	const stack = utilitities.createClassStack([
+	const stack = utilities.createClassStack([
 		'Button',
 		`Button--${variant}`,
 		href && 'Button--link',

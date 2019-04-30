@@ -6,6 +6,7 @@ import Code from './Code'
 import Editors from './Editors'
 import Preview from './Preview'
 import Resizer from './Resizer'
+import Wrapper from '@atoms/Wrapper';
 
 class Specimen extends React.Component {
   constructor (props) {
@@ -14,7 +15,7 @@ class Specimen extends React.Component {
     this.state = {
       isFullWidth: false,
       codeView: 'react',
-      maxWidth: Infinity,
+      maxWidth: 1024, // defaults to this
       previewHeight: 150,
       screenWidth: 1440
     }
@@ -79,6 +80,7 @@ class Specimen extends React.Component {
       Editors: EditorContent,
       hideResizer,
       hideCode,
+      darkMode,
       children
     } = this.props
     const {
@@ -113,6 +115,7 @@ class Specimen extends React.Component {
           maxWidth={maxWidth}
           screenWidth={screenWidth}
           hideResizer={hideResizer}
+          darkMode={darkMode}
           data-specimen-preview
         >
           {children}
@@ -120,7 +123,7 @@ class Specimen extends React.Component {
 
         {
           !hideCode &&
-          <div data-specimen-code>
+          <Wrapper data-specimen-code>
             <Actions
               view={codeView}
               handleCodeViewReact={this.handleCodeViewReact}
@@ -128,7 +131,7 @@ class Specimen extends React.Component {
             />
 
             <Code view={codeView}>{children}</Code>
-          </div>
+          </Wrapper>
         }
       </div>
     )
@@ -141,6 +144,7 @@ Specimen.propTypes = {
   quickEditors: PropTypes.object,
   hideResizer: PropTypes.bool,
   hideCode: PropTypes.bool,
+  darkMode: PropTypes.bool,
   children: PropTypes.any
 }
 

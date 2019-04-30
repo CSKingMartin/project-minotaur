@@ -41,7 +41,7 @@ export default () =>
         </React.Fragment>
       )}
       quickEditors={{
-        loremIpsum: 'Aliqua tempor labore minim fugiat ipsum. Est nostrud culpa mollit duis proident nostrud proident deserunt sunt. Consequat esse tempor sunt fugiat cillum sint aute sit adipisicing irure nulla adipisicing ullamco ea. Duis tempor ea Lorem proident laborum est duis id consequat quis. Ea ullamco sunt excepteur in labore esse non mollit dolore nulla aute occaecat.'
+        loremIpsum: 'Project Minotaur'
       }}
     >
       {
@@ -56,13 +56,5 @@ export default () =>
             }
           </React.Fragment>
       }
-    </Specimen>
-
-    <h2>Hide the code viewer and resizer</h2>
-
-    <p>Use <code>hideCode</code> and <code>hideResizer</code> props to hide the respective Specimen sections.</p>
-
-    <Specimen hideCode hideResizer>
-      <p>Non aliqua qui nisi laboris id commodo pariatur culpa. Pariatur voluptate magna officia sint irure officia enim ullamco id Lorem. Quis consectetur nulla velit reprehenderit ipsum ad minim mollit eu adipisicing ut culpa. Proident sint ullamco reprehenderit velit culpa laborum ea cupidatat et incididunt qui anim. Cillum adipisicing voluptate officia dolore est tempor mollit. Sint exercitation duis reprehenderit elit qui proident magna. Labore ad eiusmod consequat reprehenderit et ut laboris. Cupidatat enim veniam exercitation irure enim proident proident proident ullamco. Laboris eiusmod excepteur qui exercitation. Aliquip reprehenderit esse est ullamco dolore elit fugiat exercitation pariatur.</p>
     </Specimen>
   </StatefulContext.Provider>

@@ -1,5 +1,6 @@
-import Frame from 'react-frame-component'
-import DragResizer from './DragResizer'
+import Frame from 'react-frame-component';
+import DragResizer from './DragResizer';
+import { Head } from 'next/document';
 
 export const SpecimenHead = () => <React.Fragment />
 
@@ -49,6 +50,7 @@ class Preview extends React.Component {
       screenWidth,
       handleResize,
       hideResizer,
+      darkMode,
       children
     } = this.props
 
@@ -61,8 +63,8 @@ class Preview extends React.Component {
                 <Frame
                   ref={this.$iframe}
                   sandbox="allow-scripts allow-same-origin allow-top-navigation"
-                  head={<Head />}
-                  className="Preview__preview-frame"
+                  head={<link rel="stylesheet" href="/_next/static/css/styles.chunk.css" />}
+                  className={utilities.createClassStack(['Preview__preview-frame', darkMode && 'Preview__preview-frame--dark'])}
                   contentDidMount={this.handleFrameHeight}
                   contentDidUpdate={this.handleFrameHeight}
                 >
@@ -90,6 +92,7 @@ Preview.propTypes = {
   screenWidth: PropTypes.number,
   handleResize: PropTypes.func,
   hideResizer: PropTypes.bool,
+  darkMode: PropTypes.bool,
   children: PropTypes.any
 }
 

@@ -136,16 +136,16 @@
 	  left: 0%;
 	  margin-left: calc(-1 * (100vw - 1em));
 
-	  .dragHandle::after { right: -3px; }
-	  .dragHandle::before { right: 0; }
+	  .Drag__handle::after { right: -3px; }
+	  .Drag__handle::before { right: 0; }
   }
 
   &--right {
 	  right: 0%;
 	  margin-right: calc(-1 * (100vw - 1em));
 
-	  .dragHandle::after { left: -3px; }
-	  .dragHandle::before { left: 0; }
+	  .Drag__handle::after { left: -3px; }
+	  .Drag__handle::before { left: 0; }
   }
 }
 
@@ -174,17 +174,18 @@
 /* PREVIEW */
 .Preview {
 	position: relative;
-  background-color: white;
+/*  background-color: white;
   background-image:
     linear-gradient(to right, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.95)),
     linear-gradient(to right, black 50%, white 50%),
-    linear-gradient(to bottom, black 50%, white 50%);
+    linear-gradient(to bottom, black 50%, white 50%);*/
   background-blend-mode: normal, difference, normal;
   background-size: 1em 1em;
   background-position: top center;
-  box-shadow: inset rgba(0, 0, 0, 0.075) 0 0 2em;
+  /*box-shadow: inset rgba(0, 0, 0, 0.075) 0 0 2em;*/
   overflow: hidden;
   padding: 1em;
+  transition: background-image 0.5s;
 
   :global(.react-draggable-transparent-selection) & {
     background-image:
@@ -207,10 +208,14 @@
 	}
 
 	&__preview-frame {
-		border: none;
+		border: 1px solid var(--color-lite-grey);
 	  display: block;
 	  width: 100%;
 	  background-color: white;
+
+	  &--dark {
+	  	background-color: var(--color-abyss);
+	  }
 	}
 }
 
