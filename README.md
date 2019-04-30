@@ -2,8 +2,6 @@
 
 ![Minotaur](src/static/images/minotaur-color.png)
 
-=================================================
-
 ## What am I?
 - I am a new prototype for a low-profile, config-light build system for hosting styleguide applications.
 - I use Next.js, Babel, PostCSS, and a few other technologies
@@ -11,5 +9,8 @@
 
 ## How can I help?
 If you have interest in contributing to a lonely, open-soure project please contact me (@CSKingMartin) directly through my Github contact info.
+
+## Proto Sitemap
+You can see a prototype of the sitemap [here](https://www.gloomaps.com/Z62rEConPy).
 
 MIT License 2019
