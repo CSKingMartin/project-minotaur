@@ -1,5 +1,5 @@
 /* _document.js | https://github.com/zeit/next.js/#custom-document */
-
+import '../bundle.css.jsx';
 import React from 'react'
 import Document, { Head, Main, NextScript } from 'next/document'
 import { PageShell, PageShell__main, PageShell__header, PageShell__footer } from '@atoms/PageShell/PageShell';

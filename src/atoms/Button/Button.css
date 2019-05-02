@@ -8,6 +8,10 @@
     border: 2px solid var(--color-black);
     color: var(--color-black);
 
+    @media (--medium) {
+      color: green;
+    }
+
     &:--enter {
       background-color: var(--color-black);
       color: var(--color-white);

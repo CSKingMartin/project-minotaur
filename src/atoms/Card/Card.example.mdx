@@ -1,18 +1,32 @@
-import Toggle from '@hanga/Editor/Toggle';
+import Select from '@hanga/Editor';
+import Card from '@atoms/Card';
+import Heading from '@atoms/Heading';
+import Nup from '@atoms/Nup';
+import Wrapper from '@atoms/Wrapper';
 
-<StatefulContext.Provider>
-  <StatefulContext.Consumer>
-    {
-      ({ isDisabled }) =>
-        <React.Fragment>
-          <Toggle defaultValue={false} name="isDisabled"></Toggle>
-          <p>
-            <button disabled={isDisabled}>
-              This button is {isDisabled ? 'disabled' : 'enabled'}
-            </button>
-          </p>
-        </React.Fragment>
-    }
-  </StatefulContext.Consumer>
-</StatefulContext.Provider>
+<Wrapper size="default">
+  <StatefulContext.Provider>
+    <StatefulContext.Consumer>
+      {
+        ({ multiColor }) =>
+          <React.Fragment>
+            <h2>Test</h2>
+            <Select name="multiColor" label="Color" defaultValue={'default'} options={['default', 'is-abyss', 'is-red', 'is-robin', 'is-seafoam']}></Select>
+            <Nup variant="two">
+              <Card className={ multiColor } style={{transition: 'color 0.25s ease, background-color 0.25s ease'}}>
+                <Heading style={{ transition: 'color 0.25s ease' }} level="h3">This is a test card</Heading>
+                <Heading style={{ transition: 'color 0.25s ease' }} level="h5">We are making sure these styles work and apply correctly</Heading>
+                <p>Some body text along for the ride Lorem ipsum incididunt incididunt officia incididunt fugiat anim esse eiusmod enim veniam sed mollit dolor quis est cupidatat.</p>
+              </Card>
+              <Card className={ multiColor } style={{transition: 'color 0.25s ease, background-color 0.25s ease'}}>
+                <Heading style={{ transition: 'color 0.25s ease' }} level="h3">This is a test card</Heading>
+                <Heading style={{ transition: 'color 0.25s ease' }} level="h5">We are making sure these styles work and apply correctly</Heading>
+                <p>Some body text along for the ride Lorem ipsum incididunt incididunt officia incididunt fugiat anim esse eiusmod enim veniam sed mollit dolor quis est cupidatat.</p>
+              </Card>
+            </Nup>
+          </React.Fragment>
+      }
+    </StatefulContext.Consumer>
+  </StatefulContext.Provider>
+</Wrapper>
 
