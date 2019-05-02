@@ -1,4 +1,4 @@
-import Select from '@hanga/Editor';
+import { Editor } from '@hanga';
 import Card from '@atoms/Card';
 import Heading from '@atoms/Heading';
 import Nup from '@atoms/Nup';
@@ -11,7 +11,7 @@ import Wrapper from '@atoms/Wrapper';
         ({ multiColor }) =>
           <React.Fragment>
             <h2>Test</h2>
-            <Select name="multiColor" label="Color" defaultValue={'default'} options={['default', 'is-abyss', 'is-red', 'is-robin', 'is-seafoam']}></Select>
+            <Editor.Select name="multiColor" label="Color" defaultValue={'default'} options={['default', 'is-abyss', 'is-red', 'is-robin', 'is-seafoam']}></Editor.Select>
             <Nup variant="two">
               <Card className={ multiColor } style={{transition: 'color 0.25s ease, background-color 0.25s ease'}}>
                 <Heading style={{ transition: 'color 0.25s ease' }} level="h3">This is a test card</Heading>

@@ -1,0 +1,49 @@
+export const atomsContext = require.context('@atoms/', true, /^(?!.*\.test|.*\.example).*\.jsx$/);
+
+const isRenderableModule = (key) => (
+  key.indexOf('.jsx') !== -1 && // grab jsx files
+  key.indexOf('.md') === -1 && // skip markdown files
+  key.indexOf('.test.jsx') === -1 && // skip test files
+  key.substr(0, 1) !== '_' // skip partial files
+);
+
+const requireAllComponents = (context, prefix) =>
+  context.keys()
+    .filter(isRenderableModule)
+    .reduce((modules, key) => {
+      const name = key.substr(2).split('/')[0];
+      modules[prefix + name] = context(key).default;
+      return modules;
+    }, {});
+
+const path2LinkList = (baseUrl = '') => (data) => {
+  const normalPath = data.path.substr(
+    0,
+    data.path.lastIndexOf('.') !== -1
+      ? data.path.lastIndexOf('.')
+      : undefined
+  );
+
+  return {
+    ...data,
+    url: `${baseUrl}/${normalPath}`, // remove html on dev
+    content:
+      data.path
+        .replace('.html', '')
+        .split('/')
+        .map((s) => s.substr(0, 1).toUpperCase() + s.substr(1))
+        .map((s) => (s.match(/Styleguide/) ? s.replace('Styleguide', 'Style Guide') : s)) // for clarity
+        .map((s) => (s.match(/Index/) ? s.replace('Index', 'Home') : s)) // for clarity
+        .join('\xa0') // &nbsp;
+  };
+};
+
+export const atomsIndexData =
+  Object.keys(requireAllComponents(atomsContext, '/styleguide/atoms/'))
+    .map((p) => ({
+      path: p.substr(p.indexOf('/atoms/') + '/atoms/'.length)
+    }))
+    .map(path2LinkList('/styleguide/atoms'));
+
+
+console.log(atomsIndexData);
