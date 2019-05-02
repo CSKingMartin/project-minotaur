@@ -20,11 +20,11 @@ gulp.task('exportPages', () => {
 });
 
 gulp.task('watch', () => {
-	gulp.watch([
+	return gulp.watch([
 		'src/atoms/**/*.example.mdx',
 		'src/molecules/**/*.example.mdx',
 		'src/organisms/**/*.example.mdx'
-	], ['exportPages']);
+	], gulp.series('exportPages'));
 });
 
 gulp.task('next', gulp.parallel([run('next ./src'), 'watch']));
