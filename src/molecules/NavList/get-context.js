@@ -1,4 +1,6 @@
 export const atomsContext = require.context('@atoms/', true, /^(?!.*\.test|.*\.example).*\.jsx$/);
+export const moleculesContext = require.context('@molecules/', true, /^(?!.*\.test|.*\.example).*\.jsx$/);
+export const organismsContext = require.context('@organisms/', true, /^(?!.*\.test|.*\.example).*\.jsx$/);
 
 const isRenderableModule = (key) => (
   key.indexOf('.jsx') !== -1 && // grab jsx files
@@ -13,8 +15,8 @@ const requireAllComponents = (context, prefix) =>
     .reduce((modules, key) => {
       const name = key.substr(2).split('/')[0];
       modules[prefix + name] = context(key).default;
-      return modules;
-    }, {});
+      return modules
+          }, {});
 
 const path2LinkList = (baseUrl = '') => (data) => {
   const normalPath = data.path.substr(
@@ -24,9 +26,12 @@ const path2LinkList = (baseUrl = '') => (data) => {
       : undefined
   );
 
+  let nextPath = `${baseUrl}/${normalPath}`;
+  nextPath = nextPath.substr(1, nextPath.length - 1);
+
   return {
     ...data,
-    url: `${baseUrl}/${normalPath}`, // remove html on dev
+    url: nextPath, // remove html on dev
     content:
       data.path
         .replace('.html', '')
@@ -45,5 +50,16 @@ export const atomsIndexData =
     }))
     .map(path2LinkList('/styleguide/atoms'));
 
+export const moleculesIndexData =
+  Object.keys(requireAllComponents(moleculesContext, '/styleguide/molecules/'))
+    .map((p) => ({
+      path: p.substr(p.indexOf('/molecules/') + '/molecules/'.length)
+    }))
+    .map(path2LinkList('/styleguide/molecules'));
 
-console.log(atomsIndexData);
+export const organismsIndexData =
+  Object.keys(requireAllComponents(organismsContext, '/styleguide/organisms/'))
+    .map((p) => ({
+      path: p.substr(p.indexOf('/organisms/') + '/organisms/'.length)
+    }))
+    .map(path2LinkList('/styleguide/organisms'));

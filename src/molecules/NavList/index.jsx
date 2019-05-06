@@ -1,7 +1,11 @@
 import Heading from '@atoms/Heading';
 import Rhythm from '@atoms/Rhythm';
 import PageLink from '@atoms/PageLink';
-import { atomsIndexData } from './getContext';
+import {
+	atomsIndexData,
+	moleculesIndexData,
+	organismsIndexData
+} from './get-context.js';
 
 const NavList = (props) => {
 	const {
@@ -9,15 +13,27 @@ const NavList = (props) => {
 		children
 	} = props;
 
+	let target;
+
+	switch (label) {
+		case 'atoms':
+			target = atomsIndexData;
+			break;
+		case 'molecules':
+			target = moleculesIndexData;
+			break;
+		case 'organisms':
+			target = organismsIndexData;
+			break;
+	};
+
 	return (
 		<div className="NavList">
 			<Rhythm>
-				<Heading level="h6">{label}</Heading>
-				<div>
-					{atomsIndexData.map((path, url, index) => (
-						<PageLink key="index" label={path} href={url} />
-					))}
-				</div>
+				<Heading level="h6">{`${label.charAt(0).toUpperCase()}${label.substr(1, label.length - 1)}`}</Heading>
+				{Object.keys(target).map((index) => 
+					<PageLink key={index} label={target[index].content} href={target[index].url} />
+				)}
 			</Rhythm>
 		</div>
 	);
