@@ -4,8 +4,13 @@ export const PageShell = (props) => {
     children
   } = props;
 
+  const stack = utilities.createClassStack([
+    'PageShell',
+    className
+  ]);
+
   return (
-    <div className="PageShell">
+    <div className={stack}>
     	{children}
     </div>
   );

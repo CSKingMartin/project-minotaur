@@ -13,6 +13,7 @@ export const Heading = (props) => {
 	const stack = utilities.createClassStack([
 		'Heading',
 		`Heading--${level}`,
+		`Heading--${weight}`,
 		className
 	]);
 
@@ -26,12 +27,14 @@ Heading.defaultProps = {
 };
 
 Heading.propTypes = {
-	children: PropTypes.node,
 	tagName: PropTypes.oneOfType([
 		PropTypes.string,
 		PropTypes.element,
 		PropTypes.func
-	])
+	]),
+	level: PropTypes.oneOf(['h1', 'h2', 'h3', 'h4', 'h5', 'h6']),
+	weight: PropTypes.oneOf(['default', 'bold', 'light']),
+	children: PropTypes.node
 };
 
 export default Heading;

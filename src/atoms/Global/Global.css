@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Roboto');
+@import url('https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,500i,700,700i');
 
 * {
   box-sizing: border-box;
@@ -8,11 +8,11 @@ body {
   font-family: 'Roboto', sans-serif;
 }
 
-p {
+/*p {
   line-height: 1.75rem;
   margin-block-start: 1.75rem;
   margin-block-end: 1.75rem;
-}
+}*/
 
 .is-red {
   background-color: var(--color-pop-red);
@@ -46,6 +46,10 @@ p {
     &:nth-of-type(2n) {
       color: var(--color-seafoam);
     }
+  }
+
+  a {
+    color: var(--color-robins-egg);
   }
 }
 

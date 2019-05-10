@@ -31,4 +31,12 @@
     font-size: 1.125rem;
     font-weight: var(--font-weight--bold);
   }
+
+  &--bold {
+    font-weight: 700;
+  }
+
+  &--thin {
+    font-weight: 300;
+  }
 }

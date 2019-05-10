@@ -1,16 +1,10 @@
 .Wrapper {
-	border-left: 1px solid var(--color-lite-grey);
-	border-right: 1px solid var(--color-lite-grey);
   margin: 0 auto;
   padding: 1rem;
   position: relative;
   width: 100%;
 
   &--default {
-    max-width: 64rem;
-  }
-
-  &--inner {
-  	max-width: 61.25rem;
+  	max-width: 43.75rem;
   }
 }
