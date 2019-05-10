@@ -1,0 +1,20 @@
+.ExampleHeading {
+  &__breadcrumb {
+    margin-bottom: 0.375rem;
+  }
+
+  &__link {
+    font-size: 0.875rem;
+    margin-right: 0.5rem;
+
+    &:not(:first-child) {
+      &::before {
+        color: var(--color-white);
+        content: '/';
+        display: inline-block;
+        margin: auto;
+        min-width: 0.75rem;
+      }
+    }
+  }
+}
