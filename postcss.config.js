@@ -1,7 +1,14 @@
 module.exports = {
   plugins: [
-    require('postcss-import'),
+    require('postcss-easy-import'),
     require('postcss-nested'),
-    require('postcss-preset-env')({preserve: true})
+    require('postcss-custom-media')({
+      preserve: true,
+      importFrom: 'src/static/variables/breakpoints.css'
+    }),
+    require('postcss-preset-env')({
+      stage: 1,
+      preserve: true
+    })
   ]
 }
