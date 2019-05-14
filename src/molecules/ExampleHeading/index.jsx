@@ -1,5 +1,6 @@
 import Heading from '@atoms/Heading';
-import Link from '@atoms/Link';
+import HorizontalRule from '@atoms/HorizontalRule';
+import Link from 'next/link';
 
 export const ExampleHeading = (props) => {
   const {
@@ -20,10 +21,16 @@ export const ExampleHeading = (props) => {
     <div className={stack} {...rest}>
       <div className="ExampleHeading__breadcrumb">
         {links.map((pair, key) => (
-          <Link key={key} className="ExampleHeading__link" href={pair.url}>{pair.label}</Link>
+          <Link
+            key={key}
+            href={pair.url}
+          >
+            <a>{pair.label}</a>
+          </Link>
         ))}
       </div>
       <Heading level="h3">{children}</Heading>
+      <HorizontalRule />
     </div>
   );
 };

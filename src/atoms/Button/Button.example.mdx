@@ -3,12 +3,19 @@ import Button from '@atoms/Button';
 import Heading from '@atoms/Heading';
 import Rhythm from '@atoms/Rhythm';
 import Wrapper from '@atoms/Wrapper';
+import ExampleHeading from '@molecules/ExampleHeading';
 
 <StatefulContext.Provider>
   <Rhythm>
     <Wrapper>
       <Rhythm>
-        <Heading>Button</Heading>
+        <ExampleHeading
+          links={[
+            { url: '/styleguide/atoms/Button', label: 'Atoms'},
+            { url: '/bhappy', label: 'Button' }
+          ]}>
+            Button
+        </ExampleHeading>
         <p>This is a Button. Buttons do button things! If you click it, something should happen.</p>
         <Heading level="h3">Default button</Heading>
       </Rhythm>
