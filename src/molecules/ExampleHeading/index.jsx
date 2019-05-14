@@ -21,12 +21,7 @@ export const ExampleHeading = (props) => {
     <div className={stack} {...rest}>
       <div className="ExampleHeading__breadcrumb">
         {links.map((pair, key) => (
-          <Link
-            key={key}
-            href={pair.url}
-          >
-            <a>{pair.label}</a>
-          </Link>
+          <Link key={key} href={pair.url}><a>{pair.label}</a></Link>
         ))}
       </div>
       <Heading level="h3">{children}</Heading>
