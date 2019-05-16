@@ -1,20 +1,21 @@
-import Link from 'next/link';
-import Rhythm from '@atoms/Rhythm';
-import Nup from '@atoms/Nup';
-import Heading from '@atoms/Heading';
-import PageShell from '@atoms/PageShell/PageShell.jsx';
 import Card from '@atoms/Card';
+import Heading from '@atoms/Heading';
+import Link from 'next/link';
 import NavList from '@molecules/NavList';
+import Nup from '@atoms/Nup';
+import PageShell from '@atoms/PageShell/PageShell.jsx';
+import Rhythm from '@atoms/Rhythm';
+import Wrapper from '@atoms/Wrapper';
 
-<Rhythm>
-	<Heading>Welcome to Minotaur</Heading>
-	<Nup variant="two">
+<Wrapper>
+	<Rhythm>
+		<Heading>Welcome to Minotaur</Heading>
 		<Card>
-			<Rhythm>				
+			<Nup variant="three">				
 				<NavList label="atoms" />
 				<NavList label="molecules" />
 				<NavList label="organisms" />
-			</Rhythm>
+			</Nup>
 		</Card>
-	</Nup>
-</Rhythm>
+	</Rhythm>
+</Wrapper>
