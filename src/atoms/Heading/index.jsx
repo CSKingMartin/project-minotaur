@@ -23,7 +23,8 @@ export const Heading = (props) => {
 };
 
 Heading.defaultProps = {
-	level: 'h1'
+	level: 'h1',
+	weight: 'default'
 };
 
 Heading.propTypes = {
