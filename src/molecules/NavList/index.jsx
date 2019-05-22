@@ -28,14 +28,12 @@ const NavList = (props) => {
 	};
 
 	return (
-		<div className="NavList">
-			<Rhythm>
-				<Heading level="h6">{`${label.charAt(0).toUpperCase()}${label.substr(1, label.length - 1)}`}</Heading>
-				{Object.keys(target).map((index) => 
-					<PageLink key={index} label={target[index].content} href={target[index].url} />
-				)}
-			</Rhythm>
-		</div>
+		<Rhythm className="NavList">
+			<Heading level="h6">{`${label.charAt(0).toUpperCase()}${label.substr(1, label.length - 1)}`}</Heading>
+			{Object.keys(target).map((index) => 
+				<PageLink key={index} label={target[index].content} href={target[index].url} />
+			)}
+		</Rhythm>
 	);
 };
 

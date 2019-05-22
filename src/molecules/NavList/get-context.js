@@ -1,10 +1,9 @@
-export const atomsContext = require.context('@atoms/', true, /^(?!.*\.test|.*\.example).*\.jsx$/);
-export const moleculesContext = require.context('@molecules/', true, /^(?!.*\.test|.*\.example).*\.jsx$/);
-export const organismsContext = require.context('@organisms/', true, /^(?!.*\.test|.*\.example).*\.jsx$/);
+export const atomsContext = require.context('@atoms/', true, /\.example\.mdx$/);
+export const moleculesContext = require.context('@molecules/', true, /\.example\.mdx$/);
+export const organismsContext = require.context('@organisms/', true, /\.example\.mdx$/);
 
 const isRenderableModule = (key) => (
-  key.indexOf('.jsx') !== -1 && // grab jsx files
-  key.indexOf('.md') === -1 && // skip markdown files
+  key.indexOf('.mdx') !== -1 && // grab jsx files
   key.indexOf('.test.jsx') === -1 && // skip test files
   key.substr(0, 1) !== '_' // skip partial files
 );
