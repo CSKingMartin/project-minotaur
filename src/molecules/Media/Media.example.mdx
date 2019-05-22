@@ -1,0 +1,57 @@
+import { Editor, Specimen } from '@hanga'
+import Heading from '@atoms/Heading';
+import Image from '@atoms/Image';
+import { Media, Media__body, Media__figure } from '@molecules/Media';
+import Rhythm from '@atoms/Rhythm';
+import Wrapper from '@atoms/Wrapper';
+import ExampleHeading from '@molecules/ExampleHeading';
+
+<StatefulContext.Provider>
+  <Rhythm>
+    <Wrapper>
+      <Rhythm>
+        <ExampleHeading
+          links={[
+            { url: '/styleguide/atoms/', label: 'Atoms'},
+            { url: '/styleguide/atoms/Media', label: 'Media' }
+          ]}>
+            Media
+        </ExampleHeading>
+        <p>
+          Media is used to pair body content, such as that from an article,
+          next to some kind of Media figure.
+        </p>
+        <p>
+          The `Media` element wraps two internal divs, one being `Media__body`,
+          and the other `Media__figure`. Figure wraps the chosen media, while Body is intended to house the content.
+        </p>
+        <Heading level="h3">Default example</Heading>
+      </Rhythm>
+    </Wrapper>
+    <Specimen
+      hideResizer
+      Editors={({ quickEditors }) => (
+        <div>
+          <Editor.Text
+            name="content"
+            defaultValue="Culpa reprehenderit irure dolore duis in consequat voluptate ea excepteur non ut velit ullamco aute ad ea laboris veniam amet cupidatat aute ullamco tempor eu ea mollit dolore sit sed duis dolore non dolor nostrud ut irure adipisicing velit."
+          />
+          <Editor.Select name="align" label="align" defaultValue={'top'} options={['top', 'center', 'bottom']}></Editor.Select>
+        </div>
+      )}>
+      {({ content, align }) =>
+        <React.Fragment>
+          <Media align={align}>
+            <Media__body>
+              {content}
+            </Media__body>
+            <Media__figure>
+              <Image src="hi" alt="testing testing 123" />
+            </Media__figure>
+          </Media>
+        </React.Fragment>
+      }
+    </Specimen>
+
+  </Rhythm>
+</StatefulContext.Provider>

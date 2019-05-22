@@ -1,0 +1,35 @@
+.Media {
+	/* styles go here */
+	display: flex;
+	width: auto;
+
+	&--align-top {
+		align-items: flex-start;
+	}
+
+	&--align-center {
+		align-items: center;
+	}
+
+	&--align-bottom {
+		align-items: flex-end;
+	}
+
+	&--full {
+		width: 100%;
+
+		.Media__body {
+			flex: 1;
+		}
+	}
+
+	&__body {
+		& ~ .Media__figure {
+			margin: 0 0 0 1rem;
+		}
+	}
+
+	&__figure ~ .Media__body {
+		margin: 0 0 0 1rem;
+	}
+}
