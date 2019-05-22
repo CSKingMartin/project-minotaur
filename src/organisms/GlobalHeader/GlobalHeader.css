@@ -1,0 +1,13 @@
+.GlobalHeader {
+  &__logo {
+    height: 4rem;
+    width: 4rem;
+  }
+
+  &__wrapper {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+}

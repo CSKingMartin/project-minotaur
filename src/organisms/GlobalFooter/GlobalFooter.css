@@ -1,0 +1,6 @@
+.GlobalFooter {
+	&__nup {
+		padding: 0 1rem;
+		width: 100%;
+	}
+}
