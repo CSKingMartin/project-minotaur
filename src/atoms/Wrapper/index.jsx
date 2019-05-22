@@ -23,7 +23,7 @@ Wrapper.defaultProps = {
 };
 
 Wrapper.propTypes = {
-	size: PropTypes.oneOf(['default', 'content']),
+	size: PropTypes.oneOf(['default', 'content', 'wide']),
 	className: PropTypes.string,
   children: PropTypes.node
 }

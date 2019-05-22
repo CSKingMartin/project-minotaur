@@ -1,32 +1,21 @@
 .Button {
-  padding: 1em 2em;
+  border: 1px solid;
+  border-radius: 3px;
   cursor: pointer;
+  font-size: 0.875rem;
+  padding: 0.5em 1.25em;
 
   /* variants */
   &--default {
-    background-color: color(var(--color-black) alpha(10%));
-    border: 2px solid var(--color-black);
-    color: var(--color-black);
-
-    @media (--medium) {
-      color: green;
-    }
-
-    &:--enter {
-      background-color: var(--color-black);
-      color: var(--color-white);
-    }
+    background-color: color(var(--color-white) alpha(30%));
+    border-color: var(--color-abyss);
+    color: var(--color-abyss);
   }
 
-  &--cta {
-    background-color: color(var(--color-red) alpha(10%));
-    border: 2px solid red;
-    color: red;
-
-    &:--enter {
-      background-color: var(--color-red);
-      color: var(--color-white);
-    }
+  &--secondary {
+    background-color: var(--color-abyss);
+    border-color: var(--color-white);
+    color: var(--color-white);
   }
 
   &--link {

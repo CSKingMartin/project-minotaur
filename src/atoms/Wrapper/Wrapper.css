@@ -11,4 +11,8 @@
   &--default {
   	max-width: 64rem;
   }
+
+  &--wide {
+    max-width: 90rem;
+  }
 }

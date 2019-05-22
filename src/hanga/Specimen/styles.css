@@ -195,11 +195,11 @@
   }
 
 	&__frame-wrapper {
-		position: relative;
-	  margin: auto;
-	  width: 100%;
-	  min-width: 180px;
 	  box-shadow: rgba(0, 0, 0, 0.075) 0 0 2em;
+	  margin: auto;
+	  min-width: 180px;
+		position: relative;
+	  width: 100%;
 	  z-index: 10;
 
 	  :global(.react-draggable-transparent-selection) & {
@@ -210,12 +210,8 @@
 	&__preview-frame {
 		border: 1px solid var(--color-lite-grey);
 	  display: block;
+	  padding: 0.125rem;
 	  width: 100%;
-	  background-color: white;
-
-	  &--dark {
-	  	background-color: var(--color-abyss);
-	  }
 	}
 }
 

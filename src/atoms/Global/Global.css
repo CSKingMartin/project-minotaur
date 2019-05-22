@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,500i,700,700i');
+@import '../Heading/Heading.css';
 
 * {
   box-sizing: border-box;
@@ -6,13 +7,37 @@
 
 body {
   font-family: 'Roboto', sans-serif;
+  line-height: 1.75rem;
 }
 
-/*p {
-  line-height: 1.75rem;
-  margin-block-start: 1.75rem;
-  margin-block-end: 1.75rem;
-}*/
+code {
+  font-family: monospace;
+  font-size: 1rem;
+}
+
+h1 {
+  @extend .Heading--h1;
+}
+
+h2 {
+  @extend .Heading--h2;
+}
+
+h3 {
+  @extend .Heading--h3;
+}
+
+h4 {
+  @extend .Heading--h4;
+}
+
+h5 {
+  @extend .Heading--h5;
+}
+
+h6 {
+  @extend .Heading--h6;
+}
 
 .is-red {
   background-color: var(--color-pop-red);
