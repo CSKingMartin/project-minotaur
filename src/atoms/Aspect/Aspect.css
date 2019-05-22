@@ -1,0 +1,34 @@
+.Aspect {
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    display: block;
+  }
+
+  &--4by3 { /* 4:3 */
+    &::before {
+      padding-top: 75%;
+    }
+  }
+
+  &--16by9 { /* 16:9 */
+    &::before {
+      padding-top: 56.5%;
+    }
+  }
+
+  &--2by1 {
+    &::before {
+      padding-top: 50%;
+    }
+  }
+
+  & > * {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+  }
+}
