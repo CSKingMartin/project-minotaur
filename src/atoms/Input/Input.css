@@ -1,0 +1,23 @@
+.Input {
+  margin-bottom: 0.125rem;
+
+  & > * {
+    display: block;
+  }
+
+  &__input {
+    appearence: none;
+    border: 1px solid var(--color-lite-grey);
+    border-radius: 3px;
+    box-shadow: none;
+    height: 1.75rem;
+    font-size: 1rem;
+    padding: 0.5rem 0.75rem;
+    transition: border-color 0.25s ease;
+
+    &:focus {
+      border-color: var(--color-abyss);
+      outline: none;
+    }
+  }
+}
