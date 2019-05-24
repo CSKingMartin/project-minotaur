@@ -1,5 +1,5 @@
 import Button from '@atoms/Button';
-import Input from '@atoms/Input';
+import Input from '@molecules/Input';
 import Rhythm from '@atoms/Rhythm';
 import { Media, Media__figure, Media__body } from '@molecules/Media';
 
@@ -16,9 +16,10 @@ Inputs are basic form elements.
 
 ### Example with a Button composition
 
-<Media align="bottom">
+<Media align="top">
   <Media__body>
     <Input
+      isRequired
       placeholder="Search"
       label="Search For an Element"
     />
