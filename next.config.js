@@ -28,6 +28,8 @@ const config = {
     config.plugins.push(
       new webpack.ProvidePlugin({
         React: 'react',
+        useState: ['react', 'useState'],
+        useEffect: ['react', 'useEffect'],
         PropTypes: 'prop-types',
         utilities: 'utilities',
         StatefulContext: 'react-stateful-context'

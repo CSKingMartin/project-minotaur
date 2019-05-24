@@ -1,32 +1,89 @@
-class Expandable extends React.Component {
-  constructor(props) {
-    super(props);
+import ReactResizeDetector from 'react-resize-detector';
+import Button from '@atoms/Button';
 
-    this.state = {
-      isExpanded: false
-    };
-  }
+export const Expandable = (props) => {
+  const {
+    className,
+    startOpen,
+    toggleElement,
+    forwardedRef,
+    closeHeight,
+    forceExpand,
+    children,
+    ...rest
+  } = props;
 
-  render () {
-    const {
-      className,
-      children
-    } = this.props;
+  /* state objects */
+  const [isExpanded, toggle] = useState(startOpen);
+  const [height, updateHeight] = useState();
 
-    const {
-      isExpanded
-    } = this.state;
+  const inner = React.createRef();
 
-    const stack = utilities.createClassStack([
-      'Expandable',
-      this.state.isExpanded && 'is-expanded',
-      className
-    ]);
+  const defaultToggle = (
+    <Button className="Expandable__toggle" onClick={() => toggle(!isExpanded)}>
+      Toggle
+    </Button>
+  );
 
-    return (
-      <div className={stack}>{children}</div>
-    );
+  const expandableToggle = () => {
+    if (toggleElement === 'none') {
+      return;
+    } else if (toggleElement) {
+      const toggleStack = utilities.createClassStack([
+        'Expandable__toggle',
+        toggleElement.props.className
+      ]);
+
+      return (
+        <React.Fragment>
+        {React.cloneElement(toggleElement, { className: toggleStack, onClick: () => toggle(!isExpanded) })}
+        </React.Fragment>
+      );
+    } else {
+      return defaultToggle;
+    }
   };
+
+  const onWidthChange = () => updateHeight(inner.current.offsetHeight);
+
+  const stack = utilities.createClassStack([
+    'Expandable',
+    isExpanded || forceExpand && 'is-expanded',
+    className
+  ]);
+
+  const styles = (forceExpand || isExpanded) ? { height: height } : { height: closeHeight };
+
+  return (
+    <div ref={forwardedRef} className={stack} {...rest} >
+      <ReactResizeDetector className="Expandable__resizer" handleWidth onResize={() => onWidthChange()} />
+      <div
+        className="Expandable__wrapper"
+        style={styles}
+      >
+        <div ref={inner} className="Expandable__inner">
+          {children}
+        </div>
+      </div>
+      {toggleElement !== 'none' && expandableToggle()}
+    </div>
+  );
+};
+
+Expandable.defaultProps = {
+  startOpen: false,
+  closeHeight: '1rem'
+};
+
+Expandable.propTypes = {
+  className: PropTypes.string,
+  startOpen: PropTypes.bool,
+  closeHeight: PropTypes.string,
+  toggleElement: PropTypes.oneOfType([
+    PropTypes.node,
+    PropTypes.oneOf(['none'])
+  ]),
+  children: PropTypes.node
 };
 
 export default Expandable;

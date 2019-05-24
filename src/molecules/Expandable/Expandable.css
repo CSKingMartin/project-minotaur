@@ -1,0 +1,16 @@
+.Expandable {
+  &__toggle {
+    margin-top: 0.5rem;
+  }
+
+  &__wrapper {
+    overflow: hidden;
+    transition: height 0.25s;
+  }
+
+  &.is-expanded {
+    .Expandable__wrapper {
+      max-height: none;
+    }
+  }
+}

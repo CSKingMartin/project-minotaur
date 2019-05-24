@@ -1,0 +1,38 @@
+import Button from '@atoms/Button';
+import Expandable from '@molecules/Expandable';
+import Rhythm from '@atoms/Rhythm';
+
+<Rhythm>
+
+### Expandable
+
+Expandables are sections of a page that have a minimum height, but can grow to the size of its
+children on a 'Toggle'.
+
+These are complex React components that use React Hooks!
+
+##### Example with default toggle:
+
+<Expandable>
+  Organic tumblr la croix poke keytar. Distillery sustainable vaporware umami YOLO glossier intelligentsia gluten-free pop-up you probably haven't heard of them meh actually leggings. Hammock banh mi slow-carb squid waistcoat biodiesel, celiac hoodie chia viral lomo yuccie coloring book pok pok. Quinoa echo park snackwave, yuccie cardigan thundercats ennui stumptown pabst forage meditation af fingerstache. Tilde narwhal gochujang, leggings chillwave cardigan succulents. Brunch 90's cred tacos kitsch four dollar toast keffiyeh taiyaki quinoa trust fund copper mug retro deep v. Fam godard poke small batch post-ironic mlkshk kale chips celiac enamel pin synth mustache meh meggings paleo.
+</Expandable>
+
+##### Example with a custom toggle:
+
+<Expandable
+  toggleElement={<Button>Custom Button</Button>}
+>
+  Raclette pork belly neutra leggings hoodie cred fam lyft master cleanse crucifix helvetica art party tumblr tilde salvia. Health goth green juice whatever intelligentsia jean shorts disrupt beard lumbersexual biodiesel small batch try-hard DIY paleo blog. Echo park unicorn hexagon shoreditch authentic. Fingerstache semiotics tote bag artisan unicorn deep v iceland edison bulb tbh brooklyn food truck man bun locavore poke viral. Selvage next level tacos succulents, occupy echo park whatever microdosing iceland shoreditch skateboard direct trade drinking vinegar kitsch helvetica. Flannel subway tile biodiesel plaid. Lo-fi kickstarter ennui heirloom mustache normcore banjo kitsch.
+</Expandable>
+
+##### Example with no toggle:
+An Expandable without a Toggle will have it's state managed externally 🙂
+
+<Expandable
+  toggleElement="none"
+  startOpen
+>
+  Knausgaard man bun photo booth palo santo. 8-bit af asymmetrical direct trade. PBR&B green juice yuccie, neutra gastropub art party yr fashion axe. You probably haven't heard of them edison bulb sriracha 3 wolf moon listicle prism tofu hoodie fingerstache chicharrones humblebrag cold-pressed iceland typewriter synth.
+</Expandable>
+
+</Rhythm>
