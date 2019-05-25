@@ -11,6 +11,7 @@ const { directories } = require(path.resolve(pkgpath.self(), 'package.json'));
 const source = (...paths) => path.resolve(pkgpath.self(), directories.source, ...paths);
 
 const config = {
+  target: 'serverless',
   cssModules: false,
   pageExtensions: ['js', 'jsx', 'mdx'],
   webpack: (config, { dev }) => {
