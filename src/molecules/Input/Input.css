@@ -6,6 +6,7 @@
   &__error {
     font-size: 0.875rem;
     color: var(--color-pop-red);
+    padding: 0 0.125rem;
   }
 
   &__input {

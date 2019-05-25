@@ -9,23 +9,24 @@ import { Media, Media__figure, Media__body } from '@molecules/Media';
 
 Inputs are basic form elements.
 
+<Input/>
+
+#### Example that requires an input
+
 <Input
-  placeholder="Search"
-  label="Search For an Element"
+  isRequired
+  placeholder="Please enter some text!"
+  label="Required field"
 />
 
-### Example with a Button composition
+#### Example with a passed Regex Expression and Error Message
 
-<Media align="top">
-  <Media__body>
-    <Input
-      isRequired
-      placeholder="Search"
-      label="Search For an Element"
-    />
-  </Media__body>
-  <Media__figure>
-    <Button>Go</Button>
-  </Media__figure>
-</Media>
+<Input
+  placeholder="Search"
+  label="Email address"
+  isRequired
+  regex={/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/}
+  errorMessage="Please enter a valid email address"
+/>
+
 </Rhythm>

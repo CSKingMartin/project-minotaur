@@ -1,5 +1,5 @@
 import Expandable from '@molecules/Expandable';
-import Card from '@atoms/Card';
+import Label from '@atoms/Label';
 
 export const Input = (props) => {
   const {
@@ -9,6 +9,7 @@ export const Input = (props) => {
     placeholder,
     isRequired,
     errorMessage,
+    regex,
     ...rest
   } = props;
 
@@ -19,10 +20,14 @@ export const Input = (props) => {
   const validate = () => {
     if (value.length === 0) {
       setValidation(false);
+    } else if (regex) {
+      const regexTest = RegExp(regex);
+      setValidation(regexTest.test(value));
     } else {
       setValidation(true);
     }
   };
+
 
   useEffect(() => {
     if (loaded) {
@@ -38,6 +43,7 @@ export const Input = (props) => {
 
   return (
     <div className={stack} {...rest}>
+      {label && <Label>{label}</Label>}
       <input
         className="Input__input"
         name={name}
