@@ -36,8 +36,6 @@ const path2LinkList = (baseUrl = '') => (data) => {
         .replace('.html', '')
         .split('/')
         .map((s) => s.substr(0, 1).toUpperCase() + s.substr(1))
-        .map((s) => (s.match(/Styleguide/) ? s.replace('Styleguide', 'Style Guide') : s)) // for clarity
-        .map((s) => (s.match(/Index/) ? s.replace('Index', 'Home') : s)) // for clarity
         .join('\xa0') // &nbsp;
   };
 };
