@@ -15,6 +15,7 @@ export default class extends Document {
         <Head>
           <meta name="viewport" content="width=device-width, initial-scale=1" />
           <link rel="shortcut icon" type="image/x-icon" href="/static/favicon.png" />
+          <link rel="preload" href="/static/fonts/Montserrat-Regular.tff" as="font">
         </Head>
         <body>
           <PageShell>
