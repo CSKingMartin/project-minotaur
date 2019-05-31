@@ -1,12 +1,20 @@
-@import url('https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,500i,700,700i');
 @import '../Heading/Heading.css';
+
+@font-face {
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Montserrat'),
+       url('./static/fonts/Montserrat-Regular.ttf') format('truetype');
+  unicode-range: U+000-5FF; /* Latin glyphs */
+}
 
 * {
   box-sizing: border-box;
 }
 
 body {
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Montserrat', sans-serif;
   line-height: 1.75rem;
 }
 
