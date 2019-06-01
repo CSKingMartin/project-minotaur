@@ -19,7 +19,7 @@ Getting an idea of what `project-minotaur` is all about, just do the following:
 yarn
 yarn dev
 ```
-3. Travel to `https://localhost:30000`
+3. Travel to `https://localhost:3000`
 
 It's as simple as that.
 

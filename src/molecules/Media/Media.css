@@ -25,11 +25,13 @@
 
 	&__body {
 		& ~ .Media__figure {
+			flex: 0;
 			margin: 0 0 0 1rem;
 		}
 	}
 
 	&__figure ~ .Media__body {
+		flex: 0;
 		margin: 0 0 0 1rem;
 	}
 }

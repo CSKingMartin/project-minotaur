@@ -42,6 +42,12 @@ const config = {
         ignore: ['README.md']
       })
     )
+    config.module.rules.push({
+      test: /\.(png|woff|woff2|eot|ttf|svg)$/,
+      use: [{
+        loader: 'url-loader'
+      }]
+    });
 
     return config
   }
