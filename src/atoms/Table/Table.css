@@ -1,0 +1,10 @@
+.Table {
+	border-spacing: 0;
+	overflow-x: scroll;
+	-webkit-overflow-scrolling: touch;
+
+	&__row {
+		border-bottom: 2px solid blue;
+		border-bottom-width: 5px;
+	}
+}
