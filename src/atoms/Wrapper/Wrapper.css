@@ -1,6 +1,6 @@
 .Wrapper {
   margin: 0 auto;
-  padding: 1rem;
+  padding: 0; /* note to self: never put padding / margin on Wrapper */
   position: relative;
   width: 100%;
 

@@ -1,3 +1,4 @@
+import Brand from '@molecules/Brand';
 import Image from '@atoms/Image';
 import Wrapper from '@atoms/Wrapper';
 
@@ -16,7 +17,14 @@ export const GlobalHeader = (props) => {
 	return (
 		<div className={stack}>
 			<Wrapper className="GlobalHeader__wrapper" size="default">
-				<Image className="GlobalHeader__logo" src="/static/images/minotaur-color.png" />
+				<div className="GlobalHeader__logo">
+					<Brand variant="dark" />
+				</div>
+				<div className="GlobalHeader__nav-item">Catalog</div>
+				<div className="GlobalHeader__nav-item">Docs</div>
+				<div className="GlobalHeader__github">
+					<Image src="/static/images/github.svg" />
+				</div>
 			</Wrapper>
 		</div>
 	);
