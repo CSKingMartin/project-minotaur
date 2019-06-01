@@ -2,13 +2,13 @@
 import '../bundle.css.jsx';
 import React from 'react'
 import Document, { Head, Main, NextScript } from 'next/document'
-import { PageShell, PageShell__main, PageShell__header, PageShell__footer } from '@atoms/PageShell/PageShell';
-import GlobalFooter from '@organisms/GlobalFooter';
-import GlobalHeader from '@organisms/GlobalHeader';
-import Rhythm from '@atoms/Rhythm';
-import Wrapper from '@atoms/Wrapper';
 
-export default class extends Document {
+class CustomDocument extends Document {
+  static async getInitialProps(ctx) {
+    const initialProps = await Document.getInitialProps(ctx);
+    return { ...initialProps };
+  }
+
   render () {
     return (
       <html>
@@ -17,24 +17,12 @@ export default class extends Document {
           <link rel="shortcut icon" type="image/x-icon" href="/static/favicon.png" />
         </Head>
         <body>
-          <PageShell>
-            <PageShell__header>
-              <GlobalHeader />
-            </PageShell__header>
-              <PageShell__main>
-                <Wrapper>
-                  <Main />
-                </Wrapper>
-              </PageShell__main>
-            <PageShell__footer>
-              <GlobalFooter />
-            </PageShell__footer>
+            <Main />
             <NextScript />
-          </PageShell>
         </body>
       </html>
     )
   }
 }
 
-
+export default CustomDocument;

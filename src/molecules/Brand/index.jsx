@@ -19,10 +19,7 @@ export const Brand = (props) => {
 
 	return (
 		<div className={stack} {...rest}>
-			<Link
-				href="/"
-				className={stack}
-			>
+			<Link href="/">
 				<a className="Brand__wrapper">
 					<Media align="center">
 						<Media__body>

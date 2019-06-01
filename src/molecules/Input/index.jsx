@@ -28,7 +28,6 @@ export const Input = (props) => {
     }
   };
 
-
   useEffect(() => {
     if (loaded) {
       if (isRequired && value.length >= 0) { validate(); }
