@@ -1,14 +1,5 @@
 @import '../Heading/Heading.css';
 
-@font-face {
-  font-family: 'Montserrat';
-  font-style: normal;
-  font-weight: 400;
-  src: local('Montserrat'),
-       url('./static/fonts/Montserrat-Regular.ttf') format('truetype');
-  unicode-range: U+000-5FF; /* Latin glyphs */
-}
-
 * {
   box-sizing: border-box;
 }
