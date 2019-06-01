@@ -1,0 +1,21 @@
+.Brand {
+  &__logo {
+    display: block;
+    height: 2.5rem;
+    width: 2.5rem;
+  }
+
+  &__wrapper {
+    /* this is the 'a' tag wrapping the Media */
+    color: var(--color-abyss);
+    text-decoration: none;
+  }
+
+  &--dark {
+    background-color: var(--color-abyss);
+
+    .Brand__wrapper {
+      color: var(--color-white);
+    }
+  }
+}
