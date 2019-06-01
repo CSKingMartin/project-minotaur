@@ -1,0 +1,44 @@
+import { Editor, Specimen } from '@hanga'
+import Rhythm from '@atoms/Rhythm';
+import FullExample from '@organisms/FullExample';
+
+<FullExample />
+
+<StatefulContext.Provider>
+  <Specimen
+    Editors={({ quickEditors }) => (
+      <React.Fragment>
+        <Editor.Text
+          name="buttonText"
+          defaultValue="This button text is editable"
+        />
+        <Editor.Select
+          name="color"
+          label="Color"
+          defaultValue={'blue'}
+          options={['red', 'blue', 'green']}
+        />
+        <Editor.Toggle
+          name="isDisabled"
+          defaultValue={false}
+        />
+        {quickEditors}
+      </React.Fragment>
+    )}
+    quickEditors={{
+      loremIpsum: 'Project Minotaur'
+    }}
+  >
+    {
+      ({ buttonText, isDisabled, color, loremIpsum }) =>
+      <React.Fragment>
+        <button disabled={isDisabled} style={{ color }} className="btn">{buttonText}</button>
+        {
+          [...Array(4)].map((_, i) => (
+            <p key={i}>{loremIpsum}</p>
+          ))
+        }
+      </React.Fragment>
+    }
+  </Specimen>
+</StatefulContext.Provider>
