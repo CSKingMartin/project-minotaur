@@ -28,6 +28,7 @@ export class GlobalHeader extends React.Component {
 	};
 
 	onLeave(e) {
+		/* all elements that prevent nav closing onLeave have `data-hover` attribute */
 		if ((e.relatedTarget.dataset && !e.relatedTarget.dataset.hover)) {
 			this.setState(state => ({
 	      isActive: false
