@@ -41,22 +41,22 @@ const path2LinkList = (baseUrl = '') => (data) => {
 };
 
 export const atomsIndexData =
-  Object.keys(requireAllComponents(atomsContext, '/styleguide/atoms/'))
+  Object.keys(requireAllComponents(atomsContext, '/catalog/atoms/'))
     .map((p) => ({
       path: p.substr(p.indexOf('/atoms/') + '/atoms/'.length)
     }))
-    .map(path2LinkList('/styleguide/atoms'));
+    .map(path2LinkList('/catalog/atoms'));
 
 export const moleculesIndexData =
-  Object.keys(requireAllComponents(moleculesContext, '/styleguide/molecules/'))
+  Object.keys(requireAllComponents(moleculesContext, '/catalog/molecules/'))
     .map((p) => ({
       path: p.substr(p.indexOf('/molecules/') + '/molecules/'.length)
     }))
-    .map(path2LinkList('/styleguide/molecules'));
+    .map(path2LinkList('/catalog/molecules'));
 
 export const organismsIndexData =
-  Object.keys(requireAllComponents(organismsContext, '/styleguide/organisms/'))
+  Object.keys(requireAllComponents(organismsContext, '/catalog/organisms/'))
     .map((p) => ({
       path: p.substr(p.indexOf('/organisms/') + '/organisms/'.length)
     }))
-    .map(path2LinkList('/styleguide/organisms'));
+    .map(path2LinkList('/catalog/organisms'));
