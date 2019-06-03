@@ -15,27 +15,25 @@ export class GlobalHeader extends React.Component {
 			isActive: false
 		};
 
-		this.rootRef = React.createRef();
-		this.primaryRef = React.createRef();
-		this.panelRef = React.createRef();
-
 		this.onHover = this.onHover.bind(this);
+		this.onLeave = this.onLeave.bind(this);
 	}
 
 	onHover() {
-		this.setState(state => ({
-      isActive: !state.isActive
-    }));
+		if (!this.state.isActive) {
+			this.setState(state => ({
+	      isActive: true
+	    }));
+		}
 	};
 
 	onLeave(e) {
-		console.log('target:', e.relatedTarget);
-		console.log('ref', this.rootRef.current);
-
-		if (e.relatedTarget !== (this.rootRef.current || this.primaryRef.current || this.panelRef.current)) {
-			this.onHover();
+		if ((e.relatedTarget.dataset && !e.relatedTarget.dataset.hover)) {
+			this.setState(state => ({
+	      isActive: false
+	    }));
 		}
-	}
+	};
 
 	render() {
 		const {
@@ -49,9 +47,9 @@ export class GlobalHeader extends React.Component {
 		]);
 
 		return (
-			<div ref={this.rootRef} className={stack} {...rest}>
+			<div data-hover={true} className={stack} {...rest}>
 				<Wrapper className="GlobalHeader__wrapper" size="default">
-					<div className="GlobalHeader__primary" ref={this.primaryRef}>
+					<div className="GlobalHeader__primary" data-hover={true}>
 						<div className="GlobalHeader__logo">
 							<Brand variant="dark" />
 						</div>
@@ -77,7 +75,8 @@ export class GlobalHeader extends React.Component {
 					>
 					  <Card
 					  	className="GlobalHeader__catalog-inner"
-					  	onMouseLeave={this.onHover}
+					  	onMouseLeave={this.onLeave}
+					  	data-hover={true}
 					  >
 					  	<div className="GlobalHeader__catalog-side">
 					  		<Heading level="h6">Minotaur</Heading>
