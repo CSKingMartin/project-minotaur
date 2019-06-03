@@ -5,7 +5,7 @@
     cursor: pointer;
     height: 2rem;
     position: absolute;
-    right: 0;
+    right: 1rem;
     width: 2rem;
   }
 
@@ -39,6 +39,8 @@
   &__nav-heading {
     font-size: 1.125rem;
     font-weight: bold;
+    color: var(--color-black);
+    text-decoration: none;
     letter-spacing: 2px;
     text-transform: uppercase;
   }
@@ -49,6 +51,10 @@
     min-width: 6rem;
     justify-content: center;
     padding: 0.25rem;
+
+    a {
+      text-decoration: none;
+    }
 
     &::after {
       height: calc(100% - 2rem);
@@ -79,6 +85,7 @@
   &__catalog-panel {
     position: absolute;
     top: calc(4rem + 4px);
+    border-top: none;
     margin: 0 auto;
     left: 0;
     width: 100vw;

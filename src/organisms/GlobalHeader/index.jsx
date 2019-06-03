@@ -62,12 +62,17 @@ export class GlobalHeader extends React.Component {
 							<div className="GlobalHeader__nav-heading">Catalog</div>
 						</div>
 						<div className="GlobalHeader__nav-item">
-							<div className="GlobalHeader__nav-heading">Docs</div>
+							<a href="/docs">
+								<div className="GlobalHeader__nav-heading">Docs</div>
+							</a>
 						</div>
 						<div className="GlobalHeader__github">
-							<Image src="/static/images/github.svg" />
+							<a href="https://www.github.com/CSKingMartin/project-minotaur" alt="Link to Github repository homepage">
+								<Image src="/static/images/github.svg" />
+							</a>
 						</div>
 					</div>
+					{/* begin full NavList panel */}
 					<Expandable
 						className="GlobalHeader__catalog-panel"
 					  toggleElement="none"
