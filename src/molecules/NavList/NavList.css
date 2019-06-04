@@ -1,8 +1,30 @@
 .NavList {
+  align-items: flex-start;
   font-size: 1rem;
+  position: relative;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
 
-	& > * {
+  @media (--medium) {
+    display: inline-block;
+  }
+
+  &__heading {
+    width: 100%;
+  }
+
+	& > *:not(.Heading) {
 		display: inline-block;
-		width: 100%;
+    width: 100%;
+
+    @media (--small) {
+      width: 50%;
+    }
+
+    @media (--medium) {
+  		width: 100%;
+    }
 	}
 }

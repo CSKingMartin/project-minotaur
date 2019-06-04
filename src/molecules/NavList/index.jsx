@@ -29,7 +29,7 @@ const NavList = (props) => {
 
 	return (
 		<Rhythm className="NavList">
-			<Heading level="h6">{`${label.charAt(0).toUpperCase()}${label.substr(1, label.length - 1)}`}</Heading>
+			<Heading className="NavList__heading" level="h6">{`${label.charAt(0).toUpperCase()}${label.substr(1, label.length - 1)}`}</Heading>
 			{Object.keys(target).map((index) => 
 				<PageLink key={index} label={target[index].content} href={`/${target[index].url}`} />
 			)}
