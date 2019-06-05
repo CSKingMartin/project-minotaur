@@ -4,6 +4,11 @@
   position: relative;
   width: 100%;
 
+  &--body {
+    max-width: 43.75rem;
+    margin-left: 0;
+  }
+
   &--content {
   	max-width: 43.75rem;
   }

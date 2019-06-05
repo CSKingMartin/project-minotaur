@@ -1,3 +1,14 @@
+{/*
+	TODO:
+
+	Regroup around types of 'Wrapper'
+	This doesn't have to represent a standard going forward.
+
+	What has been popular with Design / UX has been:
+	['inner', 'outer', 'max-width' 'page-width']
+*/}
+
+
 export const Wrapper = (props) => {
 	const {
 		size,
@@ -23,7 +34,7 @@ Wrapper.defaultProps = {
 };
 
 Wrapper.propTypes = {
-	size: PropTypes.oneOf(['default', 'content', 'wide']),
+	size: PropTypes.oneOf(['default', 'content', 'wide', 'body']),
 	className: PropTypes.string,
   children: PropTypes.node
 }
