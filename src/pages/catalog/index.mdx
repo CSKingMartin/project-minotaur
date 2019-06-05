@@ -1,0 +1,62 @@
+import Button from '@atoms/Button';
+import Expandable from '@molecules/Expandable';
+import Heading from '@atoms/Heading';
+import Image from '@atoms/Image';
+import Rhythm from '@atoms/Rhythm';
+import Wrapper from '@atoms/Wrapper';
+
+<Wrapper size="body">
+  <Rhythm>
+
+  ### Catalog
+
+  The Catalog encloses the Components that makeup the Styleguide.
+
+  The Components are divided into a few categories that represent their size.
+
+  We use some ideas and conventions from Brad Frost!
+
+  You can find more of his work [here](http://atomicdesign.bradfrost.com/)!
+
+  ##### Atoms
+
+  Atoms are the tinest building blocks of any web page. For a good number HTML tags, we have an atom
+  in our Catalog to represent it.
+
+  A good example is the Button:
+
+  <Button>Press me!</Button>
+
+  But Buttons don't do much on their own!
+
+  ##### Molecules
+
+  When we pair our Button with another component, or some other pieces, it's classified as a Molecule.
+  Here we have an Expandable, which uses two Atoms; Button and Image.
+
+  Try interacting with the example below
+  ### 👇👇👇
+
+  <Expandable
+    toggleElement={<Button>Press me!</Button>}
+    closeHeight="0"
+  >
+    <Image height="300px" src="static/images/bab5.gif" alt="So it begins!" />
+  </Expandable>
+
+  ##### Organisms
+
+  Organisms are larger still. They represent page-level modules that sometimes have many moving parts, but
+  are categorized more for their impact and size on the web page.
+
+  These are typically large, body-wide elements such as Heros, Calculators, as well as GlobalHeaders and Footers.
+
+  ##### Templates
+
+  Templates are composition of Organisms filled with Lorep Ipsum, or other dummy text that represent a
+  full page without the content.
+
+  These are akin to wireframes, and can represent default compositions used for authors in a CMS.
+
+  </Rhythm>
+</Wrapper>

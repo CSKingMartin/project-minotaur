@@ -2,4 +2,6 @@ node_modules
 dist
 *.log
 src/.next/
-src/pages/catalog/
+src/pages/catalog/atoms/
+src/pages/catalog/molecules/
+src/pages/catalog/organisms/
