@@ -4,7 +4,7 @@ import Button from '@atoms/Button';
 export const Expandable = (props) => {
   const {
     className,
-    startOpen,
+    startOpen, // startOpen ? Yes or no?
     toggleElement,
     forwardedRef,
     closeHeight,
@@ -14,7 +14,7 @@ export const Expandable = (props) => {
   } = props;
 
   /* state objects */
-  const [isExpanded, toggle] = useState(startOpen);
+  const [isExpanded, toggle] = useState(startOpen); // const isExpanded; | toggle(); | useState => initial value
   const [height, updateHeight] = useState();
 
   const inner = React.createRef();
@@ -71,7 +71,7 @@ export const Expandable = (props) => {
 };
 
 Expandable.defaultProps = {
-  startOpen: false,
+  startOpen: false, // NO start closed
   closeHeight: '1rem'
 };
 

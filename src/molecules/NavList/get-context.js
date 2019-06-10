@@ -1,3 +1,10 @@
+/*
+  TODO:
+
+  Needs to be refactored.
+  Lots of cruft / metadata being looked for that isn't there.
+*/
+
 export const atomsContext = require.context('@atoms/', true, /\.example\.mdx$/);
 export const moleculesContext = require.context('@molecules/', true, /\.example\.mdx$/);
 export const organismsContext = require.context('@organisms/', true, /\.example\.mdx$/);

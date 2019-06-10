@@ -5,7 +5,7 @@ const clean = require('gulp-clean');
 const rename = require('gulp-rename');
 
 gulp.task('clean', () => {
-  return gulp.src('src/pages/catalog/', {read: false, allowEmpty: true})
+  return gulp.src(['src/pages/catalog/atoms/', 'src/pages/catalog/molecules/', 'src/pages/catalog/organisms/'], {read: false, allowEmpty: true})
   .pipe(clean());
 });
 

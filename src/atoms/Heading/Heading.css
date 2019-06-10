@@ -5,6 +5,8 @@
 }
 
 .Heading {
+  line-height: 44px;
+
   &--h1 {
     font-size: 3rem;
   }

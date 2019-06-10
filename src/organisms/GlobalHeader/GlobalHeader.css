@@ -83,6 +83,7 @@
 
   &__panel-menu {
     border-top: none;
+    background-color: var(--color-white);
     display: grid;
     text-transform: none;
     font-weight: normal;
@@ -136,6 +137,7 @@
   }
 
   &__catalog-panel {
+    background-color: var(--color-white);
     position: absolute;
     top: calc(4rem + 4px);
     border-top: none;

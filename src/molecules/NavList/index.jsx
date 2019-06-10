@@ -13,7 +13,7 @@ const NavList = (props) => {
 		children
 	} = props;
 
-	let target;
+	let target; // empty let
 
 	switch (label) {
 		case 'atoms':

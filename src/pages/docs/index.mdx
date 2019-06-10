@@ -1,8 +1,30 @@
+import Button from '@atoms/Button';
+import Card from '@atoms/Card';
+import Heading from '@atoms/Heading';
 import Rhythm from '@atoms/Rhythm';
+import Wrapper from '@atoms/Wrapper';
 
+<Wrapper size="body">
 <Rhythm>
 
-# Documentation
+# Project Minotaur
+##### A low-profile Component Catalog App.
+
+Minotaur is a small React application built around hosting and developing a cohesive Styleguide for all kinds of Web Development.
+Categories help organize these components based on their size and purpose.
+
+##### For Example:
+
+Most Websites include basic Components like Cards, Headings, and Buttons.
+
+Here we can compose all of those (inline inside an MDX file) to serve as a live example:
+
+<Card>
+	<Rhythm>
+		<Heading>Hello, Minotaur!</Heading>
+		<Button>This is an exciting composition!</Button>
+	</Rhythm>
+</Card>
 
 This directory should hold the basic documentation for the Styleguide application.
 
@@ -20,3 +42,4 @@ What does this do? This:
 - 
 
 </Rhythm>
+</Wrapper>

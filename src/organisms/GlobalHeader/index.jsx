@@ -59,10 +59,12 @@ export class GlobalHeader extends React.Component {
 							onMouseEnter={this.onHover}
 							onMouseLeave={(e) => this.onLeave(e)}
 						>
-							<div className="GlobalHeader__nav-heading">Catalog</div>
+							<a href="/catalog" alt="A link to the Catalog root">
+								<div className="GlobalHeader__nav-heading">Catalog</div>
+							</a>
 						</div>
 						<div className="GlobalHeader__nav-item">
-							<a href="/docs">
+							<a href="/docs" alt="A link to the Documentation root">
 								<div className="GlobalHeader__nav-heading">Docs</div>
 							</a>
 						</div>

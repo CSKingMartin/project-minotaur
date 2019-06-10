@@ -1,11 +1,12 @@
 import Button from '@atoms/Button';
 import Expandable from '@molecules/Expandable';
 import Rhythm from '@atoms/Rhythm';
+import Wrapper from '@atoms/Wrapper';
 
+<Wrapper size="body">
 <Rhythm>
 
 ### Expandable
-
 Expandables are sections of a page that have a minimum height, but can grow to the size of its
 children on a 'Toggle'.
 
@@ -30,9 +31,10 @@ An Expandable without a Toggle will have it's state managed externally 🙂
 
 <Expandable
   toggleElement="none"
+  closeHeight="0"
   startOpen
 >
   Knausgaard man bun photo booth palo santo. 8-bit af asymmetrical direct trade. PBR&B green juice yuccie, neutra gastropub art party yr fashion axe. You probably haven't heard of them edison bulb sriracha 3 wolf moon listicle prism tofu hoodie fingerstache chicharrones humblebrag cold-pressed iceland typewriter synth.
 </Expandable>
-
 </Rhythm>
+</Wrapper>
