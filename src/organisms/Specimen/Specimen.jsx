@@ -1,6 +1,6 @@
 import ReactResizeDetector from 'react-resize-detector'
 
-import Editor from '../Editor/'
+import Editor from '@molecules/Editor/'
 import Actions from './Actions'
 import Code from './Code'
 import Editors from './Editors'
