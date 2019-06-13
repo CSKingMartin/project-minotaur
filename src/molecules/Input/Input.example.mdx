@@ -9,11 +9,14 @@ import { Media, Media__figure, Media__body } from '@molecules/Media';
 
 Inputs are basic form elements.
 
-<Input/>
+<Input
+  id="basic-input"
+/>
 
 #### Example that requires an input
 
 <Input
+  id="required-field"
   isRequired
   placeholder="Please enter some text!"
   label="Required field"
@@ -22,6 +25,8 @@ Inputs are basic form elements.
 #### Example with a passed Regex Expression and Error Message
 
 <Input
+  type="email"
+  id="email"
   placeholder="Search"
   label="Email address"
   isRequired

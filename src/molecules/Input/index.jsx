@@ -6,6 +6,8 @@ export const Input = (props) => {
     className,
     label,
     name,
+    type,
+    id,
     placeholder,
     isRequired,
     errorMessage,
@@ -42,15 +44,20 @@ export const Input = (props) => {
 
   return (
     <div className={stack} {...rest}>
-      {label && <Label>{label}</Label>}
+      {label && <Label for={id}>{label}</Label>}
       <input
         className="Input__input"
+        type={type}
         name={name}
+        id={id}
+        aria-labelledby={`${id}--has-error`}
         placeholder={placeholder}
         onBlur={() => init(true)}
         onChange={(e) => setValue(e.target.value)}
       />
       <Expandable
+        id={`${id}--has-error`}
+        role="alert"
         className="Input__error"
         forceExpand={!valid}
         toggleElement="none"
@@ -63,6 +70,7 @@ export const Input = (props) => {
 };
 
 Input.defaultProps = {
+  type: 'text',
   isRequired: false,
   errorMessage: 'Oops! This field is required 😉'
 };
