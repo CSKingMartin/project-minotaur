@@ -37,6 +37,7 @@ export const Results = (props) => {
   const {
     className,
     query,
+    expand,
     children,
     ...rest
   } = props;
@@ -80,12 +81,12 @@ export const Results = (props) => {
 
   const stack = utilities.createClassStack([
     'CatalogSearch__drawer',
-    searchedObject.length > 0 && 'is-active',
+    (searchedObject.length > 0 && expand) && 'is-active',
     className
   ]);
 
   return (
-    <Expandable className={stack} startOpen {...rest}>
+    <Expandable className={stack} forceExpand={expand} closeHeight="0" {...rest}>
       {
         searchedObject.map((index) => {
           const item = catalogObject[index];
@@ -106,6 +107,7 @@ export const Results = (props) => {
 Results.propTypes = {
   className: PropTypes.string,
   query: PropTypes.string,
+  expand: PropTypes.bool,
   children: PropTypes.node
 };
 

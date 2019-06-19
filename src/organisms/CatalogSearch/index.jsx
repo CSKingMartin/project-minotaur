@@ -20,7 +20,9 @@ import Results from './Results.jsx';
 
 export const QueryContext = React.createContext({
   query: '',
-  update: () => {}
+  update: () => {},
+  onBlur: () => {},
+  onFocus: () => {}
 });
 
 const CatalogSearch__ui = () => (
@@ -32,6 +34,8 @@ const CatalogSearch__ui = () => (
             placeholder="What are you looking for?"
             className="CatalogSearch__input"
             additionalChange={value.update}
+            onBlur={value.onBlur}
+            onFocus={value.onFocus}
           />
         </Media.Body>
         <Media.Figure>
@@ -49,10 +53,13 @@ export class CatalogSearch extends React.Component {
     super(props);
 
     this.state = {
-      query: ''
+      query: '',
+      isActive: false
     };
 
     this.onUpdate = this.onUpdate.bind(this);
+    this.onBlur = this.onBlur.bind(this);
+    this.onFocus = this.onFocus.bind(this);
   }
 
   onUpdate(e) {
@@ -63,6 +70,18 @@ export class CatalogSearch extends React.Component {
         query: value
       }));
     }
+  }
+
+  onFocus() {
+    this.setState(() => ({
+      isActive: true
+    }));
+  }
+
+  onBlur() {
+    this.setState(() => ({
+      isActive: false
+    }));
   }
 
   render() {
@@ -81,14 +100,16 @@ export class CatalogSearch extends React.Component {
       <QueryContext.Provider
         value={{
           query: this.state.query, // => this is going to be our dynamic query
-          update: this.onUpdate // a function to update state
+          update: this.onUpdate, // a function to update state
+          onBlur: this.onBlur, // a function to close the dropdown on blur
+          onFocus: this.onFocus
         }}
       >
         <div className={stack} {...rest}>
           <CatalogSearch__ui />
           <QueryContext.Consumer>
             {(value) => (
-              <Results query={value.query} />
+              <Results query={value.query} expand={this.state.isActive} />
             )}
           </QueryContext.Consumer>
         </div>
