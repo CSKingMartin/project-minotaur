@@ -1,3 +1,5 @@
+import Link from 'next/Link'
+
 export class DropdownItem extends React.Component{ 
   constructor(props) {
     super(props);
@@ -24,7 +26,9 @@ export class DropdownItem extends React.Component{
       const listItems = (
         < div className ="dropdown" >
           {this.props.list.map((item, index) =>
-            <p className="list-item" key={index}>{item}</p>
+            <p className="list-item" key={index}>
+                <Link href={"/catalog/" + this.props.path + "/" + item}>{item}</Link>
+            </p>
           )}
         </div>)
         
@@ -42,6 +46,8 @@ export class DropdownItem extends React.Component{
       )
     };
 };
+
+// PageLink = Link
 
 DropdownItem.propTypes = {
   dropdownLists: PropTypes.object,

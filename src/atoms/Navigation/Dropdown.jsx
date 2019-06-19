@@ -2,14 +2,17 @@ import DropdownItem from './DropdownItem';
 
 const dropdownLists = [{
   title: 'Atoms',
+  path: 'atoms',
     list: ['Button', 'Card', 'Heading', 'Image', 'Link']
   },
   {
     title: 'Molecules',
+    path: 'molecules',
     list: ['Brand', 'Editor', 'Expandable', 'Input', 'Media']
   },
   {
     title: 'Organisms',
+    path: 'organisms',
     list: ['Full Example', 'Specimen']
   },
 ]
@@ -22,6 +25,7 @@ export const NavDropdown =(props) => {
           key={index}
           title={item.title} 
           list={item.list}
+          path={item.path}
         />
       )}
     </React.Fragment>
