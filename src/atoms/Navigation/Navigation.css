@@ -1,0 +1,61 @@
+.Navigation {
+  border-radius: 3px;
+  cursor: pointer;
+  background-color: var(--color-abyss--sub); 
+  margin-top: 1.25em;
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  color: white;
+  padding: 0.5em 0.75em;
+};
+
+.nav-item {
+}
+
+.nav-item:hover {
+  /* background-color: #52646e; */
+  height: 100%;
+  text-decoration: underline;
+}
+
+.hidden {
+  display: none;
+}
+
+.dropdown {
+  color: var(--color-seafoam);
+  border: 1px solid var(--color-seafoam);
+  border-radius: 3px;
+  padding: 0.5em 0.75em;
+  background-color: white;
+  position: absolute;
+  width: inherit;
+  z-index: 1;
+}
+
+.list-item{
+
+}
+
+.list-item:hover {
+  text-decoration: underline;
+}
+
+.title {
+  height: inherit;
+  padding: 0.5em 0.75em;
+
+}
+
+.title:hover {
+  /* text-decoration: underline; */
+}
+
+.searchInput {
+  justify-content: flex-end;
+  border-radius: 3px;
+  padding: 0.5em;
+  margin: 1em;
+}
