@@ -18,4 +18,10 @@ export const Label = (props) => {
   );
 };
 
+Label.propTypes = {
+  className: PropTypes.string,
+  children: PropTypes.node,
+  htmlFor: PropTypes.string
+};
+
 export default Label;

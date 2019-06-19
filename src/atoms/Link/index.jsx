@@ -20,7 +20,7 @@ export const Link = (props) => {
 
 Link.defaultProps = {
   variant: 'default'
-}
+};
 
 Link.propTypes = {
   href: PropTypes.string.isRequired,

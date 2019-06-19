@@ -1,62 +1,67 @@
-import EditorWrapper from './EditorWrapper'
+import EditorWrapper from './EditorWrapper';
 
 // Text Editor
 class TextEditor extends React.Component {
-  constructor (props) {
-    super(props)
+  constructor(props) {
+    super(props);
     this.state = {
       value: props.context[props.name] || props.defaultValue,
+      /* eslint-disable */
       rawValue: props.context[props.name] || props.defaultValue,
+      /* eslint-enable */
       caretPosition: 0
-    }
+    };
 
-    this.isTextArea = props.multiline || props.defaultValue.length > 40
-    this.$input = React.createRef()
-    this.handleObservableChange = this.handleObservableChange.bind(this)
-    this.handleChange = this.handleChange.bind(this)
+    this.isTextArea = props.multiline || props.defaultValue.length > 40;
+    this.$input = React.createRef();
+    this.handleObservableChange = this.handleObservableChange.bind(this);
+    this.handleChange = this.handleChange.bind(this);
   }
 
-  componentDidMount () {
-    const { name, context } = this.props
-    context.startObservingState(name, this.handleObservableChange)
+  componentDidMount() {
+    const { name, context } = this.props;
+    context.startObservingState(name, this.handleObservableChange);
   }
-
-  componentWillUnmount () {
-    const { name, context } = this.props
-    context.stopObservingState(name, this.handleObservableChange)
-  }
-
-  componentDidUpdate (_, { value: prevValue }) {
+  /* eslint-disable */
+  componentDidUpdate(_, { value: prevValue }) {
     if (prevValue !== this.state.value) {
-      const $current = this.$input.current
+      const $current = this.$input.current;
 
-      $current.selectionStart = this.state.caretPosition
-      $current.selectionEnd = this.state.caretPosition
+      $current.selectionStart = this.state.caretPosition;
+      $current.selectionEnd = this.state.caretPosition;
     }
   }
+  /* eslint-enable */
 
-  handleObservableChange () {
-    const { name, context } = this.props
-    this.setState({ value: context[name] })
+  componentWillUnmount() {
+    const { name, context } = this.props;
+    context.stopObservingState(name, this.handleObservableChange);
   }
 
-  handleChange (ev) {
-    const { name, context, onChange } = this.props
+  handleObservableChange() {
+    const { name, context } = this.props;
+    this.setState({ value: context[name] });
+  }
+
+  handleChange(ev) {
+    const { name, context, onChange } = this.props;
     this.setState({
+      /* eslint-disable */
       rawValue: String(ev.target.value),
+      /* eslint-enable */
       caretPosition: Number(ev.target.selectionEnd)
-    })
-    context.setContextState({ [name]: ev.target.value })
-    if (onChange) onChange({ [name]: ev.target.value })
+    });
+    context.setContextState({ [name]: ev.target.value });
+    if (onChange) onChange({ [name]: ev.target.value });
   }
 
-  render () {
+  render() {
     const {
       name,
       label,
       defaultValue,
       ...rest
-    } = this.props
+    } = this.props;
 
     return (
       <EditorWrapper
@@ -74,7 +79,7 @@ class TextEditor extends React.Component {
                 id={name}
                 name={name}
                 key={name}
-                value={this.state.value}
+                value={this.state}
                 onChange={this.handleChange}
                 data-editor-textarea
               />
@@ -86,14 +91,14 @@ class TextEditor extends React.Component {
                 id={name}
                 name={name}
                 key={name}
-                value={this.state.value}
+                value={this.state}
                 onChange={this.handleChange}
                 data-editor-text
               />
             )
         }
       </EditorWrapper>
-    )
+    );
   }
 }
 
@@ -104,17 +109,18 @@ TextEditor.propTypes = {
   defaultValue: PropTypes.string,
   onChange: PropTypes.func,
   context: PropTypes.any
-}
+};
 
 TextEditor.defaultProps = {
   defaultValue: '',
   onChange: () => {}
-}
+};
 
+/* eslint-disable */
 export default ({ ...args }) =>
-  <StatefulContext.Consumer>
-    {
-      context =>
-        <TextEditor context={context} {...args} />
-    }
-  </StatefulContext.Consumer>
+  (
+    <StatefulContext.Consumer>
+      {(context) => <TextEditor context={context} {...args} />}
+    </StatefulContext.Consumer>
+  );
+  /* eslint-enable */

@@ -1,8 +1,5 @@
 # TODO:
 
-### Things that need Refactor:
-- GlobalHeader (better pattern between hover / panels)
-
 ### Ideas
 
 ##### Atomic Categories
@@ -16,3 +13,8 @@
 	- Clients don't always want
 	- Makes client aware
 	- too hard to rip out
+
+### BUGS:
+- svg sprite for Icons no longer working
+- ./pages/catalog/atoms|molecules|organisms => These directories are not cleaning out old pages on rebuild
+- bad re-render bug inside of Specimen / Hanga components
