@@ -13,7 +13,7 @@ export const Input = (props) => {
     ...rest
   } = props;
 
-  const [loaded, init] = useState(false); 
+  const [loaded, init] = useState(false);
   const [value, setValue] = useState('');
   const [valid, setValidation] = useState(true);
 

@@ -1,0 +1,14 @@
+[
+  {
+    category: 'Computer',
+    items: ['Graphics Cards', 'RAM']
+  },
+  {
+    category: 'Audio',
+    items: ['Headphones', 'Microphones']
+  },
+  {
+    category: 'Video',
+    items: ['Mirror', 'DSLR']
+  }
+]

@@ -1,0 +1,15 @@
+.Navigation{
+  background-color: #67B8DE;
+  width: 100%;
+  height: 100px;
+  padding-left: 40px;
+  padding-right: 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.Equal-Space-Nav {
+  display: flex;
+  justify-content: space-between;
+}

@@ -19,22 +19,31 @@ export const Dropdown = (props) => {
 
   const toggleRef = React.createRef();
   const drawerRef = React.createRef();
+  let dropdownOpen = false;
 
   const onLeave = (e) => {
     if ((e.relatedTarget.dataset
       && e.relatedTarget.dataset.hover !== (`${heading.toLowerCase()}NavHover`)
       && e.relatedTarget.dataset.hover !== 'Root')
-      || e.relatedTarget === 'Close') {
-      console.log(e.relatedTarget);
+      || e.relatedTarget === 'Close') { //event receiving focus
+      //console.log(e.relatedTarget);
       toggle(false);
+      dropdownOpen == false;
     }
   };
+
+  const openMenu = () => {
+    if(dropdownOpen == false){
+      dropdownOpen == true;
+      toggle(true);
+    }
+  }
 
   return (
     <div className={stack} {...rest}>
       <div
         className="GlobalHeader__dropdown-toggle"
-        onMouseEnter={() => toggle(true)}
+        onMouseEnter={openMenu}
         onMouseLeave={(e) => onLeave(e)}
         ref={toggleRef}
         data-hover={`${heading.toLowerCase()}NavHover`}
@@ -54,6 +63,7 @@ export const Dropdown = (props) => {
       </Expandable>
     </div>
   );
+
 };
 
 Dropdown.propTypes = {
