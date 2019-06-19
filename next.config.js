@@ -18,6 +18,7 @@ const config = {
     config.resolve.extensions.push('.mdx')
     config.resolve.alias = {
       utilities: path.resolve(path.join(__dirname, 'lib/utilities')),
+      '@catalog': source('./'),
       '@atoms': source('atoms'),
       '@molecules': source('molecules'),
       '@organisms': source('organisms'),
