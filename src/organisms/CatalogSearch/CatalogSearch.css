@@ -25,17 +25,20 @@
 		position: absolute;
 		margin: 0 1rem;
 		transition: border-color 0.25s, padding 0.25s;
-		width: calc(100% - 8.125rem);
+		width: calc(100% - 6.125rem);
 		z-index: 10;
 
 		&.is-active {
 			border-color: var(--color-gray);
-			padding: 1rem;
+			padding: 1rem 0.5rem;
 		}
 	}
 
 	&__result {
+		border-radius: 3px;
 		cursor: pointer;
+		padding: 0.25rem 0.5rem;
+		transition: color 0.25s, background-color 0.25s;
 	}
 
 	&__result-badge {

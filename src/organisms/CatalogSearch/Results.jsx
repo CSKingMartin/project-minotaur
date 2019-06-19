@@ -12,6 +12,13 @@ const CatalogResult = (props) => {
     ...rest
   } = props;
 
+  const [isActive, highlight] = useState(false);
+
+  const stack = utilities.createClassStack([
+    'CatalogSearch__result',
+    isActive && 'is-abyss'
+  ]);
+
   const defineColor = (label) => {
     switch (label) {
       case 'atom': return 'blue';
@@ -22,7 +29,13 @@ const CatalogResult = (props) => {
   };
 
   return (
-    <Media className="CatalogSearch__result" variant="full" {...rest}>
+    <Media
+      className={stack}
+      variant="full"
+      onMouseEnter={() => highlight(true)}
+      onMouseLeave={() => highlight(false)}
+      {...rest}
+    >
       <Media.Body>
         <p>{name}</p>
       </Media.Body>

@@ -81,6 +81,10 @@ h6 {
   a {
     color: var(--color-robins-egg);
   }
+
+  .Badge {
+    border-color: var(--color-white);
+  }
 }
 
 .is-seafoam {

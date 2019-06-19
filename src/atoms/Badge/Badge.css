@@ -1,19 +1,21 @@
 .Badge {
+	border: 1px solid transparent;
 	border-radius: 3px;
 	display: inline-block;
 	font-size: 0.75rem;
 	font-weight: bold;
 	line-height: 20px;
-	padding: 0 0.5rem;
 	margin-bottom: 0.1rem;
+	padding: 0 0.5rem;
+	transition: border-color 0.5s;
 
 	&--blue {
-		background-color: blue;
+		background-color: var(--color-robins-egg);
 		color: var(--color-white);
 	}
 
 	&--green {
-		background-color: green;
+		background-color: var(--color-seafoam);
 		color: var(--color-white);
 	}
 
@@ -22,7 +24,7 @@
 	}
 
 	&--red {
-		background-color: red;
+		background-color: var(--color-pop-red);
 		color: var(--color-white);
 	}
 
