@@ -24,10 +24,11 @@ export class DropdownItem extends React.Component{
     
     render(){
       const listItems = (
-        < div className ="dropdown" >
+        <div className="dropdown">
           {this.props.list.map((item, index) =>
-            <p className="list-item" key={index}>
-                <Link href={"/catalog/" + this.props.path + "/" + item}>{item}</Link>
+            <p key={index}>
+                <Link href={"/catalog/" + this.props.path + "/" + item}>
+                <a className="list-item" target="_blank">{item}</a></Link>
             </p>
           )}
         </div>)
@@ -35,7 +36,7 @@ export class DropdownItem extends React.Component{
       return( 
         <React.Fragment>
           <div
-            className='nav-item'
+            className="nav-grid-items"
             onMouseEnter={() => this.onHover()}
             onMouseLeave={() => this.onLeave()}
           >
