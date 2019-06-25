@@ -36,13 +36,33 @@
 
 	&__result {
 		border-radius: 3px;
-		cursor: pointer;
 		padding: 0.25rem 0.5rem;
-		transition: color 0.25s, background-color 0.25s;
 	}
 
 	&__result-badge {
 		text-transform: capitalize;
+	}
+
+	&__result-inner {
+		display: flex;
+
+		.PageLink {
+			cursor: pointer;
+			margin-left: 0.5rem;
+
+			&::before,
+			&::after {
+				display: inline-block;
+			}
+
+			&::before {
+				content: '(';
+			}
+
+			&::after {
+				content: ')';
+			}
+		}
 	}
 
 	&__submit {

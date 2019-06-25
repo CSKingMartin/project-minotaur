@@ -1,29 +1,29 @@
 import {
-  catalogContext
-} from '@lib/get-context.js';
+  data
+} from '@lib/registry.js';
 import Badge from '@atoms/Badge';
 import Expandable from '@molecules/Expandable';
 import Media from '@molecules/Media';
+import PageLink from '@atoms/PageLink';
+
 
 const CatalogResult = (props) => {
   const {
     name,
     category,
+    example,
     ...rest
   } = props;
 
-  const [isActive, highlight] = useState(false);
-
   const stack = utilities.createClassStack([
-    'CatalogSearch__result',
-    isActive && 'is-abyss'
+    'CatalogSearch__result'
   ]);
 
   const defineColor = (label) => {
     switch (label) {
-      case 'atom': return 'blue';
-      case 'molecule': return 'green';
-      case 'organism': return 'red';
+      case 'atoms': return 'blue';
+      case 'molecules': return 'green';
+      case 'organisms': return 'red';
       default: return '';
     }
   };
@@ -32,14 +32,17 @@ const CatalogResult = (props) => {
     <Media
       className={stack}
       variant="full"
-      onMouseEnter={() => highlight(true)}
-      onMouseLeave={() => highlight(false)}
       {...rest}
     >
-      <Media.Body>
-        <p>{name}</p>
+      <Media.Body className="inside-catalog-search">
+        <div className="CatalogSearch__result-inner">
+          <p>{name}</p>
+          <p>
+            {example && <span className="CatalogSearch__result-link"><PageLink className="inside-catalog-search" label="Docs" href={`/catalog/${category}/${name}`}/></span>}
+          </p>
+        </div>
       </Media.Body>
-      <Media.Figure>
+      <Media.Figure className="inside-catalog-search">
         <Badge color={defineColor(category)} className="CatalogSearch__result-badge">{category}</Badge>
       </Media.Figure>
     </Media>
@@ -55,35 +58,9 @@ export const Results = (props) => {
     ...rest
   } = props;
 
-  /*
-    parse:
-    takes catalogContext, and converts it to an Array of Objects
-  */
-  const parse = (obj) => {
-    const returnObject = (obj).map((string) => ({
-      name: string.substring(string.indexOf('/', string.indexOf('/') + 1) + 1, string.indexOf('/index.jsx')),
-      category: string.substring(string.indexOf('/') + 1, string.indexOf('/', string.indexOf('/') + 1) - 1)
-    }));
-
-    return returnObject;
-  };
-
-  const catalogObject = parse(catalogContext.keys());
-
-  /* takes catalogObject and returns index order for an alphabetized sort */
-  const sortedObject = Object.keys(catalogObject).sort((first, second) => {
-    if (catalogObject[first].name.toUpperCase() < catalogObject[second].name.toUpperCase()) {
-      return -1;
-    }
-    if (catalogObject[first].name.toUpperCase() > catalogObject[second].name.toUpperCase()) {
-      return 1;
-    }
-    return 0;
-  });
-
-  const searchedObject = sortedObject.filter((item) => {
+  const response = data.filter((item) => {
     if (query) {
-      const name = catalogObject[item].name.toUpperCase();
+      const name = item.name.toUpperCase();
       const uppercaseQuery = query.toUpperCase();
 
       return name.indexOf(uppercaseQuery) === 0;
@@ -94,21 +71,21 @@ export const Results = (props) => {
 
   const stack = utilities.createClassStack([
     'CatalogSearch__drawer',
-    (searchedObject.length > 0 && expand) && 'is-active',
+    (response.length > 0 && expand) && 'is-active',
     className
   ]);
 
   return (
     <Expandable className={stack} forceExpand={expand} closeHeight="0" {...rest}>
       {
-        searchedObject.map((index) => {
-          const item = catalogObject[index];
-
+        response.map((item, i) => {
           return (
             <CatalogResult
-              key={index}
+              key={i}
               name={item.name}
               category={item.category}
+              example={item.example}
+
             />
           );
         })
@@ -127,6 +104,7 @@ Results.propTypes = {
 CatalogResult.propTypes = {
   name: PropTypes.string,
   category: PropTypes.string,
+  example: PropTypes.bool,
   children: PropTypes.node
 };
 

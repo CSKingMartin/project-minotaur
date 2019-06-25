@@ -21,7 +21,7 @@ import Results from './Results.jsx';
 export const QueryContext = React.createContext({
   query: '',
   update: () => {},
-  onBlur: () => {},
+  onMouseDown: () => {},
   onFocus: () => {}
 });
 
@@ -34,7 +34,6 @@ const CatalogSearch__ui = () => (
             placeholder="What are you looking for?"
             className="CatalogSearch__input"
             additionalChange={value.update}
-            onBlur={value.onBlur}
             onFocus={value.onFocus}
           />
         </Media.Body>
@@ -58,7 +57,7 @@ export class CatalogSearch extends React.Component {
     };
 
     this.onUpdate = this.onUpdate.bind(this);
-    this.onBlur = this.onBlur.bind(this);
+    this.onMouseDown = this.onMouseDown.bind(this);
     this.onFocus = this.onFocus.bind(this);
   }
 
@@ -78,10 +77,13 @@ export class CatalogSearch extends React.Component {
     }));
   }
 
-  onBlur() {
-    this.setState(() => ({
-      isActive: false
-    }));
+  onMouseDown(e) {
+    console.log(e.target.parentNode);
+    if(!e.target.parentNode.classList.contains('inside-catalog-search')){
+      this.setState(() => ({
+        isActive: false
+      }));
+    }
   }
 
   render() {
@@ -101,18 +103,22 @@ export class CatalogSearch extends React.Component {
         value={{
           query: this.state.query, // => this is going to be our dynamic query
           update: this.onUpdate, // a function to update state
-          onBlur: this.onBlur, // a function to close the dropdown on blur
+          onMouseDown: this.onMouseDown, // a function to close the dropdown on blur
           onFocus: this.onFocus
         }}
       >
-        <div className={stack} {...rest}>
-          <CatalogSearch__ui />
-          <QueryContext.Consumer>
-            {(value) => (
-              <Results query={value.query} expand={this.state.isActive} />
-            )}
-          </QueryContext.Consumer>
-        </div>
+        <QueryContext.Consumer>
+          {(value) => (
+            <div className={stack} onMouseDown={value.onMouseDown} {...rest}>
+              <CatalogSearch__ui />
+              <QueryContext.Consumer>
+                {(value) => (
+                  <Results query={value.query} expand={this.state.isActive} />
+                )}
+              </QueryContext.Consumer>
+            </div>
+          )}
+        </QueryContext.Consumer>
       </QueryContext.Provider>
     );
   }

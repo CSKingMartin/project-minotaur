@@ -3,13 +3,16 @@ const run = require('gulp-run-command').default;
 const clean = require('gulp-clean');
 const rename = require('gulp-rename');
 const svgSprite = require('gulp-svg-sprites');
+const print = require('gulp-print').default;
+const fs = require('fs');
+const data = require('./lib/registry.js').data;
 
 gulp.task('clean', () => gulp.src(['src/pages/catalog/atoms/', 'src/pages/catalog/molecules/', 'src/pages/catalog/organisms/'], { read: false, allowEmpty: true })
   .pipe(clean()));
 
 gulp.task('exportPages', () => gulp.src('src/**/*.example.mdx')
   .pipe(rename((path) => {
-    path.basename = 'index';
+    basename = 'index';
   }))
   .pipe(gulp.dest('src/pages/catalog')));
 
@@ -22,6 +25,19 @@ gulp.task('generateSvgSprite', () => gulp.src('src/atoms/Icon/assets/*.svg')
     path.basename = 'bundle';
   }))
   .pipe(gulp.dest('src/static/svgs/')));
+
+gulp.task('registry', () => {
+  const fileContent = (value) => {
+    const data = fs.readFileSync('src/atoms/**/*.jsx', "utf8");
+    console.log(data);
+  };
+
+  console.log(data);
+
+  return gulp.src(['src/atoms/**/*.jsx', 'src/molecules/**/*.jsx', 'src/organisms/**/*.jsx'], { realpath: true })
+    // .pipe(fileContent)
+    // .pipe(print());
+});
 
 gulp.task('watch', () => gulp.watch([
   'src/atoms/Icon/assets/**.*', // triggers Icon rebuild
