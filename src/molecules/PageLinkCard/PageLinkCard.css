@@ -1,0 +1,51 @@
+.PageLinkCard {
+  border-radius: 3px;
+  color: white;
+  cursor: pointer;
+  transition: transform 0.25s;
+  position: relative;
+
+  &.Card {
+    /* overrides default Card styles */
+    padding: 0;
+  }
+
+  &__content {
+    background-color: #00000070;
+    opacity: 0;
+    padding: 1.5rem;
+    transition: opacity 0.25s;
+    height: 100%;
+    width: 100%;
+  }
+
+  &__panel {
+    bottom: 0;
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    z-index: -1;
+
+    iframe {
+      bottom: 0;
+      left: 0;
+      position: absolute;
+      right: 0;
+      top: 0;
+      transform: scale(0.8);
+
+      body {
+        overflow: hidden;
+      }
+    }
+  }
+
+  &.is-active {
+    transform: scale(1.05);
+
+    .PageLinkCard__content {
+      opacity: 1;
+    }
+  }
+}
