@@ -60,16 +60,19 @@
   padding: 0.25rem;
 }
 
+.search-result {
+  grid-column-start: 1;
+  grid-column-end: -1;
+  grid-row-start: span;
+}
 
 @media only screen and (max-width: 450px) {
   .Navigation {
     grid-template-columns: 1fr;
-    grid-template-rows: 3rem 3rem 3rem 3rem;
+    grid-template-rows: 3rem 3rem 3rem 3rem auto;
     align-items: center;
 
   }
-
-
   .search-input {
     justify-self: center;
   }

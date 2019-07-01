@@ -48,8 +48,6 @@ export class DropdownItem extends React.Component{
     };
 };
 
-// PageLink = Link
-
 DropdownItem.propTypes = {
   dropdownLists: PropTypes.object,
   className: PropTypes.string,

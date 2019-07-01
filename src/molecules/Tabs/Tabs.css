@@ -1,0 +1,126 @@
+.Tabs {
+  &__cell {
+    align-items: center;
+    color: var(--color-seafoam);
+    cursor: pointer;
+    display: inline-flex;
+    height: 2.5rem;
+    font-weight: bold;
+    padding: 0 0.875rem;
+    position: relative;
+    justify-content: center;
+    width: 4.875rem;
+
+    &-horizontal-borders,
+    &-vertical-borders {
+      bottom: 0;
+      left: 0;
+      position: absolute;
+      right: 0;
+      top: 0;
+
+      &::before,
+      &::after {
+        content: '';
+        background-color: var(--color-robins-egg);
+        display: block;
+      }
+    }
+
+    &-horizontal-borders {
+      /* left */
+      &::before {
+        height: 0px;
+        left: 0;
+        bottom: 0;
+        position: absolute;
+        transition: height 0.1s 0.375s;
+        width: 2px;
+      }
+
+      /* right */
+      &::after {
+        height: 0px;
+        position: absolute;
+        right: 0;
+        bottom: unset;
+        transition: height 0.1s 0.125s;
+        width: 2px;
+      }
+    }
+
+    &-vertical-borders {
+      /* top */
+      &::before {
+        float: left;
+        height: 2px;
+        right: 0;
+        top: 0;
+        transition: width 0.1s 0.25s;
+        width: 0px;
+      }
+    }
+
+    /* the class that makes it go */
+    &.is-active {
+      .Tabs__cell-horizontal-borders {
+        &::after {
+          height: 2.5rem;
+          transition: height 0.05s 0.05s;
+          bottom: 0;
+        }
+
+        &::before {
+          top: 0;
+          height: 2.5rem;
+          transition: height 0.05s 0.15s;
+        }
+      }
+
+      .Tabs__cell-vertical-borders {
+        &::before {
+          float: right;
+          transition: width 0.05s 0.1s;
+          width: 4.875rem;
+        }
+      }
+    }
+  }
+
+  &__panel {
+    &-inner {
+      display: inline-flex;
+      position: relative;
+    }
+
+    &-bar {
+      background-color: lightgray;
+      bottom: 0;
+      display: flex;
+      height: 1px;
+      position: absolute;
+      width: 100%;
+    }
+
+    &-highlight {
+      background-color: var(--color-robins-egg);
+      display: block;
+      flex: 1;
+      height: 1px;
+      opacity: 0;
+      transition: opacity 0.25s;
+
+      &.has-hover {
+        opacity: 1;
+      }
+    }
+
+    &-marker {
+      background-color: var(--color-robins-egg);
+      height: 2px;
+      position: absolute;
+      transition: transform 0.2s;
+      width: 25%;
+    }
+  }
+}

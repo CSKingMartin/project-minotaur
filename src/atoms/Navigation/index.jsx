@@ -1,5 +1,6 @@
 import NavDropdown from './Dropdown';
 import SearchInput from './SearchInput';
+import DropdownItem from './DropdownItem';
 
 export const Navigation = (props) => {
     const {
@@ -31,5 +32,7 @@ Navigation.propTypes = {
 
 Navigation.Dropdown = NavDropdown;
 Navigation.Search = SearchInput;
+Navigation.DropdownItem = DropdownItem;
+
 
 export default Navigation;

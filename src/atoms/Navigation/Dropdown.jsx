@@ -1,8 +1,9 @@
 import DropdownItem from './DropdownItem';
 
-const dropdownLists = [{
-  title: 'Atoms',
-  path: 'atoms',
+const dropdownLists = [
+  {
+    title: 'Atoms',
+    path: 'atoms',
     list: ['Button', 'Card', 'Heading', 'Image', 'Link']
   },
   {
