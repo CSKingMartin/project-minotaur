@@ -1,9 +1,9 @@
 import Navigation from '@organisms/Navigation'
+import NavigationLink from '@atoms/NavigationLink'
 
 class Input extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {value: ''};
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -14,18 +14,18 @@ class Input extends React.Component {
   }
 
   handleSubmit(event) {
-    console.log(this.state.value);
+    let value = this.context.category;
     event.preventDefault();
   }
 
   render() {
     return (
-      <form onSubmit={this.handleSubmit}>
-        <label>
-          <input type="text" placeholder="Add Header..." value={this.state.value} onChange={this.handleChange} />
-        </label>
-        <input type="submit" value="Submit" />
-      </form>
+        <form onSubmit={this.handleSubmit}>
+          <label>
+            <input type="text" placeholder="Add Header..." onChange={this.handleChange} />
+          </label>
+          <input type="submit" value="Submit" />
+        </form>
     );
   }
 }

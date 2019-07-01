@@ -1,62 +1,38 @@
-export const NavigationLink = (props) => {
-  const {
-    className,
-    href,
-    link,
-    ...rest
-  } = props;
+import InputContext from '@atoms/Input';
 
-  let DropDownObjects = [
-    {
-      category: 'Computer',
-      items: ['Graphics Cards', 'RAM']
-    },
-    {
-      category: 'Audio',
-      items: ['Headphones', 'Microphones']
-    },
-    {
-      category: 'Video',
-      items: ['Mirror', 'DSLR']
-    }
-  ];
+export default class NavigationLink extends React.Component {
+  constructor(props) {
+    super(props);
+  }
 
-  const stack = utilities.createClassStack([
-    'NavigationLink',
-    className
-  ]);
-
-  const navCategory = DropDownObjects.map((objects) => (
-      <div>
-        <ul>
+  render() {
+    return (
+      this.props.list.map((objects) => (
+        <div>
+          <ul>
           <li>
-            <a key={objects.category} className={stack} href="/">{objects.category}</a>
+            <a key={objects.category} className="NavigationLink" href="/">{ objects.category }</a>
             <ul className="Dropdown_Item_List">
             {
-              objects.items.map((itemlist) =>
-                <li key={itemlist}>
-                  <div className="Dropdown_Item">
-                    <a href={"/" + itemlist}>{itemlist}</a>
-                  </div>
-                </li>
-              )
+              objects.items.map((itemlist) => {
+                return (
+                  itemlist.map((item) => {
+                    return (
+                      <li key={item}>
+                        <div className="Dropdown_Item" style= {{backgroundColor: this.props.secondarycolor }}>
+                          <a href={"/catalog/" + objects.category + "/" + item}>{item}</a>
+                        </div>
+                      </li>
+                    ) //return
+                  }) //itemlist.map
+                ) // return
+              }) //objects.items.map
             }
             </ul>
           </li>
-        </ul>
-      </div>
-    )
-  );
-
-  return (
-    <React.Fragment>
-      {navCategory}
-    </React.Fragment>
-  );
-};
-
-// NavigationLink.propTypes = {
-//   href: PropTypes.string.isRequired
-// };
-
-export default NavigationLink;
+          </ul>
+        </div>
+      ))// this.props.list.map
+    )//return
+  }
+}

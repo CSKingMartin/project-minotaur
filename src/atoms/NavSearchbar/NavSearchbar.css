@@ -10,3 +10,16 @@
   margin-right: 50px;
   padding: 5px;
 }
+
+@media only screen and (max-width: 1000px) {
+  .NavSearchbar {
+    margin-left: 0px;
+    margin-right: 0px;
+  }
+} /* min-width 641px, medium screens */
+
+@media only screen and (max-width: 370px) {
+  .NavSearchbar {
+    width: 100%;
+  }
+} /* min-width 641px, medium screens */

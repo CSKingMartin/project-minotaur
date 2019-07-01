@@ -1,5 +1,4 @@
 .Navigation{
-  background-color: #67B8DE;
   width: 100%;
   height: 100px;
   padding-left: 40px;
@@ -10,6 +9,30 @@
 }
 
 .Equal-Space-Nav {
-  display: flex;
   justify-content: space-between;
+}
+
+.Right-Side{
+  max-width: 50%;
+}
+
+@media only screen and (max-width: 1000px) {
+  .Equal-Space-Nav {
+    flex-wrap: wrap;
+  }
+  .Navigation {
+    flex-direction: column;
+    height: 100%;
+    padding: 20px;
+  }
+} /* min-width 641px, medium screens */
+
+@media only screen and (min-width: 700px){
+  .Equal-Space-Nav {
+    display: flex;
+  }
+
+  .Left-Side {
+    max-width: 50%;
+  }
 }
