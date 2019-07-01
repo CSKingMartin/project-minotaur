@@ -4,18 +4,24 @@ import Label from '@atoms/Label';
 export const Input = (props) => {
   const {
     className,
+    id,
     label,
     name,
     placeholder,
     isRequired,
     errorMessage,
+    additionalChange,
     regex,
     ...rest
   } = props;
 
-  const [loaded, init] = useState(false); 
+  const [loaded, init] = useState(false);
   const [value, setValue] = useState('');
   const [valid, setValidation] = useState(true);
+
+  const reference = React.createRef();
+
+  const callAll = (...fns) => (...args) => fns.forEach((fn) => fn && fn(...args));
 
   const validate = () => {
     if (value.length === 0) {
@@ -40,15 +46,21 @@ export const Input = (props) => {
     className
   ]);
 
+  const updateState = (e) => {
+    setValue(e.target.value);
+  };
+
   return (
     <div className={stack} {...rest}>
-      {label && <Label>{label}</Label>}
+      {label && <Label htmlFor={name}>{label}</Label>}
       <input
         className="Input__input"
         name={name}
+        id={name}
         placeholder={placeholder}
         onBlur={() => init(true)}
-        onChange={(e) => setValue(e.target.value)}
+        onChange={callAll(updateState, additionalChange)}
+        ref={reference}
       />
       <Expandable
         className="Input__error"
@@ -69,10 +81,14 @@ Input.defaultProps = {
 
 Input.propTypes = {
   className: PropTypes.string,
+  id: PropTypes.string,
+  regex: PropTypes.string,
+  name: PropTypes.string,
   label: PropTypes.string,
   placeholder: PropTypes.string,
   isRequired: PropTypes.bool,
+  additionalChange: PropTypes.func,
   errorMessage: PropTypes.string
-}
+};
 
 export default Input;

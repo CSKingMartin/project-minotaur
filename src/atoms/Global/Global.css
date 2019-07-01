@@ -15,10 +15,6 @@ code {
   font-size: 1rem;
 }
 
-a {
-  @extend .Link;
-}
-
 h1, h2, h3,
 h4, h5, h6 {
   @extend .Heading;
@@ -85,6 +81,10 @@ h6 {
   a {
     color: var(--color-robins-egg);
   }
+
+  .Badge {
+    border-color: var(--color-white);
+  }
 }
 
 .is-seafoam {
@@ -98,4 +98,8 @@ h6 {
   h4, h5, h6 {
     color: var(--color-abyss);
   }
+}
+
+.is-hidden {
+  display: none;
 }

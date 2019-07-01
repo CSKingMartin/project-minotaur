@@ -19,6 +19,11 @@ export const Expandable = (props) => {
 
   const inner = React.createRef();
 
+  // something that gets run everytime props are updated
+  useEffect(() => {
+    updateHeight(inner.current.offsetHeight);
+  });
+
   const defaultToggle = (
     <Button className="Expandable__toggle" onClick={() => toggle(!isExpanded)}>
       Toggle
@@ -26,36 +31,40 @@ export const Expandable = (props) => {
   );
 
   const expandableToggle = () => {
-    if (toggleElement === 'none') {
-      return;
-    } else if (toggleElement) {
+    if (toggleElement && toggleElement !== 'none') {
       const toggleStack = utilities.createClassStack([
         'Expandable__toggle',
         toggleElement.props.className
       ]);
 
       return (
+        /* eslint-disable */
         <React.Fragment>
-        {React.cloneElement(toggleElement, { className: toggleStack, onClick: () => toggle(!isExpanded) })}
+          {React.cloneElement(toggleElement, { className: toggleStack, onClick: () => toggle(!isExpanded) })}
         </React.Fragment>
+        /* eslint-enable */
       );
-    } else {
+    }
+
+    if (!toggleElement === 'none') {
       return defaultToggle;
     }
+
+    return '';
   };
 
   const onWidthChange = () => updateHeight(inner.current.offsetHeight);
 
   const stack = utilities.createClassStack([
     'Expandable',
-    isExpanded || forceExpand && 'is-expanded',
+    isExpanded || (forceExpand && 'is-expanded'),
     className
   ]);
 
-  const styles = (forceExpand || isExpanded) ? { height: height } : { height: closeHeight };
+  const styles = (forceExpand || isExpanded) ? { height } : { height: closeHeight };
 
   return (
-    <div ref={forwardedRef} className={stack} {...rest} >
+    <div ref={forwardedRef} className={stack} {...rest}>
       <ReactResizeDetector className="Expandable__resizer" handleWidth onResize={() => onWidthChange()} />
       <div
         className="Expandable__wrapper"
@@ -79,6 +88,8 @@ Expandable.propTypes = {
   className: PropTypes.string,
   startOpen: PropTypes.bool,
   closeHeight: PropTypes.string,
+  forceExpand: PropTypes.bool,
+  forwardedRef: PropTypes.object,
   toggleElement: PropTypes.oneOfType([
     PropTypes.node,
     PropTypes.oneOf(['none'])

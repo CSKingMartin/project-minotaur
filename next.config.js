@@ -18,11 +18,13 @@ const config = {
     config.resolve.extensions.push('.mdx')
     config.resolve.alias = {
       utilities: path.resolve(path.join(__dirname, 'lib/utilities')),
+      '@catalog': source('./'),
       '@atoms': source('atoms'),
       '@molecules': source('molecules'),
       '@organisms': source('organisms'),
       '@templates': source('templates'),
       '@static': source('static'),
+      '@lib': path.resolve(path.join(__dirname, 'lib')),
       ...config.resolve.alias
     }
     config.plugins.push(
@@ -42,9 +44,15 @@ const config = {
       })
     )
     config.module.rules.push({
-      test: /\.(png|woff|woff2|eot|ttf|svg)$/,
+      test: /\.(png|woff|woff2|eot|ttf)$/,
       use: [{
         loader: 'url-loader'
+      }]
+    })
+    config.module.rules.push({
+      test: /\.(svg)$/,
+      use: [{
+        loader: 'svg-inline-loader'
       }]
     });
 

@@ -1,16 +1,17 @@
-import ReactResizeDetector from 'react-resize-detector'
-
-import Editor from '@molecules/Editor/'
-import Actions from './Actions'
-import Code from './Code'
-import Editors from './Editors'
-import Preview from './Preview'
-import Resizer from './Resizer'
+import ReactResizeDetector from 'react-resize-detector';
+import Editor from '@molecules/Editor/';
 import Wrapper from '@atoms/Wrapper';
 
+/* local partials */
+import Actions from './Actions';
+import Code from './Code';
+import Editors from './Editors';
+import Preview from './Preview';
+import Resizer from './Resizer';
+
 class Specimen extends React.Component {
-  constructor (props) {
-    super(props)
+  constructor(props) {
+    super(props);
 
     this.state = {
       isFullWidth: false,
@@ -18,63 +19,65 @@ class Specimen extends React.Component {
       maxWidth: 1024, // defaults to this
       previewHeight: 150,
       screenWidth: 1440
-    }
+    };
 
-    this.handleCodeViewReact = this.handleCodeViewReact.bind(this)
-    this.handleCodeViewHtml = this.handleCodeViewHtml.bind(this)
-    this.handlePageResize = this.handlePageResize.bind(this)
-    this.handleResize = this.handleResize.bind(this)
+    this.handleCodeViewReact = this.handleCodeViewReact.bind(this);
+    this.handleCodeViewHtml = this.handleCodeViewHtml.bind(this);
+    this.handlePageResize = this.handlePageResize.bind(this);
+    this.handleResize = this.handleResize.bind(this);
   }
 
-  handleCodeViewReact () {
-    this.setState({ codeView: 'react' })
+  handleCodeViewReact() {
+    this.setState({ codeView: 'react' });
   }
 
-  handleCodeViewHtml () {
-    this.setState({ codeView: 'html' })
+  handleCodeViewHtml() {
+    this.setState({ codeView: 'html' });
   }
 
-  handleFullWidth () {
-    const { isFullWidth } = this.state
+  handleFullWidth() {
+    const { isFullWidth } = this.state;
     this.setState({
       isFullWidth: !isFullWidth
-    })
+    });
   }
 
-  handlePageResize (width) {
+  handlePageResize(width) {
     this.setState({
       screenWidth: width
-    })
+    });
   }
 
-  handleResize ({ width, height }) {
-    if (width !== undefined) this.setState({ maxWidth: width })
-    if (height !== undefined) this.setState({ previewHeight: height })
+  handleResize({ width, height }) {
+    if (width !== undefined) this.setState({ maxWidth: width });
+    if (height !== undefined) this.setState({ previewHeight: height });
   }
 
-  renderQuickEditors () {
-    if (!this.props.quickEditors) return
+  renderQuickEditors() {
+    /* eslint-disable-next-line */
+    if (!this.props.quickEditors) return;
 
-    const { quickEditors } = this.props
-    const editorList =
-      Array.isArray(quickEditors)
-        ? quickEditors
-        : Object.keys(quickEditors).map(name => ({
-          name,
-          options: quickEditors[name]
-        }))
+    const { quickEditors } = this.props;
+    const editorList = Array.isArray(quickEditors)
+      ? quickEditors
+      : Object.keys(quickEditors).map((name) => ({
+        name,
+        options: quickEditors[name]
+      }));
 
-    return editorList
-      .map(editor => (
-        <Editor
-          key={editor.name}
-          name={editor.name}
-          options={editor.options}
-        />
-      ))
+    const returnList = editorList.map((editor) => (
+      <Editor
+        key={editor.name}
+        name={editor.name}
+        options={editor.options}
+      />
+    ));
+
+    /* eslint-disable-next-line */
+    return returnList;
   }
 
-  render () {
+  render() {
     const {
       Head,
       Editors: EditorContent,
@@ -82,13 +85,13 @@ class Specimen extends React.Component {
       hideCode,
       darkMode,
       children
-    } = this.props
+    } = this.props;
     const {
       maxWidth,
       previewHeight,
       screenWidth,
       codeView
-    } = this.state
+    } = this.state;
 
     return (
       <div className="Specimen" data-specimen>
@@ -100,15 +103,16 @@ class Specimen extends React.Component {
         </Editors>
 
         {
-          !hideResizer &&
-          <Resizer
-            handleResize={this.handleResize}
-            maxWidth={maxWidth}
-            screenWidth={screenWidth}
-            previewHeight={previewHeight}
-          />
+          !hideResizer
+          && (
+            <Resizer
+              handleResize={this.handleResize}
+              maxWidth={maxWidth}
+              screenWidth={screenWidth}
+              previewHeight={previewHeight}
+            />
+          )
         }
-
         <Preview
           Head={Head}
           handleResize={this.handleResize}
@@ -122,19 +126,20 @@ class Specimen extends React.Component {
         </Preview>
 
         {
-          !hideCode &&
-          <Wrapper data-specimen-code>
-            <Actions
-              view={codeView}
-              handleCodeViewReact={this.handleCodeViewReact}
-              handleCodeViewHtml={this.handleCodeViewHtml}
-            />
-
-            <Code view={codeView}>{children}</Code>
-          </Wrapper>
+          !hideCode
+          && (
+            <Wrapper data-specimen-code>
+              <Actions
+                view={codeView}
+                handleCodeViewReact={this.handleCodeViewReact}
+                handleCodeViewHtml={this.handleCodeViewHtml}
+              />
+              <Code view={codeView}>{children}</Code>
+            </Wrapper>
+          )
         }
       </div>
-    )
+    );
   }
 }
 
@@ -146,6 +151,6 @@ Specimen.propTypes = {
   hideCode: PropTypes.bool,
   darkMode: PropTypes.bool,
   children: PropTypes.any
-}
+};
 
-export default Specimen
+export default Specimen;

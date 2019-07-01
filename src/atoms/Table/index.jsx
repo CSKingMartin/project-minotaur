@@ -6,17 +6,17 @@ import TableFoot from './Foot';
 import TableRow from './Row';
 
 export const Table = (props) => {
-	const {
-		children
-	} = props;
+  const {
+    children
+  } = props;
 
-	return (
-		<div>{children}</div>
-	);
+  return (
+    <div>{children}</div>
+  );
 };
 
 Table.propTypes = {
-	children: PropTypes.node
+  children: PropTypes.node
 };
 
 Table.Body = TableBody;

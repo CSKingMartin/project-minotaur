@@ -1,20 +1,28 @@
 import Link from 'next/link';
 
 const PageLink = (props) => {
-	const {
+  const {
     className,
-		label,
-		href
-	} = props;
+    label,
+    href
+  } = props;
 
   const stack = utilities.createClassStack([
     'PageLink',
     className
   ]);
 
-	return (
-		<span className={stack}><Link href={href}><a>{label}</a></Link></span>
-	);
+  return (
+    /* eslint-disable */
+    <span className={stack}><Link href={href}><a>{label}</a></Link></span>
+    /* eslint-enable */
+  );
+};
+
+PageLink.propTypes = {
+  className: PropTypes.string,
+  label: PropTypes.string,
+  href: PropTypes.string.isRequired
 };
 
 export default PageLink;

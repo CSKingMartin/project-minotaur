@@ -1,7 +1,7 @@
 /* abstracted component */
 class EditorWrapper extends React.Component {
   /* lifecycle loads props, default state */
-  componentDidMount () {
+  componentDidMount() {
     const {
       context,
       name,
@@ -11,11 +11,11 @@ class EditorWrapper extends React.Component {
     if (defaultValue !== undefined) { // set default value if it was passed
       context.setContextState({
         [name]: defaultValue
-      })
+      });
     }
   }
 
-  render () {
+  render() {
     const {
       label,
       name,
@@ -23,7 +23,7 @@ class EditorWrapper extends React.Component {
       children,
       context,
       hideLabel,
-      multiline,
+      // multiline,
       ...rest
     } = this.props;
 
@@ -33,10 +33,10 @@ class EditorWrapper extends React.Component {
         <div>{children}</div>
       </fieldset>
     );
-  };
-};
+  }
+}
 
- EditorWrapper.propTypes = {
+EditorWrapper.propTypes = {
   label: PropTypes.string, // Label of Editor form field
   name: PropTypes.string.isRequired, // associates input / field control
   type: PropTypes.string,
@@ -46,16 +46,18 @@ class EditorWrapper extends React.Component {
   hideLabel: PropTypes.bool
 };
 
- EditorWrapper.defaultValue = {
+EditorWrapper.defaultValue = {
   hideLabel: false
 };
 
- export default ({ children, ...rest }) =>
+/* eslint-disable */
+export default ({ children, ...rest }) => (
   <StatefulContext.Consumer>
-    {
-      context =>
-        <EditorWrapper context={context} {...rest}>
-          {children}
-        </EditorWrapper>
-    }
+    {(context) => (
+      <EditorWrapper context={context} {...rest}>
+        {children}
+      </EditorWrapper>
+    )}
   </StatefulContext.Consumer>
+);
+/* eslint-enable */
