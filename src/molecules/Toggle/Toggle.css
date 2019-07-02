@@ -1,0 +1,47 @@
+.switch{
+  margin: 1rem;
+  cursor: pointer;
+}
+
+.switch label .lever {
+    content: "";
+    display: inline-block;
+    position: relative;
+    width: 36px;
+    height: 14px;
+    background-color: rgba(0,0,0,0.38);
+    border-radius: 15px;
+    margin-right: 10px;
+    -webkit-transition: left 0.2s ease;
+    transition: left 0.2s ease;
+    vertical-align: middle;
+    margin: 0 16px;
+}
+
+.switch label .lever:before {
+    content: "";
+    position: absolute;
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    left: 0;
+    top: -3px;
+    background-color: #F1F1F1;
+}
+
+.switch label input[type="checkbox"]:checked+.lever:before {
+    background-color: #26a69a;
+     left: 18px;
+}
+
+.switch label input[type="checkbox"]:checked+.lever {
+  background-color: #84c7c1;
+}
+
+.switch label input[type="checkbox"] {
+  opacity: 0;
+  width: 0;
+  height: 0;
+  position: absolute;
+}
