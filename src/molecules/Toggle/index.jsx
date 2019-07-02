@@ -3,19 +3,22 @@ export class Toggle extends React.Component{
     super(props);
     this.state = {
       isActive: false
-    }
+    };
     this.toggleSwitch = this.toggleSwitch.bind(this);
-  }
+  };
 
   componentDidMount(){
     const {
       onChange
     } = this.props
-  }
+  };
 
   toggleSwitch(){
     this.state.isActive ? this.setState({ isActive: false }) : this.setState({ isActive: true});
-  }
+    if(this.props.onChange){
+      this.props.onChange
+    };
+  };
 
   render(){
     return(
@@ -36,7 +39,7 @@ export class Toggle extends React.Component{
         </div>
       </React.Fragment>
     )
-  }
-}
+  };
+};
 
 export default Toggle;
