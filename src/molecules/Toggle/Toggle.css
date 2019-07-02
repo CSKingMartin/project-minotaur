@@ -2,6 +2,14 @@
   margin: 1rem;
   cursor: pointer;
 
+  &__on {
+    color: #84c7c1;
+  }
+
+  &__off {
+    color: black;
+  }
+
   label .lever {
     background-color: rgba(0,0,0,0.38);
     border-radius: 1rem;
