@@ -1,12 +1,4 @@
 export const TextArea = (props) => {
-
-  const [characterCount, setcharacterCount] = useState({maxCharacters: 500});
-
-  const handleChange = (e) => {
-    let textareaCount = e.target.value.length;
-    setcharacterCount({maxCharacters: 500 - textareaCount});
-  };
-
   const {
     className,
     ...rest
@@ -17,16 +9,23 @@ export const TextArea = (props) => {
     className
   ]);
 
+  const [characterCount, setcharacterCount] = useState(props.MaxChar);
+
+  const handleChange = (e) => {
+    const { length } = e.target.value;
+    setcharacterCount(props.MaxChar - length);
+  };
+
   return (
-    <React.Fragment>
+    <div className={stack}>
     <textarea
       type="text"
-      className={stack} {...rest}
+      className="TextArea__input"
       onChange={(e) => handleChange(e)}
-      maxLength="500"
+      maxLength={props.MaxChar}
     />
-    <p className="TextArea__word-counter">{characterCount.maxCharacters}/500</p>
-    </React.Fragment>
+    <p className="TextArea__word-counter">{characterCount}/{props.MaxChar}</p>
+    </div>
   );
 };
 

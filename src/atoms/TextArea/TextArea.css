@@ -1,13 +1,17 @@
 .TextArea {
-  border: 1px solid #8C8C8C;
-  border-radius: 0.1875rem;
-  font-family: 'Montserrat', sans-serif;
-  line-height: 1.75rem;
-  min-height: 3rem;
-  padding: 0.65rem;
   position: relative;
-  resize: vertical;
-  width: 100%;
+  margin-bottom: 25px;
+
+  &__input {
+    border: 1px solid #8C8C8C;
+    border-radius: 0.1875rem;
+    font-family: 'Montserrat', sans-serif;
+    line-height: 1.75rem;
+    min-height: 3rem;
+    padding: 0.65rem;
+    resize: vertical;
+    width: 100%;
+  }
 
   &__word-counter {
     bottom: 0;
@@ -15,11 +19,12 @@
     position: absolute;
     right: 0;
     transition: all .10s;
+    z-index: -1;
   }
 
-  &:focus + &__word-counter{
+  &__input:focus + &__word-counter{
     animation-name: slide-down;
-    animation-duration: .05s;
+    animation-duration: .10s;
     bottom: -25px;
     opacity: 1;
   }
