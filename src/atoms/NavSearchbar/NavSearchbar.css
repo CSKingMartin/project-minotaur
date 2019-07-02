@@ -1,0 +1,12 @@
+.NavSearchbar {
+  border-radius: 3px;
+  border: none;
+  background-color: white;
+  width: 200px;
+  color: gray;
+  font-size: .8em;
+  outline: none;
+  margin-left: 50px;
+  margin-right: 50px;
+  padding: 5px;
+}
