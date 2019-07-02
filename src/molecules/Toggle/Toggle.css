@@ -1,68 +1,67 @@
-.switch{
+.switch {
   margin: 1rem;
   cursor: pointer;
-}
 
+  label {
+    .lever {
+      display: inline-block;
+      position: relative;
+      width: 36px;
+      height: 14px;
+      background-color: rgba(0,0,0,0.38);
+      border-radius: 15px;
+      margin-right: 10px;
+      transition: left 0.2s ease;
+      vertical-align: middle;
+      margin: 0 16px;
 
-.switch label .lever {
-    display: inline-block;
-    position: relative;
-    width: 36px;
-    height: 14px;
-    background-color: rgba(0,0,0,0.38);
-    border-radius: 15px;
-    margin-right: 10px;
-    transition: left 0.2s ease;
-    vertical-align: middle;
-    margin: 0 16px;
-}
+      &::after {
+        content: "";
+        position: absolute;
+        display: inline-block;
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        left: -3px;
+        top: -3px;
+        background-color: lightgray;
+        box-shadow: -1px 1px 5px rgba(105, 105, 105, 0.3);
+        transition: left .25s;
+      }
 
-.switch label .lever:after {
-    content: "";
-    position: absolute;
-    display: inline-block;
-    width: 20px;
-    height: 20px;
-    border-radius: 50%;
-    left: -3px;
-    top: -3px;
-    background-color: lightgray;
-    box-shadow: -1px 1px 5px rgba(105, 105, 105, 0.3);
-    transition: left .25s;
-}
+      &::before {
+        content: "";
+        display: inline-block;
+        position: absolute;
+        width: 15px;
+        height: 14px;
+        background-color: #84c7c1;
+        border-radius: 15px;
+        transition: left 0.2s ease;
+        transition: all 0.25s ease;
+        vertical-align: middle;
+      }
+    }
 
-.switch label .lever:before {
-    content: "";
-    display: inline-block;
-    position: absolute;
-    width: 15px;
-    height: 14px;
-    background-color: #84c7c1;
-    border-radius: 15px;
-    transition: left 0.2s ease;
-    transition: all 0.25s ease;
-    vertical-align: middle;
-}
+    input[type="checkbox"] {
+      opacity: 0;
+      width: 0;
+      height: 0;
+      position: absolute;
 
-.switch label input[type="checkbox"]:checked + .lever:after {
-    left: 18px;
-    animation-name: switchOn;
-    animation-duration: .25s;
-    animation-play-state: running;
-}
+      &:checked + .lever:after {
+      left: 18px;
+      animation-name: switchOn;
+      animation-duration: .25s;
+      animation-play-state: running;
+    }
 
-.switch label input[type="checkbox"]:checked + .lever:before {
-    width: 36px;
-    animation-name: leverChange;
-    animation-duration: .25s;
-}
-
-
-.switch label input[type="checkbox"] {
-  opacity: 0;
-  width: 0;
-  height: 0;
-  position: absolute;
+    &:checked + .lever:before {
+      width: 36px;
+      animation-name: leverChange;
+      animation-duration: .25s;
+    }
+  }
 }
 
 @keyframes switchOn {
@@ -85,4 +84,5 @@
     width: 36px;
   }
 }
+
 
