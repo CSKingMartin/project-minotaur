@@ -8,8 +8,12 @@
   --color-abyss--light: color(var(--color-abyss) alpha(85%));
   --color-abyss--sub: #5d767d;
 
+
   /* grayscale */
   --color-white: #fff;
   --color-gray: #8c8c8c;
   --color-black: #000;
+
+  --shadow-gray: gray;
 }
+
