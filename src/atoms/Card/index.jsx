@@ -6,7 +6,7 @@ export const Card = (props) => {
   } = props;
 
   const stack = utilities.createClassStack([
-    'Card', 
+    'Card',
     className
   ]);
 

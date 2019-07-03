@@ -1,65 +1,73 @@
 import Frame from 'react-frame-component';
 import DragResizer from './DragResizer';
-import { Head } from 'next/document';
 
-export const SpecimenHead = () => <React.Fragment />
+export const SpecimenHead = () => <React.Fragment />; // eslint-disable-line
 
 class Preview extends React.Component {
-  constructor (props) {
-    super(props)
-    this.$iframe = React.createRef()
+  constructor(props) {
+    super(props);
+    this.$iframe = React.createRef();
 
-    this.handleFrameHeight = this.handleFrameHeight.bind(this)
+    this.handleFrameHeight = this.handleFrameHeight.bind(this);
   }
 
-  componentDidMount () {
-    this.handleFrameHeight()
+  componentDidMount() {
+    this.handleFrameHeight();
   }
 
-  componentDidUpdate (prevProps) {
-    if (prevProps.maxWidth !== this.props.maxWidth) {
-      this.handleFrameHeight()
+  componentDidUpdate(prevProps) {
+    const { maxWidth } = this.props;
+
+    if (prevProps.maxWidth !== maxWidth) {
+      this.handleFrameHeight();
     }
   }
 
-  handleFrameHeight () {
-    clearTimeout(this.timer)
+  handleFrameHeight() {
+    const { handleResize } = this.props;
+
+    clearTimeout(this.timer);
     this.timer = setTimeout(() => {
       if (this.$iframe.current) {
-        const iframe = this.$iframe.current.node
-        const { body } = iframe.contentWindow.document
-        const height = body.scrollHeight + 32
+        const iframe = this.$iframe.current.node;
+        const { body } = iframe.contentWindow.document;
+        const height = body.scrollHeight + 32;
 
-        iframe.height = ''
-        iframe.height = height
+        iframe.height = '';
+        iframe.height = height;
 
-        this.props.handleResize({ height })
+        handleResize({ height });
       }
-    })
+    });
   }
 
-  renderChildren (children, context) {
+  /* eslint-disable */
+
+  renderChildren(children, context) {
     // this is causing infinite rendering on each frame
-    return typeof children === 'function' ? children(context) : children
+    return typeof children === 'function' ? children(context) : children;
   }
 
-  render () {
+  /* eslint-enable */
+
+  render() {
     const {
-      Head = SpecimenHead,
+      Head = SpecimenHead, // eslint-disable-line
       maxWidth,
       screenWidth,
       handleResize,
       hideResizer,
       darkMode,
       children
-    } = this.props
+    } = this.props;
 
     return (
       <div className="Preview">
         <div className="Preview__frame-wrapper" style={{ maxWidth: maxWidth === Infinity ? undefined : `${maxWidth}px` }}>
+          {/* eslint-disable */}
           <StatefulContext.Consumer>
             {
-              context =>
+              (context) => (
                 <Frame
                   ref={this.$iframe}
                   sandbox="allow-scripts allow-same-origin allow-top-navigation"
@@ -70,19 +78,23 @@ class Preview extends React.Component {
                 >
                   {this.renderChildren(children, context)}
                 </Frame>
+              )
             }
           </StatefulContext.Consumer>
+          {/* eslint-enable */}
         </div>
         {
-          !hideResizer &&
-          <DragResizer
-            maxWidth={maxWidth}
-            screenWidth={screenWidth}
-            handleResize={handleResize}
-          />
+          !hideResizer
+          && (
+            <DragResizer
+              maxWidth={maxWidth}
+              screenWidth={screenWidth}
+              handleResize={handleResize}
+            />
+          )
         }
       </div>
-    )
+    );
   }
 }
 
@@ -94,10 +106,10 @@ Preview.propTypes = {
   hideResizer: PropTypes.bool,
   darkMode: PropTypes.bool,
   children: PropTypes.any
-}
+};
 
 Preview.defaultValue = {
   Head: SpecimenHead
-}
+};
 
-export default Preview
+export default Preview;

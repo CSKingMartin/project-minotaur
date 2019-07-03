@@ -11,8 +11,17 @@ export const HorizontalRule = (props) => {
   ]);
 
   return (
-    <hr />
-  )
+    <hr className={stack} />
+  );
+};
+
+HorizontalRule.defaultProps = {
+  variant: 'default'
+};
+
+HorizontalRule.propTypes = {
+  className: PropTypes.string,
+  variant: PropTypes.oneOf(['default'])
 };
 
 export default HorizontalRule;

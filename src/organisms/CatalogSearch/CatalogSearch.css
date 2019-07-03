@@ -1,0 +1,53 @@
+.CatalogSearch {
+	position: relative;
+
+	&__input {
+		height: 3rem;
+
+		.Input__input {
+			height: 100%;
+			width: 100%;
+		}
+	}
+
+	&__input-wrapper {
+		flex: 1;
+		position: relative;
+	}
+
+	&__drawer {
+		background-color: var(--color-white);
+		border: 1px solid;
+		border-color: transparent;
+		border-radius: 3px;
+		border-top: none;
+		padding: 0 1rem;
+		position: absolute;
+		margin: 0 1rem;
+		transition: border-color 0.25s, padding 0.25s;
+		width: calc(100% - 6.125rem);
+		z-index: 10;
+
+		&.is-active {
+			border-color: var(--color-gray);
+			padding: 1rem 0.5rem;
+		}
+	}
+
+	&__result {
+		border-radius: 3px;
+		cursor: pointer;
+		padding: 0.25rem 0.5rem;
+		transition: color 0.25s, background-color 0.25s;
+	}
+
+	&__result-badge {
+		text-transform: capitalize;
+	}
+
+	&__submit {
+		height: 3rem;
+		padding: 0;
+		width: 3rem;
+	}
+}

@@ -1,15 +1,13 @@
 import Wrapper from '@atoms/Wrapper';
 
-const Editors = ({ children }) => {
-	return (
-		React.Children.toArray(children).filter(a => a).length > 0
-      ? <Wrapper className="Editors">{children}</Wrapper>
-      : <div />
-	);
-};
+const Editors = ({ children }) => (
+  React.Children.toArray(children).filter((a) => a).length > 0
+    ? <Wrapper className="Editors">{children}</Wrapper>
+    : <div />
+);
 
 Editors.propTypes = {
-	children: PropTypes.any
-}
+  children: PropTypes.any
+};
 
 export default Editors;

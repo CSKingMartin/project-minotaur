@@ -11,39 +11,39 @@ export const PageShell = (props) => {
 
   return (
     <div className={stack}>
-    	{children}
+      {children}
     </div>
   );
 };
 
 export const PageShell__main = (props) => {
-	const { children } = props;
+  const { children } = props;
 
-	return (
-		<main id="main" className="PageShell__main">
-			{children}
-		</main>
-	);
+  return (
+    <main id="main" className="PageShell__main">
+      {children}
+    </main>
+  );
 };
 
 export const PageShell__header = (props) => {
-	const { children } = props;
+  const { children } = props;
 
-	return (
-		<header className="PageShell__header">
-			{children}
-		</header>
-	);
+  return (
+    <header className="PageShell__header">
+      {children}
+    </header>
+  );
 };
 
 export const PageShell__footer = (props) => {
-	const { children } = props;
+  const { children } = props;
 
-	return (
-		<footer className="PageShell__footer">
-			{children}
-		</footer>
-	);
+  return (
+    <footer className="PageShell__footer">
+      {children}
+    </footer>
+  );
 };
 
 /* PROPTYPES */
@@ -51,12 +51,18 @@ export const PageShell__footer = (props) => {
 PageShell.propTypes = {
   className: PropTypes.string,
   children: PropTypes.node
-}
+};
 
-PageShell__header,
-PageShell__footer,
+PageShell__header.propTypes = {
+  children: PropTypes.node
+};
+
+PageShell__footer.propTypes = {
+  children: PropTypes.node
+};
+
 PageShell__main.propTypes = {
-	children: PropTypes.node
-}
+  children: PropTypes.node
+};
 
 export default PageShell;
