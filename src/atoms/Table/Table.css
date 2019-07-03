@@ -3,8 +3,24 @@
 	overflow-x: scroll;
 	-webkit-overflow-scrolling: touch;
 
-	&__row {
-		border-bottom: 2px solid blue;
-		border-bottom-width: 5px;
+	&__head {
+		/* background-color: red; */
+	}
+
+	&__body &__row:nth-child(odd) {
+		background-color: #add8e6;
+	}
+
+	&__header {
+		border-bottom: 1px solid black;
+
+		&__button:active {
+			background-color: blue;
+		}
+	}
+
+	&__row td{
+		padding-left: 2rem;
+		padding-right: 2rem;
 	}
 }

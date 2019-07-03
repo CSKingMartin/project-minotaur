@@ -1,3 +1,5 @@
+import ReactDOM from 'react-dom';
+
 export const TableHead = (props) => {
   const {
     className,
@@ -9,14 +11,20 @@ export const TableHead = (props) => {
     className
   ]);
 
+  const [visibility, toggleVisibility] = useState(false);
+
+  const changeVisibility = () => {
+    toggleVisibility(!visibility);
+  }
+
   return (
-    <thead className={stack}>{children}</thead>
+    <thead onClick={changeVisibility} className={stack}>{children}</thead>
   );
 };
 
 TableHead.propTypes = {
   className: PropTypes.string,
-  children: PropTypes.node
+  children: PropTypes.node,
 };
 
 export default TableHead;

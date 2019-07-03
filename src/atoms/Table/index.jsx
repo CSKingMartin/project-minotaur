@@ -1,4 +1,5 @@
 import TableBody from './Body';
+import TableColumn from './Column'
 import TableData from './Data';
 import TableHead from './Head';
 import TableHeader from './Header';
@@ -10,6 +11,8 @@ export const Table = (props) => {
     children
   } = props;
 
+  console.log(props.children);
+
   return (
     <div>{children}</div>
   );
@@ -20,6 +23,7 @@ Table.propTypes = {
 };
 
 Table.Body = TableBody;
+Table.Column = TableColumn;
 Table.Data = TableData;
 Table.Head = TableHead;
 Table.Header = TableHeader;
