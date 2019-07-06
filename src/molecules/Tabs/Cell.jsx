@@ -12,13 +12,23 @@ export const Cell = (props) => {
     className
   ]);
 
+  const handleTabKey = (event) => {
+    if (event.charCode === 13 ) {
+      props.onClick();
+      console.log("Enter Key pressed", event.key)
+    }
+  }
+
   return (
     <div
       className={stack}
       onClick={() => {
         onClick();
       }}
+      onKeyPress={handleTabKey}
       onMouseEnter={() => hoverHandler()}
+      tabIndex={0}
+    
     >
       <span className="Tabs__cell-vertical-borders" />
       {children}
