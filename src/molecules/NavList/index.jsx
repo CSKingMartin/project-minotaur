@@ -1,11 +1,11 @@
 import Heading from '@atoms/Heading';
 import Rhythm from '@atoms/Rhythm';
 import PageLink from '@atoms/PageLink';
-import {
-  atomsIndexData,
-  moleculesIndexData,
-  organismsIndexData
-} from '@lib/get-context.js';
+import registry from '@catalog/registry.json';
+
+const atomsIndexData = Object.keys(registry).filter((key) => registry[key].category === 'atom' && registry[key].path);
+const moleculesIndexData = Object.keys(registry).filter((key) => registry[key].category === 'molecule' && registry[key].path);
+const organismsIndexData = Object.keys(registry).filter((key) => registry[key].category === 'organism' && registry[key].path);
 
 const NavList = (props) => {
   const {
@@ -31,8 +31,8 @@ const NavList = (props) => {
   return (
     <Rhythm className="NavList">
       <Heading className="NavList__heading" level="h6">{`${label.charAt(0).toUpperCase()}${label.substr(1, label.length - 1)}`}</Heading>
-      {Object.keys(target).map((index) => (
-        <PageLink key={index} label={target[index].content} href={`/${target[index].url}`} />
+      {target.map((key, index) => (
+        <PageLink key={index} label={key} href={registry[key].path} />
       ))}
     </Rhythm>
   );
