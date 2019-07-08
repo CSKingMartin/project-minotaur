@@ -27,7 +27,6 @@ gulp.task('registry', () => gulp.src('src/**/**/index.jsx')
     entry.localPath = path;
     entry.name = path.substring(path.lastIndexOf('/') + 1);
     entry.category = path.substring(path.indexOf('/') + 1, path.lastIndexOf('/') - 1);
-    log(`Found element ${entry.name}`);
 
     const exampleFileQuery = `./${path.substring(0, path.lastIndexOf('/'))}/${entry.name}/${entry.name}.example.mdx`;
 
@@ -142,8 +141,11 @@ gulp.task('generateSvgSprite', () => gulp.src('src/atoms/Icon/assets/*.svg')
 gulp.task('watch', () => gulp.watch([
   'src/atoms/Icon/assets/**.*', // triggers Icon rebuild
   'src/atoms/**/*.example.mdx',
+  'src/atoms/**/*.jsx',
   'src/molecules/**/*.example.mdx',
-  'src/organisms/**/*.example.mdx'
+  'src/molecules/**/*.jsx',
+  'src/organisms/**/*.example.mdx',
+  'src/organisms/**/*jsx'
 ], gulp.series('exportPages', 'generateSvgSprite', 'registry')));
 
 gulp.task('next', gulp.parallel([run('next ./src'), 'watch']));
