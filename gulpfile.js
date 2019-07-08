@@ -32,7 +32,7 @@ gulp.task('registry', () => gulp.src('src/**/**/index.jsx')
 
     try {
       fs.statSync(exampleFileQuery);
-      entry.path = `/catalog/${path}`;
+      entry.path = `/catalog/${path.substring(4)}`;
     } catch(err) {}
 
     entry.props = {}; // empty obj for props to go into
