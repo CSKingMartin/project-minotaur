@@ -21,9 +21,6 @@ export class Toggle extends React.Component{
     this.state.isActive ? this.setState({ isActive: false }) : this.setState({ isActive: true}); 
     */
     this.setState({ isActive: !this.state.isActive })
-    if(this.props.onChange){
-      this.props.onChange();
-    };
   };
 
   render(){
@@ -51,7 +48,8 @@ export class Toggle extends React.Component{
 };
 
 Toggle.propTypes = {
-  isActive: PropTypes.bool
+  isActive: PropTypes.bool,
+  onChange: PropTypes.func
 }
 
 export default Toggle;
