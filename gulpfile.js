@@ -90,8 +90,8 @@ gulp.task('watch', () => gulp.watch([
   'src/atoms/**/*.example.mdx',
   'src/molecules/**/*.example.mdx',
   'src/organisms/**/*.example.mdx'
-], gulp.series('exportPages', 'generateSvgSprite')));
+], gulp.series('exportPages', 'generateSvgSprite', 'registry')));
 
 gulp.task('next', gulp.parallel([run('next ./src'), 'watch']));
 
-gulp.task('dev', gulp.series('clean', 'exportPages', 'generateSvgSprite', 'next'));
+gulp.task('dev', gulp.series('clean', 'registry', 'exportPages', 'generateSvgSprite', 'next'));

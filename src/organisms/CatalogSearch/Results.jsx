@@ -1,6 +1,4 @@
-import {
-  catalogContext
-} from '@lib/get-context.js';
+import registry from '../../registry.json';
 import Badge from '@atoms/Badge';
 import Expandable from '@molecules/Expandable';
 import Media from '@molecules/Media';
@@ -55,35 +53,12 @@ export const Results = (props) => {
     ...rest
   } = props;
 
-  /*
-    parse:
-    takes catalogContext, and converts it to an Array of Objects
-  */
-  const parse = (obj) => {
-    const returnObject = (obj).map((string) => ({
-      name: string.substring(string.indexOf('/', string.indexOf('/') + 1) + 1, string.indexOf('/index.jsx')),
-      category: string.substring(string.indexOf('/') + 1, string.indexOf('/', string.indexOf('/') + 1) - 1)
-    }));
+  /* takes registry and returns index order for an alphabetized sort */
+  const sortedRegistry = Object.keys(utilities.alphabetizeObject(registry));
 
-    return returnObject;
-  };
-
-  const catalogObject = parse(catalogContext.keys());
-
-  /* takes catalogObject and returns index order for an alphabetized sort */
-  const sortedObject = Object.keys(catalogObject).sort((first, second) => {
-    if (catalogObject[first].name.toUpperCase() < catalogObject[second].name.toUpperCase()) {
-      return -1;
-    }
-    if (catalogObject[first].name.toUpperCase() > catalogObject[second].name.toUpperCase()) {
-      return 1;
-    }
-    return 0;
-  });
-
-  const searchedObject = sortedObject.filter((item) => {
+  const searchedObject = sortedRegistry.filter((item) => {
     if (query) {
-      const name = catalogObject[item].name.toUpperCase();
+      const name = registry[item].name.toUpperCase();
       const uppercaseQuery = query.toUpperCase();
 
       return name.indexOf(uppercaseQuery) === 0;
@@ -102,7 +77,7 @@ export const Results = (props) => {
     <Expandable className={stack} forceExpand={expand} closeHeight="0" {...rest}>
       {
         searchedObject.map((index) => {
-          const item = catalogObject[index];
+          const item = registry[index];
 
           return (
             <CatalogResult
