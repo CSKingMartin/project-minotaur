@@ -31,13 +31,9 @@
 	.Table {
 		overflow: scroll;
 
-		&__table {
-			text-align: left;
-		}
-
 		&__head {
-			display: revert;
 			border-bottom: 1px solid var(--color-abyss);
+			display: revert;
 
 			th {
 				display: revert;
@@ -49,10 +45,6 @@
 		&__row {
 			border: none;
 
-			&:nth-child(even){
-				background-color: var(--color-lite-grey);
-			}
-
 			td {
 				display: revert;
 				padding-left: 1.2rem;
@@ -62,6 +54,10 @@
 			td::before {
 				content: "";
 				opacity: 0;
+			}
+
+			&:nth-child(even){
+				background-color: var(--color-lite-grey);
 			}
 		}
 	}
