@@ -1,6 +1,7 @@
 export const TextArea = (props) => {
   const {
     className,
+    max,
     ...rest
   } = props;
 
@@ -9,11 +10,11 @@ export const TextArea = (props) => {
     className
   ]);
 
-  const [characterCount, setcharacterCount] = useState(props.MaxChar);
+  const [characterCount, setcharacterCount] = useState(props.max);
 
   const handleChange = (e) => {
     const { length } = e.target.value;
-    setcharacterCount(props.MaxChar - length);
+    setcharacterCount(props.max - length);
   };
 
   return (
@@ -22,9 +23,9 @@ export const TextArea = (props) => {
       type="text"
       className="TextArea__input"
       onChange={(e) => handleChange(e)}
-      maxLength={props.MaxChar}
+      maxLength={props.max}
     />
-    <p className="TextArea__word-counter">{characterCount}/{props.MaxChar}</p>
+    <p className="TextArea__word-counter">{characterCount}/{props.max}</p>
     </div>
   );
 };

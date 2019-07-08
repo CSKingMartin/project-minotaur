@@ -1,6 +1,6 @@
 .TextArea {
-  position: relative;
   margin-bottom: 25px;
+  position: relative;
 
   &__input {
     border: 1px solid #8C8C8C;
