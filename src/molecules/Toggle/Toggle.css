@@ -1,6 +1,5 @@
 .Toggle {
   margin: 1rem;
-  cursor: pointer;
 
   &__on {
     color: var(--color-robins-egg);
@@ -10,15 +9,17 @@
     color: var(--color-black);
   }
 
+  label {
+    cursor: pointer;
+  }
   label .lever {
-    /* background-color: rgba(0,0,0,0.38); */
     background-color: var(--color-gray);
     border-radius: 1rem;
     display: inline-block;
     height: 0.875rem;
-    position: relative;
     margin: 0 0.625rem;
     margin-right: 0.625rem;
+    position: relative;
     transition: left 0.2s ease;
     vertical-align: middle;
     width: 2.25rem;
@@ -30,13 +31,13 @@
     }
 
     &::before {
-      width: 1rem;
-      height: 0.875rem;
       background-color: var(--color-robins-egg);
       border-radius: 1rem;
+      height: 0.875rem;
       transition: left 0.2s ease;
       transition: all 0.25s ease;
       vertical-align: middle;
+      width: 1rem;
     }
 
     &::after {
@@ -52,6 +53,7 @@
   }
 
   input[type="checkbox"] {
+    cursor: pointer;
     height: 0;
     opacity: 0;
     position: absolute;
@@ -74,13 +76,13 @@
 
 @keyframes switchOn {
   0% {
-    left: -3px;
     box-shadow: -1px 1px 5px rgba(105, 105, 105, 0.3);
+    left: -3px;
 
   }
   100% {
-    left: 18px;
     box-shadow: 1px 1px 5px rgba(105, 105, 105, 0.3);
+    left: 18px;
   }
 }
 
