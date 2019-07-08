@@ -1,0 +1,44 @@
+.TextArea {
+  margin-bottom: 25px;
+  position: relative;
+
+  &__input {
+    border: 1px solid #8C8C8C;
+    border-radius: 0.1875rem;
+    font-family: 'Montserrat', sans-serif;
+    line-height: 1.75rem;
+    min-height: 3rem;
+    padding: 0.65rem;
+    resize: vertical;
+    width: 100%;
+  }
+
+  &__word-counter {
+    bottom: 0;
+    opacity: 0;
+    position: absolute;
+    right: 0;
+    transition: all .10s;
+    z-index: -1;
+  }
+
+  &__input:focus + &__word-counter{
+    animation-name: slide-down;
+    animation-duration: .10s;
+    bottom: -25px;
+    opacity: 1;
+  }
+
+  @keyframes slide-down {
+    0% {
+      bottom: 0;
+      opacity: 0;
+    }
+
+    100% {
+      bottom: -25px;
+      opacity: 1;
+    }
+  }
+
+}
