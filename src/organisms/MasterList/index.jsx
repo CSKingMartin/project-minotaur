@@ -3,6 +3,7 @@ import Card from '@atoms/Card';
 import Heading from '@atoms/Heading';
 import PageLink from '@atoms/PageLink';
 import Rhythm from '@atoms/Rhythm';
+import Nup from '@atoms/Nup';
 
 export const MasterList = (props) => {
   const {
@@ -16,7 +17,7 @@ export const MasterList = (props) => {
   ]);
 
   return (
-    <Rhythm>
+    <Nup variant="four">
       {Object.keys(utilities.alphabetizeObject(registry)).map((key) => {
         const entry = registry[key];
 
@@ -67,7 +68,7 @@ export const MasterList = (props) => {
           </Card>
         );
       })}
-    </Rhythm>
+    </Nup>
   );
 };
 
