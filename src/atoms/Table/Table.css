@@ -27,24 +27,23 @@
 	}
 }
 
-@media only screen and (min-width: 31rem) {
+@media only screen and (min-width: 32rem) {
 	.Table {
+		overflow: scroll;
+
 		&__table {
-			text-align: center;
+			text-align: left;
 		}
 
 		&__head {
 			display: revert;
+			border-bottom: 1px solid var(--color-abyss);
 
 			th {
 				display: revert;
+				padding-left: 1.2rem;
+				padding-right: 1.2rem;
 			}
-		}
-
-		&__header {
-			background-color:var(--color-abyss);
-			color: white;
-			font-weight: lighter;
 		}
 
 		&__row {
@@ -56,6 +55,8 @@
 
 			td {
 				display: revert;
+				padding-left: 1.2rem;
+				padding-right: 1.2rem;
 			}
 
 			td::before {
