@@ -51,7 +51,7 @@ export const MasterList = (props) => {
             <Heading level="h6">Inherits:</Heading>
             <Rhythm>
               {entry.inherits.map((key, index) => {
-                console.log(registry[key]);
+                // console.log(registry[key]);
                 if (registry[key].path) {
                   return (
                     <p><PageLink key={index} label={key} href={registry[key].path} /></p>
@@ -63,6 +63,7 @@ export const MasterList = (props) => {
                 )
               })}
             </Rhythm>
+
           </Card>
         );
       })}

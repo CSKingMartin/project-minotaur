@@ -27,6 +27,7 @@ gulp.task('registry', () => gulp.src('src/**/**/index.jsx')
     entry.localPath = path;
     entry.name = path.substring(path.lastIndexOf('/') + 1);
     entry.category = path.substring(path.indexOf('/') + 1, path.lastIndexOf('/') - 1);
+    log(`Found element ${entry.name}`);
 
     const exampleFileQuery = `./${path.substring(0, path.lastIndexOf('/'))}/${entry.name}/${entry.name}.example.mdx`;
 
@@ -44,8 +45,57 @@ gulp.task('registry', () => gulp.src('src/**/**/index.jsx')
     const props = startOfProps.substring(0, startOfProps.indexOf('};')).split('\n  ');
     
     props.forEach((prop) => {
+      const propsObject = {};
       const name = prop.substring(0, prop.indexOf(':'));
-      if (name !== '') { entry.props[name] = prop.substring(prop.indexOf('PropTypes.') + 10, prop.length - 1); }
+      if (name !== '') {
+        const getType = (string) => {
+          let returnValue;
+
+          if (string.indexOf('oneOfType') !== -1) {
+            const returnObject = [];
+            const prefix = contents.substring(contents.indexOf('oneOfType('));
+            const value = prefix.substring(prefix.indexOf('[') + 3, prefix.indexOf(']') + 2);
+
+            let testString = value;
+            let i = 0;
+
+            while (testString.length > 0) {
+              let sub = testString.substring(testString.indexOf('PropTypes'), testString.indexOf(','));
+
+              if (sub.length === 0) {
+                sub = testString.substring(testString.indexOf('PropTypes'), testString.indexOf(')') + 1);
+              }
+
+              if (sub !== '' && sub.indexOf('\n') === -1) {
+                const newTestStart = testString.substring(testString.indexOf(sub) + sub.length);
+                testString = newTestStart.substring(newTestStart.indexOf('P'));
+                const query = sub.substring(sub.indexOf('PropTypes.') + 10);
+                returnObject.push(getType(query));
+              } else {
+                testString = testString.substring(testString.length);
+              }
+            }
+            
+            returnValue = { 'oneOfType': returnObject };
+          } else if (string.indexOf('oneOf') !== -1) {
+            // console.log(string);
+            const prefix = contents.substring(contents.indexOf('oneOf('));
+            const value = prefix.substring(prefix.indexOf('[') + 2, prefix.indexOf(']') - 1);
+            // console.log(value);
+            returnValue = { 'oneOf': value.split("', '") };
+          } else {
+            returnValue = string;
+          }
+
+          return returnValue;
+        };
+
+        const type = prop.substring(prop.indexOf('PropTypes.') + 10, prop.length - 1);
+
+        propsObject.name = name;
+        propsObject.type = getType(type);
+        entry.props[name] = propsObject;
+      }
     });
 
     entry.inherits = [];
