@@ -1,3 +1,6 @@
+import TableContext from './TableContext';
+import { useContext } from 'react';
+
 export const TableBody = (props) => {
   const {
     className,
@@ -9,8 +12,20 @@ export const TableBody = (props) => {
     className
   ]);
 
+  // const toggle = useContext(TableContext);
+  // console.log("toggle.visibility: ", toggle.visibility)
+
+  // <TableContext.Consumer>
+  //   {(context) => (
+  //     toggle.visibility ?
+  //     <tbody className='Table__body__showing'>{children}</tbody>
+  //     : <tbody className='Table__body'>{children}</tbody>
+  //     )
+  //   }
+  // </TableContext.Consumer>
+
   return (
-    <tbody className={stack}>{children}</tbody>
+    <tbody className='Table__body'>{children}</tbody>
   );
 };
 

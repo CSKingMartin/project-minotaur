@@ -1,9 +1,10 @@
 import ReactDOM from 'react-dom';
+import TableContext from './TableContext';
 
 export const TableHead = (props) => {
   const {
     className,
-    children
+    children,
   } = props;
 
   const stack = utilities.createClassStack([
@@ -11,14 +12,14 @@ export const TableHead = (props) => {
     className
   ]);
 
-  const [visibility, toggleVisibility] = useState(false);
-
-  const changeVisibility = () => {
-    toggleVisibility(!visibility);
-  }
 
   return (
-    <thead onClick={changeVisibility} className={stack}>{children}</thead>
+    // <TableContext.Consumer>
+    //   {(context)=>
+    //     <thead onClick={() => context.toggleVisibility(!context.visibility)} className={stack}>{children}</thead>
+    //   }
+    // </TableContext.Consumer>
+    <thead className={stack}>{children}</thead>
   );
 };
 
