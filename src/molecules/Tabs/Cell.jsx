@@ -15,7 +15,6 @@ export const Cell = (props) => {
   const handleTabKey = (event) => {
     if (event.charCode === 13 ) {
       props.onClick();
-      console.log("Enter Key pressed", event.key)
     }
   }
 
@@ -27,6 +26,7 @@ export const Cell = (props) => {
       }}
       onKeyPress={handleTabKey}
       onMouseEnter={() => hoverHandler()}
+      role="tab"
       tabIndex={0}
     
     >

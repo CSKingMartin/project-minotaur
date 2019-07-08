@@ -11,7 +11,7 @@ export const Content = (props) => {
   ]);
 
   return (
-    <div className={stack} {...rest}>
+    <div className={stack} {...rest} role="tabpanel">
       {children}
     </div>
   );

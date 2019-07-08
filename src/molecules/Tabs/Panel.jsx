@@ -7,11 +7,14 @@ export class Panel extends React.Component {
     this.state = {
       active: 0,
       marker: 0,
-      hovered: -1
+      hovered: -1,
+      focused: false
     };
 
     this.clearHoverStyles = this.clearHoverStyles.bind(this);
     this.handleHover = this.handleHover.bind(this);
+    this.setFocus = this.setFocus.bind(this);
+    this.setBlur = this.setBlur.bind(this)
   }
 
   clearHoverStyles() {
@@ -32,6 +35,16 @@ export class Panel extends React.Component {
     }, 250);
   }
 
+  setFocus() {
+    // this.setState({ focused: true });
+    console.log("Panel focused!");
+  }
+
+  setBlur(){
+    // this.setState({ focused: true });
+    console.log("Panel Blur");
+  }
+
   render() {
     const {
       className,
@@ -46,7 +59,12 @@ export class Panel extends React.Component {
     ]);
 
     return (
-      <div className={stack} {...rest}>
+      <div 
+        className={stack} 
+        {...rest}
+        role="tablist"
+        tabIndex={0}
+      >
           <div
             className="Tabs__panel-inner"
             onMouseLeave={() => this.clearHoverStyles()}
@@ -58,6 +76,8 @@ export class Panel extends React.Component {
                 className={i === this.state.active ? 'is-active' : ''}
                 hoverHandler={() => this.handleHover(i)}
                 onClick={() => this.setActive(i)}
+                onFocus={this.setFocus()}
+                
               >{label}</Cell>
             );
           })}
