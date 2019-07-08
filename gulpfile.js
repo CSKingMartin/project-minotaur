@@ -49,9 +49,15 @@ gulp.task('registry', () => gulp.src('src/**/**/index.jsx')
     });
 
     entry.inherits = [];
+    
+    registry[entry.name] = entry;
 
-    /* GET IMPORTS */
-    let remainingFile = contents;
+    cb(null, file);
+  })).pipe(map((file, cb) => { // second pass
+    const path = file.path.substring(file.path.indexOf('src/'), file.path.indexOf('/index.jsx'));
+    const name = path.substring(path.lastIndexOf('/') + 1);
+
+    let remainingFile = file.contents.toString();
     let i = 0;
     while (remainingFile.length > 0) {
       if (remainingFile.indexOf('import ') > -1) {
@@ -59,17 +65,15 @@ gulp.task('registry', () => gulp.src('src/**/**/index.jsx')
         const statement = importer.substring(0, importer.indexOf(';') + 1);
         const prefix = statement.substring(statement.indexOf('import ') + 7);
         const inheritor = prefix.substring(0, prefix.indexOf(' '));
-        
-        entry.inherits.push(inheritor);
 
+        if (registry[inheritor]) {
+          registry[name].inherits.push(inheritor);
+        }
         remainingFile = importer.substring(importer.indexOf(statement) + statement.length);
-      } else {
+      } else { // no more left of file - remove rest to escape loop
         remainingFile = remainingFile.substring(remainingFile.length);
       }
     }
-    
-    registry[entry.name] = entry;
-
     cb(null, file);
   })).on('end', () => {
     fs.writeFileSync('./src/registry.json', JSON.stringify(registry));
