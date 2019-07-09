@@ -1,5 +1,6 @@
 import Cell from './Cell';
 import TabsContext from './TabsContext'
+import {withTabContext} from './withTabContext';
 
 export class Panel extends React.Component {
 
@@ -14,6 +15,7 @@ export class Panel extends React.Component {
 
     this.clearHoverStyles = this.clearHoverStyles.bind(this);
     this.handleHover = this.handleHover.bind(this);
+    this.onKeyPress = this.onKeyPress.bind(this);
   }
 
   clearHoverStyles() {
@@ -27,18 +29,43 @@ export class Panel extends React.Component {
   setActive(index) {
     this.setState({ marker: index });
     this.setState({ active: -1 });
-
     // delays new border animation
     setTimeout(() => {
       this.setState({ active: index });
     }, 250);
   }
 
+  onKeyPress(e){
+    console.log(this.props.labelState);
+    let currentIndex = this.state.marker;
+    switch(e.keyCode) {
+      case (e.shiftKey &&  9) :
+        this.setActive(currentIndex - 1);
+        this.props.context.changeLabelState(currentIndex - 1)
+        return;
+      case 9 :
+        this.setActive(currentIndex + 1);
+        this.props.context.changeLabelState(currentIndex + 1)
+        return;
+      case 37 :
+        this.setActive(currentIndex - 1);
+        return;
+      case 39 :
+        this.setActive(currentIndex + 1);
+        return;
+      case 13 :
+        this.props.context.changeLabelState(currentIndex)
+        return;
+      default :
+        return;
+    }
+  }
 
   render() {
     const {
       className,
       children,
+      labels,
       ...rest
     } = this.props;
 
@@ -48,41 +75,41 @@ export class Panel extends React.Component {
     ]);
 
     return (
-      <div className={stack} {...rest}>
-        <TabsContext.Consumer>
+      <div
+        className={stack}
+        onKeyDown={this.onKeyPress}
+        tabIndex="0"
+        {...rest}
+      >
+        <div
+          className="Tabs__panel-inner"
+          onMouseLeave={() => this.clearHoverStyles()}
+        >
           {
-            labelContext => {
+            labels.map((label, i) => {
               return (
-                <div
-                  className="Tabs__panel-inner"
-                  onMouseLeave={() => this.clearHoverStyles()}
-                >
-                  {labelContext.map((label, i) => {
-                    return (
-                      <Cell
-                        key={i}
-                        className={i === this.state.active ? 'is-active' : ''}
-                        hoverHandler={() => this.handleHover(i)}
-                        onClick={() => this.setActive(i)}
-                      >{label}</Cell>
-                    );
-                  })}
-                  <div className="Tabs__panel-bar">
-                    {labelContext.map((i) => {
-                      const highlightStack = utilities.createClassStack([
-                        'Tabs__panel-highlight',
-                        i === this.state.hovered && 'has-hover'
-                      ])
-
-                      return <span key={i} className={highlightStack} />;
-                    })}
-                    <div className="Tabs__panel-marker" style={{ transform: `translateX(${(4.875 * this.state.marker)}rem)` }}/>
-                  </div>
-              </div>
-              )
-            }
+                <Cell
+                  key={i}
+                  className={i === this.state.active ? 'is-active' : ''}
+                  hoverHandler={() => this.handleHover(i)}
+                  onClick={() => {this.setActive(i); this.props.context.changeLabelState(i);}}
+                >{label}</Cell>
+              );
+            })
           }
-        </TabsContext.Consumer>
+          <div className="Tabs__panel-bar">
+            {
+              labels.map((i) => {
+                const highlightStack = utilities.createClassStack([
+                  'Tabs__panel-highlight',
+                  i === this.state.hovered && 'has-hover'
+                ])
+                return <span key={i} className={highlightStack} />;
+              })
+            }
+            <div className="Tabs__panel-marker" style={{ transform: `translateX(${(4.875 * this.state.marker)}rem)` }}/>
+          </div>
+        </div>
       </div>
     );
   }
@@ -90,7 +117,8 @@ export class Panel extends React.Component {
 
 Panel.propTypes = {
   className: PropTypes.string,
-  children: PropTypes.node
+  children: PropTypes.node,
+  labels: PropTypes.array
 }
 
-export default Panel;
+export default withTabContext(Panel);

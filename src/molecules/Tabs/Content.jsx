@@ -1,3 +1,5 @@
+import TabsContext from './TabsContext'
+
 export const Content = (props) => {
   const {
     className,
@@ -10,9 +12,17 @@ export const Content = (props) => {
     className
   ]);
 
+  const childArray = React.Children.toArray(children);
+
   return (
     <div className={stack} {...rest}>
-      {children}
+      <TabsContext.Consumer>
+        {
+          ({labelState, changeLabelState}) => {
+            return childArray[labelState]
+          }
+        }
+      </TabsContext.Consumer>
     </div>
   );
 };

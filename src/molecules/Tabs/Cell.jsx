@@ -18,6 +18,7 @@ export const Cell = (props) => {
       onClick={() => {
         onClick();
       }}
+      tabIndex={0}
       onMouseEnter={() => hoverHandler()}
     >
       <span className="Tabs__cell-vertical-borders" />

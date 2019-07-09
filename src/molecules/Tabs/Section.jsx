@@ -1,8 +1,10 @@
+import TabsContext from './TabsContext';
+import Heading from '@atoms/Heading';
+
 export const Section = (props) => {
   const {
     className,
     children,
-    refs,
     ...rest
   } = props;
 
@@ -12,16 +14,15 @@ export const Section = (props) => {
   ]);
 
   return (
-    <div className={stack} refs={refs} {...rest}>
-      {children}
-    </div>
+      <div className={stack} {...rest}>
+        {children}
+      </div>
   );
 };
 
 Section.propTypes = {
   className: PropTypes.string,
   children: PropTypes.node,
-  refs: PropTypes.instanceOf(Element)
 };
 
 export default Section;
