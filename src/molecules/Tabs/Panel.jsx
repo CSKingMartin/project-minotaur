@@ -14,9 +14,7 @@ export class Panel extends React.Component {
     this.clearHoverStyles = this.clearHoverStyles.bind(this);
     this.handleHover = this.handleHover.bind(this);
     this.setFocus = this.setFocus.bind(this);
-    this.setBlur = this.setBlur.bind(this);
-        // this.setFocus = this.setFocus.bind(this)
-
+    // this.handleTabKey = this.handleTabKey.bind(this);
   }
 
   clearHoverStyles() {
@@ -37,19 +35,21 @@ export class Panel extends React.Component {
     }, 250);
   }
 
-  setFocus(event) {
-    if(event.charCode === 13) {
-      this.setState({ focused: true });
-    }
-    if((event.charCode === 27) || (event.charCode === 9)){
-      this.setState({ focused: false })
-    }
-    console.log("focus state", this.state.focused)
-  }
+  arrayStuff = ['stuff', 'things', 'items'];
 
-  setBlur(){
-    // this.setState({ focused: true });
-    console.log("Panel Blur");
+
+  setFocus(event) {
+    switch(event.key) {
+      case 'Enter' :
+        this.setState({focused: true});
+        // this.handleTabKey(event);
+        break;
+      case 'Escape' :
+        this.setState({focused: false})
+        break;
+      default : 
+        break;
+    }
   }
 
   render() {
@@ -68,12 +68,17 @@ export class Panel extends React.Component {
     return (
       <div 
         {...rest}
-        aria-label={"Tab List"}
+        aria-labelledby="tab-list"
         className={stack} 
-        onKeyPress={this.setFocus}
+        id="tab-list"
+        onKeyDown={this.setFocus}
         role={"tablist"}
         tabIndex={0}
       >
+
+      {this.arrayStuff.map(stuff =>
+        <p>{stuff}</p>
+      )}
           <div
             className="Tabs__panel-inner"
             onMouseLeave={() => this.clearHoverStyles()}
@@ -84,8 +89,11 @@ export class Panel extends React.Component {
                 key={i}
                 className={i === this.state.active ? 'is-active' : ''}
                 hoverHandler={() => this.handleHover(i)}
+                marker={this.state.marker}
                 onClick={() => this.setActive(i)}
-                
+                onTab={() => this.setActive()}
+                panelFocused={this.state.focused}
+                thisIndex={i}
               >{label}</Cell>
             );
           })}
