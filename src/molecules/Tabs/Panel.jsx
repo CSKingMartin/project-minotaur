@@ -1,5 +1,4 @@
 import Cell from './Cell';
-import TabsContext from './TabsContext'
 import {withTabContext} from './withTabContext';
 
 export class Panel extends React.Component {
@@ -11,7 +10,6 @@ export class Panel extends React.Component {
       active: 0,
       marker: 0,
       hovered: -1,
-      length: 0
     };
 
     this.clearHoverStyles = this.clearHoverStyles.bind(this);

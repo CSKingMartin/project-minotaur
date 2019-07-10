@@ -1,4 +1,3 @@
-import TabsContext from './TabsContext';
 import Heading from '@atoms/Heading';
 
 export const Section = (props) => {
