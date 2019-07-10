@@ -3,11 +3,9 @@ export const Cell = (props) => {
     className,
     hoverHandler,
     onClick,
-    onTab,
     children,
     panelFocused,
     thisIndex,
-    isActive,
     marker,
     ...rest
   } = props;
@@ -21,17 +19,13 @@ export const Cell = (props) => {
    props.panelFocused ? 0 : -1 
    )
 
-  // const thisIndexNum = props.thisIndex;
-
   function handleTabKey(event) {
       let currentCell = marker;
       let getNew;
-      let getActive;
       let newActiveCell;
     switch(event.key) {
       case 'Enter' :
-       return onClick();
-
+       return onClick();    
       case 'ArrowLeft' :
         if (currentCell > 0) {
           newActiveCell = currentCell -1;
@@ -39,7 +33,6 @@ export const Cell = (props) => {
         if (currentCell === 0) {
           newActiveCell = 3
         }
-        console.log(getActive)
         getNew = (document.getElementById("cell-index-"+ newActiveCell)).focus()
         return getNew 
 
@@ -57,6 +50,12 @@ export const Cell = (props) => {
     }
   }
 
+  function handleTab(event){
+    if (event.key === 'Tab'){
+      onClick();
+    }
+  }
+
 
   return (
     <div
@@ -64,6 +63,7 @@ export const Cell = (props) => {
       id={"cell-index-" + thisIndex}
       onClick={() => { onClick() }}
       onKeyDown={handleTabKey}
+      onKeyUp={handleTab}
       onMouseEnter={() => hoverHandler()}
       role="tab"
       tabIndex={tabIndex}

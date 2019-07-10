@@ -41,14 +41,12 @@ export class Panel extends React.Component {
   setFocus(event) {
     switch(event.key) {
       case 'Enter' :
-        this.setState({focused: true});
-        // this.handleTabKey(event);
-        break;
+       return this.setState({focused: true});
       case 'Escape' :
-        this.setState({focused: false})
-        break;
+       return this.setState({focused: false})
+        
       default : 
-        break;
+        return
     }
   }
 
@@ -75,10 +73,6 @@ export class Panel extends React.Component {
         role={"tablist"}
         tabIndex={0}
       >
-
-      {this.arrayStuff.map(stuff =>
-        <p>{stuff}</p>
-      )}
           <div
             className="Tabs__panel-inner"
             onMouseLeave={() => this.clearHoverStyles()}
