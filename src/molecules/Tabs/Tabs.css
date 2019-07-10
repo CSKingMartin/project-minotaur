@@ -85,17 +85,21 @@
         }
       }
     }
+    &.is-active:focus {
+      outline: none;
+    }
   }
+
+  &__cell:focus {
+    outline: .5px dotted var(--color-seafoam);
+  }
+
 
   &__panel {
   
     &-inner {
       display: inline-flex;
       position: relative;
-
-      &-inner:focus{
-        outline: 1px solid gray;
-      }
     }
 
     &-bar {
@@ -127,8 +131,5 @@
       transition: transform 0.2s;
       width: 25%;
     }
-  }
-  &__panel:focus{
-    /* outline: none; */
   }
 }
