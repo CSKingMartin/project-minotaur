@@ -1,4 +1,5 @@
 import TabsContext from './TabsContext'
+import {useRef} from 'react';
 
 export const Cell = (props) => {
   const {
@@ -19,20 +20,18 @@ export const Cell = (props) => {
 
   const tabIndex = (props) = (
    props.panelFocused ? 0 : -1 
-   )
+   );
+
+  let cellRef = useRef();
 
   function handleArrowKey(event) {
-      let currentCell = cellIndex;
-      let getNew;
     switch(event.key) {
       case 'Enter' :
         return onClick();
       case 'ArrowLeft' :
-        currentCell > 0 ? (currentCell -= 1) : (currentCell = labels.length -1)
-        return getNew = (document.getElementById("cell-index-" + currentCell)).focus();
+        return cellRef.current.previousSibling === null ? cellRef.current.focus() : cellRef.current.previousSibling.focus()   
       case 'ArrowRight' :
-        currentCell < labels.length -1 ? (currentCell += 1) : (currentCell = 0)
-        return getNew = (document.getElementById("cell-index-" + currentCell)).focus();
+        return cellRef.current.nextElementSibling.focus()
       default:  
         return;
     }
@@ -47,12 +46,14 @@ export const Cell = (props) => {
   return (
     <div
       className={stack}
+      id={"cell-index-" + cellIndex}
       onClick={() => { onClick() }}
       onKeyDown={handleArrowKey}
       onKeyUp={handleTabKey}
       onMouseEnter={() => hoverHandler()}
+      ref={cellRef}
+      role="tab"
       tabIndex={tabIndex}
-      id={"cell-index-" + cellIndex}
       >
       <div className="Tabs_cell-has-focus">
         <span className="Tabs__cell-vertical-borders" />
