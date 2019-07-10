@@ -1,7 +1,8 @@
 export const TableData = (props) => {
   const {
     className,
-    children
+    children,
+    dataHeading,
   } = props;
 
   const stack = utilities.createClassStack([
@@ -10,13 +11,14 @@ export const TableData = (props) => {
   ]);
 
   return (
-    <td className={stack}>{children}</td>
+    <td className={stack} data-heading={dataHeading}>{children}</td>
   );
 };
 
 TableData.propTypes = {
   className: PropTypes.string,
-  children: PropTypes.node
+  children: PropTypes.node,
+  dataHeading: PropTypes.string
 };
 
 export default TableData;
