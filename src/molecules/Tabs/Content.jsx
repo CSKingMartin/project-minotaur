@@ -15,7 +15,11 @@ export const Content = (props) => {
   const childArray = React.Children.toArray(children);
 
   return (
-    <div className={stack} {...rest}>
+    <div 
+      className={stack} 
+      role="tabpanel"
+      {...rest}
+    >
       <TabsContext.Consumer>
         {
           ({labelState, changeLabelState}) => {

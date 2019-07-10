@@ -67,7 +67,7 @@ export class Panel extends React.Component {
         className={stack} 
         id="tab-list"
         onKeyDown={this.setFocus}
-        role={"tablist"}
+        role="tablist"
       >
           <div
             className="Tabs__panel-inner"
