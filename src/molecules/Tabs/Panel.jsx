@@ -38,26 +38,63 @@ export class Panel extends React.Component {
   onKeyPress(e){
     console.log(this.props.labelState);
     let currentIndex = this.state.marker;
-    switch(e.keyCode) {
-      case (e.shiftKey &&  9) :
-        this.setActive(currentIndex - 1);
-        this.props.context.changeLabelState(currentIndex - 1)
-        return;
-      case 9 :
-        this.setActive(currentIndex + 1);
-        this.props.context.changeLabelState(currentIndex + 1)
-        return;
-      case 37 :
-        this.setActive(currentIndex - 1);
-        return;
-      case 39 :
-        this.setActive(currentIndex + 1);
-        return;
-      case 13 :
-        this.props.context.changeLabelState(currentIndex)
-        return;
-      default :
-        return;
+
+    if(currentIndex > 0 && currentIndex < 3){
+      switch(e.keyCode) {
+        case (e.shiftKey &&  9) :
+          this.setActive(currentIndex - 1);
+          this.props.context.changeLabelState(currentIndex - 1)
+          return;
+        case 9 :
+          this.setActive(currentIndex + 1);
+          this.props.context.changeLabelState(currentIndex + 1)
+          return;
+        case 37 :
+          this.setActive(currentIndex - 1);
+          return;
+        case 39 :
+          this.setActive(currentIndex + 1);
+          return;
+        case 13 :
+          this.props.context.changeLabelState(currentIndex)
+          return;
+        default :
+          return;
+      }
+    }
+    if(currentIndex == 0){
+      // should only be able to tab and use right arrow
+      switch(e.keyCode) {
+        case 9 :
+          this.setActive(currentIndex + 1);
+          this.props.context.changeLabelState(currentIndex + 1)
+          return;
+        case 39 :
+          this.setActive(currentIndex + 1);
+          return;
+        case 13 :
+          this.props.context.changeLabelState(currentIndex)
+          return;
+        default :
+          return;
+      }
+    }
+    if(currentIndex == 3){
+      // should only be able to shift + tab and use left arrow
+      switch(e.keyCode) {
+        case (e.shiftKey &&  9) :
+          this.setActive(currentIndex - 1);
+          this.props.context.changeLabelState(currentIndex - 1)
+          return;
+        case 37 :
+          this.setActive(currentIndex - 1);
+          return;
+        case 13 :
+          this.props.context.changeLabelState(currentIndex)
+          return;
+        default :
+          return;
+      }
     }
   }
 
@@ -93,6 +130,7 @@ export class Panel extends React.Component {
                   className={i === this.state.active ? 'is-active' : ''}
                   hoverHandler={() => this.handleHover(i)}
                   onClick={() => {this.setActive(i); this.props.context.changeLabelState(i);}}
+                  ref={`Cell_${i}`}
                 >{label}</Cell>
               );
             })
