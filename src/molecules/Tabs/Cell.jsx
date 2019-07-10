@@ -29,7 +29,7 @@ export const Cell = (props) => {
       case 'Enter' :
         return onClick();
       case 'ArrowLeft' :
-        return cellRef.current.previousSibling === null ? cellRef.current.focus() : cellRef.current.previousSibling.focus()   
+        return cellRef.current.previousSibling === null ? cellRef.current.focus() : cellRef.current.previousSibling.focus() 
       case 'ArrowRight' :
         return cellRef.current.nextElementSibling.focus()
       default:  
