@@ -1,12 +1,14 @@
+import TabsContext from './TabsContext'
+
 export const Cell = (props) => {
   const {
+    cellIndex,
     className,
     hoverHandler,
     onClick,
     children,
     panelFocused,
-    thisIndex,
-    marker,
+    labels,
     ...rest
   } = props;
 
@@ -19,69 +21,57 @@ export const Cell = (props) => {
    props.panelFocused ? 0 : -1 
    )
 
-  function handleTabKey(event) {
-      let currentCell = marker;
+  function handleArrowKey(event) {
+      let currentCell = cellIndex;
       let getNew;
-      let newActiveCell;
     switch(event.key) {
       case 'Enter' :
-       return onClick();    
+        return onClick();
       case 'ArrowLeft' :
-        if (currentCell > 0) {
-          newActiveCell = currentCell -1;
-         }  
-        if (currentCell === 0) {
-          newActiveCell = 3
-        }
-        getNew = (document.getElementById("cell-index-"+ newActiveCell)).focus()
-        return getNew 
-
+        currentCell > 0 ? (currentCell -= 1) : (currentCell = labels.length -1)
+        return getNew = (document.getElementById("cell-index-" + currentCell)).focus();
       case 'ArrowRight' :
-        if (currentCell < 3) {
-          newActiveCell = currentCell +1;
-         }  
-        if (currentCell === 3) {
-            newActiveCell = 0
-        }
-        getNew = (document.getElementById("cell-index-"+ newActiveCell)).focus()
-        return getNew 
+        currentCell < labels.length -1 ? (currentCell += 1) : (currentCell = 0)
+        return getNew = (document.getElementById("cell-index-" + currentCell)).focus();
       default:  
-      return;
+        return;
     }
   }
 
-  function handleTab(event){
-    if (event.key === 'Tab'){
+  function handleTabKey(){
+    if(event.key === 'Tab'){
       onClick();
     }
   }
 
-
   return (
     <div
       className={stack}
-      id={"cell-index-" + thisIndex}
       onClick={() => { onClick() }}
-      onKeyDown={handleTabKey}
-      onKeyUp={handleTab}
+      onKeyDown={handleArrowKey}
+      onKeyUp={handleTabKey}
       onMouseEnter={() => hoverHandler()}
-      role="tab"
       tabIndex={tabIndex}
-    >
-      <span className="Tabs__cell-vertical-borders" />
-      {children}
-      <span className="Tabs__cell-horizontal-borders" />
+      id={"cell-index-" + cellIndex}
+      >
+      <div className="Tabs_cell-has-focus">
+        <span className="Tabs__cell-vertical-borders" />
+        {children}
+        <span className="Tabs__cell-horizontal-borders" />
+      </div>
     </div>
   );
 };
 
 Cell.propTypes = {
+  cellIndex: PropTypes.number,
+  children: PropTypes.node,
   className: PropTypes.string,
   hoverHandler: PropTypes.func,
+  labels: PropTypes.array,
   onClick: PropTypes.func,
-  onTab: PropTypes.func,
-  isActive: PropTypes.number,
-  children: PropTypes.node
+  panelFocused: PropTypes.bool,
+  tabIndex: PropTypes.number
 };
 
 export default Cell;
