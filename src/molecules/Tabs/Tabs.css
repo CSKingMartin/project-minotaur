@@ -1,0 +1,33 @@
+.Tabs {
+  &__cells {
+    display: flex;
+    flex-direction: row;
+
+    &-cell {
+      border: 1px solid red;
+      cursor: pointer;
+      padding: 0.25rem 0.5rem;
+      margin-left: 0.5rem;
+
+      &:first-child {
+        margin-left: 0;
+      }
+
+      &.is-active {
+        border-color: green;
+      }
+
+      &:hover {
+        border-color: blue;
+      }
+    }
+  }
+
+  &__section {
+    display: none;
+
+    &.is-active {
+      display: inline-block;
+    }
+  }
+};
