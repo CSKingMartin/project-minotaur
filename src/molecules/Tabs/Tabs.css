@@ -91,9 +91,8 @@
   }
 
   &__cell:focus {
-    outline: .5px dotted var(--color-seafoam);
+    outline: .5px dotted var(--color-robins-egg);
   }
-
 
   &__panel {
   

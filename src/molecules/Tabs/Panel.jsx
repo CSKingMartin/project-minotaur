@@ -38,7 +38,7 @@ export class Panel extends React.Component {
   setFocus(event) {
     switch(event.key) {
       case 'Enter' :
-      //enable Tabs to be 'tab-able through'
+      // enable Tabs to be 'tab-able through'
        return this.setState({focused: true});
       case 'Escape' :
         return this.setState({focused: false})
@@ -65,7 +65,6 @@ export class Panel extends React.Component {
         {...rest}
         aria-labelledby="tab-list"
         className={stack} 
-        id="tab-list"
         onKeyDown={this.setFocus}
         role={"tablist"}
       >
@@ -77,10 +76,9 @@ export class Panel extends React.Component {
           {labels.map((label, i) => {
             return (
               <Cell
-                key={i}
-                cellIndex={i}
                 className={i === this.state.active ? 'is-active' : ''}
                 hoverHandler={() => this.handleHover(i)}
+                key={i}
                 labels={labels}
                 onClick={() => {this.setActive(i);
                 this.props.context.changeLabelState(i);}}

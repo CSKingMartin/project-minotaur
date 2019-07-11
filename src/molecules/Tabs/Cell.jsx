@@ -3,13 +3,12 @@ import {useRef} from 'react';
 
 export const Cell = (props) => {
   const {
-    cellIndex,
+    children,
     className,
     hoverHandler,
-    onClick,
-    children,
-    panelFocused,
     labels,
+    onClick,
+    panelFocused,
     ...rest
   } = props;
 
@@ -29,9 +28,9 @@ export const Cell = (props) => {
       case 'Enter' :
         return onClick();
       case 'ArrowLeft' :
-        return cellRef.current.previousSibling === null ? cellRef.current.focus() : cellRef.current.previousSibling.focus() 
+        return cellRef.current.previousElementSibling === null ? cellRef.current.focus() : cellRef.current.previousElementSibling.focus();
       case 'ArrowRight' :
-        return cellRef.current.nextElementSibling.focus()
+        return cellRef.current.nextElementSibling === null ? cellRef.current.focus() : cellRef.current.nextElementSibling.focus();
       default:  
         return;
     }
@@ -46,7 +45,6 @@ export const Cell = (props) => {
   return (
     <div
       className={stack}
-      id={"cell-index-" + cellIndex}
       onClick={() => { onClick() }}
       onKeyDown={handleArrowKey}
       onKeyUp={handleTabKey}
@@ -54,8 +52,8 @@ export const Cell = (props) => {
       ref={cellRef}
       role="tab"
       tabIndex={tabIndex}
-      >
-      <div className="Tabs_cell-has-focus">
+    >
+      <div className="Tabs_cell">
         <span className="Tabs__cell-vertical-borders" />
         {children}
         <span className="Tabs__cell-horizontal-borders" />
@@ -65,7 +63,6 @@ export const Cell = (props) => {
 };
 
 Cell.propTypes = {
-  cellIndex: PropTypes.number,
   children: PropTypes.node,
   className: PropTypes.string,
   hoverHandler: PropTypes.func,
