@@ -1,3 +1,5 @@
+import Expandable from '@molecules/Expandable';
+
 const Section = (props) => {
   const {
     children,
@@ -27,7 +29,12 @@ export const Content = (props) => {
   ]);
 
   return (
-    <div className={stack} >
+    <Expandable
+      className={stack}
+      closeHeight="0"
+      forceExpand={true}
+      {...rest}
+    >
       {React.Children.map(children, (child, index) => {
         return (
           <Section
@@ -42,7 +49,7 @@ export const Content = (props) => {
           </Section>
         );
       })}
-    </div>
+    </Expandable>
   );
 };
 
