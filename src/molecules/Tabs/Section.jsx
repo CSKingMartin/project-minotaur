@@ -13,7 +13,7 @@ export const Section = (props) => {
   ]);
 
   return (
-      <div className={stack} {...rest}>
+      <div className={stack} tabIndex="0" {...rest}>
         {children}
       </div>
   );

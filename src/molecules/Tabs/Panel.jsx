@@ -38,6 +38,7 @@ export class Panel extends React.Component {
   onKeyPress(e){
     let currentIndex = this.state.marker;
     let refChildren = this.cellsRef.current.children;
+    let context = this.props.context;
 
     /* if you are between 0 and the end of the tabs list, you should only be able to move right,
     move left, press enter, tab, or shift+tab*/
@@ -45,11 +46,11 @@ export class Panel extends React.Component {
       switch(e.keyCode) {
         case (e.shiftKey &&  9) :
           this.setActive(currentIndex - 1);
-          this.props.context.changeLabelState(currentIndex - 1)
+          context.changeLabelState(currentIndex - 1)
           return;
         case 9 :
           this.setActive(currentIndex + 1);
-          this.props.context.changeLabelState(currentIndex + 1)
+          context.changeLabelState(currentIndex + 1)
           return;
         case 37 :
           refChildren[currentIndex - 1].focus();
@@ -60,7 +61,7 @@ export class Panel extends React.Component {
           this.setActive(currentIndex + 1);
           return;
         case 13 :
-          this.props.context.changeLabelState(currentIndex)
+          context.changeLabelState(currentIndex)
           return;
         default :
           return;
@@ -72,14 +73,18 @@ export class Panel extends React.Component {
       switch(e.keyCode) {
         case 9 :
           this.setActive(currentIndex + 1);
-          this.props.context.changeLabelState(currentIndex + 1)
+          context.changeLabelState(currentIndex + 1)
+          return;
+        case 37 :
+          refChildren[refChildren.length - 2].focus();
+          this.setActive(refChildren.length - 2);
           return;
         case 39 :
           refChildren[currentIndex + 1].focus();
           this.setActive(currentIndex + 1);
           return;
         case 13 :
-          this.props.context.changeLabelState(currentIndex)
+          context.changeLabelState(currentIndex)
           return;
         default :
           return;
@@ -91,14 +96,18 @@ export class Panel extends React.Component {
       switch(e.keyCode) {
         case (e.shiftKey &&  9) :
           this.setActive(currentIndex - 1);
-          this.props.context.changeLabelState(currentIndex - 1)
+          context.changeLabelState(currentIndex - 1)
           return;
         case 37 :
           refChildren[currentIndex - 1].focus();
           this.setActive(currentIndex - 1);
           return;
+        case 39 :
+          refChildren[0].focus();
+          this.setActive(0);
+          return;
         case 13 :
-          this.props.context.changeLabelState(currentIndex)
+          context.changeLabelState(currentIndex)
           return;
         default :
           return;
@@ -139,7 +148,6 @@ export class Panel extends React.Component {
                   className={i === this.state.active ? 'is-active' : ''}
                   hoverHandler={() => this.handleHover(i)}
                   onClick={() => {this.setActive(i); this.props.context.changeLabelState(i);}}
-                  ref={`Cell_${i}`}
                 >{label}</Cell>
               );
             })

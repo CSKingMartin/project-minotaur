@@ -20,7 +20,7 @@ export const Tabs = (props) => {
 
   return (
     <div className={stack} {...rest}>
-        <TabsContext.Provider value={{labelState, changeLabelState}}>
+      <TabsContext.Provider value={{labelState, changeLabelState}}>
         {children}
       </TabsContext.Provider>
     </div>
