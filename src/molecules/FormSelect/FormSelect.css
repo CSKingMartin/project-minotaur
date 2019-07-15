@@ -1,0 +1,52 @@
+.FormSelect {
+  width: 100%;
+  margin: 1px;
+
+  .css-yk16xz-control {
+    height: 2rem;
+  }
+
+  &__large{
+    width: 45%;
+  }
+
+  &__medium{
+    width: 30%;
+  }
+
+  &__small{
+    width: 18%;
+  }
+}
+ 
+.underline {
+   .css-yk16xz-control {
+     border-bottom: 2px solid var(--color-seafoam);
+   }
+}
+
+.inline {
+    display: inline-flex;
+    margin-left: 4px;
+    margin-right: 4px;
+    position: ab
+}
+
+ @media screen and (max-width: 415px) {
+    .FormSelect__small {
+      min-width: 7rem;
+    }
+    .FormSelect__medium {
+      min-width: 10rem;
+    }
+    .FormSelect__large {
+      min-width: 13rem;
+    }
+  }
+
+  .css-2b097c-container { 
+    min-width: 8.25rem;
+    min-height: 2rem;
+  }
+
+  
