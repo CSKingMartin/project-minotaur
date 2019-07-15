@@ -1,6 +1,6 @@
 .FormSelect {
   width: 100%;
-  margin: 1px;
+  margin: 2px;
 
   .css-yk16xz-control {
     height: 2rem;
@@ -15,7 +15,7 @@
   }
 
   &__small{
-    width: 18%;
+    width: 15%;
   }
 }
  
@@ -29,24 +29,18 @@
     display: inline-flex;
     margin-left: 4px;
     margin-right: 4px;
-    position: ab
 }
 
  @media screen and (max-width: 415px) {
     .FormSelect__small {
-      min-width: 7rem;
+      min-width: 8rem;
     }
     .FormSelect__medium {
-      min-width: 10rem;
+      min-width: 12rem;
     }
     .FormSelect__large {
-      min-width: 13rem;
+      min-width: 16rem;
     }
-  }
-
-  .css-2b097c-container { 
-    min-width: 8.25rem;
-    min-height: 2rem;
   }
 
   
