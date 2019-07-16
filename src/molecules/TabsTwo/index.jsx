@@ -1,5 +1,5 @@
-import Cells from '@molecules/Tabs/Cells';
-import Content from '@molecules/Tabs/Content';
+import Cells from '@molecules/TabsTwo/Cells';
+import Content from '@molecules/TabsTwo/Content';
 
 const Panel = (props) => {
   const {

@@ -1,31 +1,8 @@
-<<<<<<< HEAD
-import Expandable from '@molecules/Expandable';
-
-const Section = (props) => {
-  const {
-    children,
-    className,
-    index,
-    ...rest
-  } = props;
-
-  return (
-    <div className={className}>
-      {children}
-    </div>
-  );
-};
-=======
 import TabsContext from './TabsContext'
->>>>>>> feature/Tabs-Dannon
 
 export const Content = (props) => {
   const {
     className,
-<<<<<<< HEAD
-    activeIndex,
-=======
->>>>>>> feature/Tabs-Dannon
     children,
     ...rest
   } = props;
@@ -35,33 +12,6 @@ export const Content = (props) => {
     className
   ]);
 
-<<<<<<< HEAD
-  return (
-    <Expandable
-      className={stack}
-      closeHeight="0"
-      forceExpand={true}
-      {...rest}
-    >
-      {React.Children.map(children, (child, index) => {
-        return (
-          <Section
-            className={
-              index === activeIndex ?
-                'Tabs__section is-active' :
-                'Tabs__section'
-            }
-            key={index}
-            index={index}>
-            {child.props.children}
-          </Section>
-        );
-      })}
-    </Expandable>
-  );
-};
-
-=======
   const childArray = React.Children.toArray(children);
 
   return (
@@ -82,5 +32,4 @@ Content.propTypes = {
   children: PropTypes.node
 };
 
->>>>>>> feature/Tabs-Dannon
 export default Content;
