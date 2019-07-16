@@ -1,26 +1,13 @@
-<<<<<<< HEAD
 import Cells from '@molecules/Tabs/Cells';
 import Content from '@molecules/Tabs/Content';
 
 const Panel = (props) => {
   const {
     headings,
-=======
-import Content from './Content';
-import Panel from './Panel';
-import Section from './Section';
-import TabsContext from './TabsContext'
-
-export const Tabs = (props) => {
-
-  const {
-    className,
->>>>>>> feature/Tabs-Dannon
     children,
     ...rest
   } = props;
 
-<<<<<<< HEAD
   return (
     <div className="Tabs__panel" {...rest}>{children}</div>
   );
@@ -72,26 +59,5 @@ export class Tabs extends React.Component {
 
 // Tabs.Content = Content;
 // Tabs.Panel = Content;
-=======
-  const stack = utilities.createClassStack([
-    'Tabs',
-    className
-  ]);
-
-  const [labelState, changeLabelState] = useState(0);
-
-  return (
-    <div className={stack} {...rest}>
-      <TabsContext.Provider value={{labelState, changeLabelState}}>
-        {children}
-      </TabsContext.Provider>
-    </div>
-  );
-};
-
-Tabs.Content = Content;
-Tabs.Panel = Panel;
-Tabs.Section = Section;
->>>>>>> feature/Tabs-Dannon
 
 export default Tabs;

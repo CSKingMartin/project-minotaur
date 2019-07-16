@@ -1,0 +1,42 @@
+.Tabs {
+  &__cells {
+    display: flex;
+    flex-direction: row;
+
+    &-cell {
+      border: 1px solid var(--color-seafoam);
+      cursor: pointer;
+      padding: 0.25rem 0.5rem;
+      margin-left: 0.5rem;
+
+      &:first-child {
+        margin-left: 0;
+      }
+
+      &.is-active {
+        border-color: var(--color-robins-egg);
+        background-color: var(--color-abyss);
+        color: var(--color-robins-egg);
+      }
+
+      &:hover {
+        border-color: var(--color-robins-egg);
+      }
+    }
+  }
+
+  &__content {
+    border: 1px solid lightgrey;
+    border-radius: 3px;
+    padding: 0.5rem;
+    margin-top: 1rem;
+  }
+
+  &__section {
+    display: none;
+
+    &.is-active {
+      display: inline-block;
+    }
+  }
+};
