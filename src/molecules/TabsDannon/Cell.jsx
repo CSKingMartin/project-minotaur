@@ -1,7 +1,7 @@
 export const Cell = (props) => {
   const {
     className,
-    hoverHandler,
+    // hoverHandler,
     onClick,
     children,
     ...rest
@@ -19,7 +19,7 @@ export const Cell = (props) => {
         onClick();
       }}
       tabIndex={0}
-      onMouseEnter={() => hoverHandler()}
+      // onMouseEnter={() => hoverHandler()}
     >
       <span className="Tabs__cell-vertical-borders" />
       {children}

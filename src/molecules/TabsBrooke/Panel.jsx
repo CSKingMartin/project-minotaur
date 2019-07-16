@@ -10,12 +10,12 @@ export class Panel extends React.Component {
       active: 0,
       marker: 0,
       hovered: -1,
+      focused: false
     };
 
     this.clearHoverStyles = this.clearHoverStyles.bind(this);
     this.handleHover = this.handleHover.bind(this);
-    this.onKeyPress = this.onKeyPress.bind(this);
-    this.cellsRef = React.createRef();
+    this.setFocus = this.setFocus.bind(this);
   }
 
   clearHoverStyles() {
@@ -34,6 +34,7 @@ export class Panel extends React.Component {
       this.setState({ active: index });
     }, 250);
   }
+
 
   onKeyPress(e){
     let currentIndex = this.state.marker;
@@ -115,6 +116,18 @@ export class Panel extends React.Component {
     }
   }
 
+  setFocus(event) {
+    switch(event.key) {
+      case 'Enter' :
+      // enable Tabs to be 'tab-able through'
+       return this.setState({focused: true});
+      case 'Escape' :
+        return this.setState({focused: false})
+      default : 
+        return;
+    }
+  }
+  
   render() {
     const {
       className,
@@ -129,29 +142,31 @@ export class Panel extends React.Component {
     ]);
 
     return (
-      <div
-        className={stack}
-        onKeyDown={this.onKeyPress}
-        tabIndex="0"
+      <div 
         {...rest}
+        aria-labelledby="tab-list"
+        className={stack} 
+        onKeyDown={this.setFocus}
+        role={"tablist"}
       >
-        <div
-          className="Tabs__panel-inner"
-          ref={this.cellsRef}
-          onMouseLeave={() => this.clearHoverStyles()}
-        >
-          {
-            labels.map((label, i) => {
-              return (
-                <Cell
-                  key={i}
-                  className={i === this.state.active ? 'is-active' : ''}
-                  hoverHandler={() => this.handleHover(i)}
-                  onClick={() => {this.setActive(i); this.props.context.changeLabelState(i);}}
-                >{label}</Cell>
-              );
-            })
-          }
+          <div
+            className="Tabs__panel-inner"
+            onMouseLeave={() => this.clearHoverStyles()}
+            tabIndex={0}
+          >
+          {labels.map((label, i) => {
+            return (
+              <Cell
+                className={i === this.state.active ? 'is-active' : ''}
+                hoverHandler={() => this.handleHover(i)}
+                key={i}
+                labels={labels}
+                onClick={() => {this.setActive(i);
+                this.props.context.changeLabelState(i);}}
+                panelFocused={this.state.focused}
+              >{label}</Cell>
+            );
+          })}
           <div className="Tabs__panel-bar">
             {
               labels.map((i) => {
@@ -162,10 +177,7 @@ export class Panel extends React.Component {
                 return <span key={i} className={highlightStack} />;
               })
             }
-            <div
-              className="Tabs__panel-marker"
-              style={{ transform: `translateX(${(4.875 * this.state.marker)}rem)` }}
-            />
+            <div className="Tabs__panel-marker" style={{ transform: `translateX(${(4.875 * this.state.marker)}rem)` }}/>
           </div>
         </div>
       </div>

@@ -24,7 +24,7 @@ export const Content = (props) => {
   } = props;
 
   const stack = utilities.createClassStack([
-    'Tabs__content',
+    'TabsConner__content',
     className
   ]);
 
@@ -40,8 +40,8 @@ export const Content = (props) => {
           <Section
             className={
               index === activeIndex ?
-                'Tabs__section is-active' :
-                'Tabs__section'
+                'TabsConner__section is-active' :
+                'TabsConner__section'
             }
             key={index}
             index={index}>
