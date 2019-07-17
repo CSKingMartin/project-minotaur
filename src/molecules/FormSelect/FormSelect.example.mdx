@@ -1,0 +1,88 @@
+import FormSelect from '@molecules/FormSelect';
+import Heading from '@atoms/Heading';
+import Label from '@atoms/Label';
+import Select from './index'
+
+<Heading level="h3">Default Form Select</Heading>
+<FormSelect 
+  className="FormSelect"
+  options={[
+    { value: 'deafult1', label: 'Default One' },
+    { value: 'deafult2', label: 'Default Two' },
+    { value: 'deafult3', label: 'Default Three' }
+  ]}
+/>
+
+<Heading level="h3">Size Patterns</Heading> 
+<Label>Select Option</Label>
+<FormSelect 
+  className="FormSelect__small"
+  options={[
+    { value: 'small1', label: 'Small One' },
+    { value: 'small2', label: 'Small Two' },
+    { value: 'small3', label: 'Small Three' }
+  ]}
+/>
+<Label>Select Option</Label>
+<FormSelect 
+  className="FormSelect__medium"
+  options={[
+    { value: 'medium1', label: 'Medium One' },
+    { value: 'medium2', label: 'Medium Two' },
+    { value: 'medium3', label: 'Medium Three' }
+  ]}
+/>
+<Label>Select Option</Label>
+<FormSelect 
+  className="FormSelect__large"
+  options={[
+    { value: 'large1', label: 'Large One' },
+    { value: 'large2', label: 'Large Two' },
+    { value: 'large3', label: 'Large Three' }
+  ]}
+/>
+
+<Heading level="h3">Underline</Heading>
+<Label>Select Option</Label>
+<FormSelect 
+  className="FormSelect__medium underline"
+  options={[
+    { value: 'medium1', label: 'Medium Underline' },
+    { value: 'medium2', label: 'Medium Underline' },
+    { value: 'medium3', label: 'Medium Underline' }
+  ]}
+/>
+
+
+
+<Heading level="h3">Inline</Heading>
+<div>
+   Lorem ipsum dolor amet literally semiotics plaid,   
+  <FormSelect 
+    className="FormSelect__small inline underline"
+    options={[
+      { value: 'inline1', label: 'Small Inline' },
+      { value: 'inline2', label: 'Small Inline' },
+      { value: 'inline3', label: 'Small Inline' }
+    ]}
+  /> 
+ cred single-origin coffee 90's banh mi lyft before they sold out stumptown wolf. 
+
+
+  <FormSelect 
+    className="FormSelect__medium inline"
+    options={[
+      { value: 'inline1', label: 'Medium Inline' },
+      { value: 'inline2', label: 'Medium Inline' },
+      { value: 'inline3', label: 'Medium Inline' }
+    ]}
+  /> 
+  DIY organic shabby chic, roof party drinking vinegar fixie freegan twee selvage coloring book.   
+</div>
+
+
+
+  
+
+ 
+  
