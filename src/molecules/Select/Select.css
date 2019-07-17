@@ -13,18 +13,17 @@
   &__small{
     width: 15%;
   }
-}
 
- @media screen and (max-width: 415px) {
-    .Select__small {
+  @media (--small) {
+    &__small {
       min-width: 8rem;
     }
-    .Select__medium {
+    &__medium {
       min-width: 12rem;
     }
-    .Select__large {
+    &__large {
       min-width: 16rem;
     }
   }
+}
 
-  
