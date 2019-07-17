@@ -8,29 +8,24 @@ export const PropsTable = (props) => {
     ...rest
   } = props;
 
-  const propsList = registry[query].props
+  const propsObject = registry[query].props
   const propItem = registry[query].props.children
+  
+ const propsItems = () => {
+   console.log(Object.entries(propsItem))
+    }
 
-  const getProps = (props) => {
-
-  }
-
-  console.log("propList",propsList);
-  console.log("getProps", getProps)
-
+    console.log(Object.entries(propsObject))
   return (
     <div className={className} {...rest}>
       {query}
-      {children}
-
-      {/* { Object.entries(propsList).map((item, index) => 
-      <div key={index}>
-        <p>name: {propsList[item].name}</p>
-     
-       
-      </div>
-      ) } */}
-    
+      {children}   
+      {/* {
+        Object.entries((propsObject).forEach => 
+          propsObject[inex]
+        )
+      } */}
+   
     </div>
   );
 };
