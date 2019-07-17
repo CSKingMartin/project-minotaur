@@ -6,3 +6,4 @@ src/pages/catalog/atoms/
 src/pages/catalog/molecules/
 src/pages/catalog/organisms/
 src/static/svgs/
+src/registry.json
