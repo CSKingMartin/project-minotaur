@@ -1,0 +1,30 @@
+.Select {
+  width: 100%;
+  margin: 2px;
+
+  &__large{
+    width: 45%;
+  }
+
+  &__medium{
+    width: 30%;
+  }
+
+  &__small{
+    width: 15%;
+  }
+}
+
+ @media screen and (max-width: 415px) {
+    .Select__small {
+      min-width: 8rem;
+    }
+    .Select__medium {
+      min-width: 12rem;
+    }
+    .Select__large {
+      min-width: 16rem;
+    }
+  }
+
+  
