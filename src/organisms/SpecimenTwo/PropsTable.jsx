@@ -8,24 +8,49 @@ export const PropsTable = (props) => {
     ...rest
   } = props;
 
-  const propsObject = registry[query].props
-  const propItem = registry[query].props.children
-  
- const propsItems = () => {
-   console.log(Object.entries(propsItem))
-    }
+  const stack = utilities.createClassStack([
+    'Specimen2',
+    className
+  ]);
 
-    console.log(Object.entries(propsObject))
+  const getProps = registry[query].props //gets object containing all element's props
+
+  // checking for PropTypes.object
+  const checkPropType = (type) => {
+    if (typeof(type) === 'object') {
+      let typeKey = Object.keys(type);
+      let typeValues = Object.values(type).join(' ');
+      return typeKey + ': ' + typeValues
+    }
+    else return type;
+  };
+
+  const mapGetProps = () => {
+    return Object.keys(getProps).map((prop,index) => {
+      return (
+        <div key={index} className="wrapper">
+          <span  className="key-column">{getProps[prop].name}: </span>
+          <span className="value-column" >{checkPropType(getProps[prop].type)}</span>
+        </div>
+      );
+    });
+  };
+
+// //practicing recursion
+//   const reverseString = (string) => {
+//     if (string === "") {
+//       return "";
+//     } 
+//     else  return reverseString(string.substr(1)) + string.charAt(0);
+//   }
+
+  const displayMappedObject = mapGetProps();
+
   return (
-    <div className={className} {...rest}>
-      {query}
-      {children}   
-      {/* {
-        Object.entries((propsObject).forEach => 
-          propsObject[inex]
-        )
-      } */}
-   
+    <div className={stack} {...rest} >
+      <h6>{query}</h6>
+      {children}
+      {displayMappedObject}
     </div>
   );
 };
