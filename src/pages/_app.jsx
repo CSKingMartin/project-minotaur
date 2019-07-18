@@ -9,6 +9,7 @@ import {
 import GlobalHeader from '@organisms/GlobalHeader';
 import GlobalFooter from '@organisms/GlobalFooter';
 import '../bundle.css.jsx';
+import '../bundle.js';
 import svg from '@static/svgs/svg/bundle.svg';
 import Wrapper from '@atoms/Wrapper';
 
