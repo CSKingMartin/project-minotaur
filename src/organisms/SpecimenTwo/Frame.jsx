@@ -1,6 +1,5 @@
 import cache from '@catalog/bundle';
 import ReactDOM from 'react-dom';
-import Button from '@atoms/Button';
 
 export class Frame extends React.Component {
   constructor(props) {
@@ -8,17 +7,22 @@ export class Frame extends React.Component {
   };
 
   componentDidMount() {
-    this.node.addEventListener('load', this.handleLoad());
+    this.node.addEventListener('load', () => this.handleLoad());
   }
 
   componentWillUnmout() {
-    this.node.removeEventListener('load', this.handleLoad());
+    this.node.removeEventListener('load', () => this.handleLoad());
   }
 
   handleLoad() {
-    this.iframeHead = this.node.contentDocument.head;
-    this.iframeRoot = this.node.contentDocument.body;
-    this.forceUpdate();
+    setTimeout(() => {
+      if (this.node.contentDocument) {
+        this.iframeHead = this.node.contentDocument.head;
+        this.iframeRoot = this.node.contentDocument.body;
+
+        this.forceUpdate();
+      }
+    }, 1000);
   }
 
   render() {
@@ -30,7 +34,13 @@ export class Frame extends React.Component {
     } = this.props;
 
     const queryLiteral = `./${component}/index.jsx`;
-    const DynamicComponent = cache[queryLiteral].default;
+    const ImportedComponent = cache[queryLiteral].default;
+
+    const DynamicComponent = () => (
+      <ImportedComponent>
+        Lorem ipsum
+      </ImportedComponent>
+    );
 
     return (
       <div className="Specimen__iframe-wrapper">

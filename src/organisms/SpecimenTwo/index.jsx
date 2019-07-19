@@ -1,4 +1,8 @@
-import Frame from './Frame';
+import Badge from '@atoms/Badge';
+import Heading from '@atoms/Heading';
+import registry from '@catalog/registry.json'
+
+import Frame from './Frame'; // local Frame partial
 
 const SpecimenContext = React.createContext({
   query: '',
@@ -25,9 +29,20 @@ const Specimen = (props) => {
     >
       <div className={stack} {...rest}>
         <SpecimenContext.Consumer>
-          {(value) => (
-            <Frame component={value.query} />
-          )}
+          {(value) => {
+            const entry = registry[value.query];
+
+            if (entry) {
+              return (
+                <React.Fragment>
+                  <Heading level='h3'>{value.query}:<Badge variant="inline">{entry.category}</Badge></Heading>
+                  <Frame component={value.query} />
+                </React.Fragment>
+              );
+            } else {
+              return <p>I'm sorry we errored :(</p>
+            }
+          }}
         </SpecimenContext.Consumer>
       </div>
     </SpecimenContext.Provider>
