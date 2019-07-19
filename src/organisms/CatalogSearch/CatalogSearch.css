@@ -36,9 +36,9 @@
 
 	&__result {
 		border-radius: 3px;
-		cursor: pointer;
+		/*cursor: pointer;*/
 		padding: 0.25rem 0.5rem;
-		transition: color 0.25s, background-color 0.25s;
+		/*transition: color 0.25s, background-color 0.25s;*/
 	}
 
 	&__result-badge {

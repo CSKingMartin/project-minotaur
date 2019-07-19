@@ -10,11 +10,11 @@ const CatalogResult = (props) => {
     ...rest
   } = props;
 
-  const [isActive, highlight] = useState(false);
+  // const [isActive, highlight] = useState(false);
 
   const stack = utilities.createClassStack([
     'CatalogSearch__result',
-    isActive && 'is-abyss'
+    // isActive && 'is-abyss'
   ]);
 
   const defineColor = (label) => {
@@ -30,12 +30,13 @@ const CatalogResult = (props) => {
     <Media
       className={stack}
       variant="full"
-      onMouseEnter={() => highlight(true)}
-      onMouseLeave={() => highlight(false)}
+      // onMouseEnter={() => highlight(true)}
+      // onMouseLeave={() => highlight(false)}
       {...rest}
     >
       <Media.Body>
         <p>{name}</p>
+        <Badge><PageLink label="Specimen" href={`/catalog/Specimen?component=${name}`} /></Badge>
       </Media.Body>
       <Media.Figure>
         <Badge color={defineColor(category)} className="CatalogSearch__result-badge">{category}</Badge>
