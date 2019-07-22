@@ -4,6 +4,7 @@ import registry from '@catalog/registry.json'
 
 import Frame from './Frame'; // local Frame partial
 import Resizer from './Resizer'; // local Resizer partial
+import PropsTable from './PropsTable'; // local PropsTable partial
 
 const SpecimenContext = React.createContext({
   query: '',
@@ -25,7 +26,8 @@ const Specimen = (props) => {
   return (
     <SpecimenContext.Provider
       value={{
-        query: query
+        query: query,
+        // props: => needs to be defaultProps, then new data when PropsTable is updated
       }}
     >
       <div className={stack} {...rest}>
@@ -39,7 +41,10 @@ const Specimen = (props) => {
                   <Heading level='h3'>{value.query}:<Badge variant="inline">{entry.category}</Badge></Heading>
                   <Resizer>
                     <Frame component={value.query} />
+                    {/* <Frame component={value.query} props={value.props} /> */}
                   </Resizer>
+                  <PropsTable query={value.query} />
+                  {/* <PropsTable query={value.query} defaultProps={entry.defaultProps} /> */}
                 </React.Fragment>
               );
             } else {
