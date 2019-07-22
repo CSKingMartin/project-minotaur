@@ -20,6 +20,7 @@ export const PropsTable = (props) => {
 
   const getProps = registry[query].props
 
+
   const separateByPropType = (type) => {
     if (typeof(type) !== 'object') {
       switch(type){
