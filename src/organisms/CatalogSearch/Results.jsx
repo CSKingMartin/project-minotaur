@@ -2,6 +2,7 @@ import registry from '../../registry.json';
 import Badge from '@atoms/Badge';
 import Expandable from '@molecules/Expandable';
 import Media from '@molecules/Media';
+import PageLink from '@atoms/PageLink';
 
 const CatalogResult = (props) => {
   const {
