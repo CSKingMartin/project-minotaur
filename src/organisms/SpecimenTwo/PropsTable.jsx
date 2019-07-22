@@ -15,8 +15,8 @@ export const PropsTable = (props) => {
 
   }
 
-  console.log("propList",propsList);
-  console.log("getProps", getProps)
+  // console.log("propList",propsList);
+  // console.log("getProps", getProps)
 
   return (
     <div className={className} {...rest}>
