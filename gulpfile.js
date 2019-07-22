@@ -49,7 +49,6 @@ gulp.task('registry', () => gulp.src('src/**/**/index.jsx')
       if (name !== '') {
         const getType = (string) => {
           let returnValue;
-
           if (string.indexOf('oneOfType') !== -1) {
             const returnObject = [];
             const prefix = contents.substring(contents.indexOf('oneOfType('));
@@ -77,10 +76,8 @@ gulp.task('registry', () => gulp.src('src/**/**/index.jsx')
 
             returnValue = { 'oneOfType': returnObject };
           } else if (string.indexOf('oneOf') !== -1) {
-            // console.log(string);
-            const prefix = contents.substring(contents.indexOf('oneOf('));
+            const prefix = string.substring(string.indexOf('oneOf(') + 6);
             const value = prefix.substring(prefix.indexOf('[') + 2, prefix.indexOf(']') - 1);
-            // console.log(value);
             returnValue = { 'oneOf': value.split("', '") };
           } else {
             returnValue = string;
@@ -90,7 +87,6 @@ gulp.task('registry', () => gulp.src('src/**/**/index.jsx')
         };
 
         const type = prop.substring(prop.indexOf('PropTypes.') + 10, prop.length - 1);
-
         propsObject.name = name;
         propsObject.type = getType(type);
         entry.props[name] = propsObject;
