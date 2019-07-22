@@ -80,7 +80,7 @@ export const Expandable = (props) => {
 };
 
 Expandable.defaultProps = {
-  startOpen: false, // NO start closed
+  startOpen: false, 
   closeHeight: '1rem'
 };
 

@@ -42,7 +42,7 @@ gulp.task('registry', () => gulp.src('src/**/**/index.jsx')
     /* GET PROPS */
     const startOfProps = contents.substring(contents.indexOf('.propTypes = {') + 17);
     const props = startOfProps.substring(0, startOfProps.indexOf('};')).split('\n  ');
-    
+
     props.forEach((prop) => {
       const propsObject = {};
       const name = prop.substring(0, prop.indexOf(':'));
@@ -74,7 +74,7 @@ gulp.task('registry', () => gulp.src('src/**/**/index.jsx')
                 testString = testString.substring(testString.length);
               }
             }
-            
+
             returnValue = { 'oneOfType': returnObject };
           } else if (string.indexOf('oneOf') !== -1) {
             // console.log(string);
@@ -97,8 +97,35 @@ gulp.task('registry', () => gulp.src('src/**/**/index.jsx')
       }
     });
 
+    /* GET DEFAULT PROPS */
+    entry.defaultProps = {}
+
+    if(contents.indexOf('.defaultProps = {') != -1){
+      const startOfDefaultProps = contents.substring(contents.indexOf('.defaultProps = {') + 17);
+      const defaultProps = startOfDefaultProps.substring(0, startOfDefaultProps.indexOf('};')).split('\n  ');
+
+      defaultProps.forEach((defaultProp) => {
+        const defaultPropsObject = {};
+        const name = defaultProp.substring(0, defaultProp.indexOf(':'));
+
+        if (name !== '') {
+          const value = defaultProp.substring(defaultProp.indexOf(':') + 2);
+
+          if (value !== '') {
+            let truevalue = value.replace(/['"]+/g, ''); // getting rid of quotes
+            truevalue = truevalue.replace(',', ''); // getting rid of commas
+            truevalue = truevalue.replace('\n', ''); //getting rid of new lines
+            defaultPropsObject.name = name;
+            defaultPropsObject.value = truevalue;
+
+            entry.defaultProps[name] = defaultPropsObject;
+          }
+        }
+      });
+    }
+
     entry.inherits = [];
-    
+
     registry[entry.name] = entry;
 
     cb(null, file);
@@ -125,7 +152,7 @@ gulp.task('registry', () => gulp.src('src/**/**/index.jsx')
     }
     cb(null, file);
   })).on('end', () => {
-    fs.writeFileSync('./src/registry.json', JSON.stringify(registry));
+    fs.writeFileSync('./src/registry.json', JSON.stringify(registry, null, "\t"));
   }));
 
 gulp.task('generateSvgSprite', () => gulp.src('src/atoms/Icon/assets/*.svg')
