@@ -7,7 +7,7 @@
   display: grid;
   border: 1px solid gray;
   padding: .5rem;
-  grid-template-columns: 30% 70%;
+  grid-template-columns: 20% 40% 40%;
   grid-auto-rows: auto;
   }
 
@@ -17,5 +17,10 @@
 
   .value-column {
     grid-column: 2;
+    align-self: flex-start;
+  }
+
+   .input-column {
+  grid-column: 3;
     align-self: flex-start;
   }
