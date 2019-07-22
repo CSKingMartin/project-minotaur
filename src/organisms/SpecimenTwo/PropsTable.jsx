@@ -19,7 +19,6 @@ export const PropsTable = (props) => {
   ]);
 
   const getProps = registry[query].props
-  // const getDefaultProps = registry[query]. => defaultProps not listed in registry?
 
   const separateByPropType = (type) => {
     if (typeof(type) !== 'object') {
@@ -40,15 +39,13 @@ export const PropsTable = (props) => {
           return "default return";
       } 
     } else 
-    console.log(getOptionsForSelect(type))
-    return <Select options={getOptionsForSelect(type)}/>
+    return getOptionsForSelect(type)
   }
 
   // checking for PropTypes.object
   const checkPropType = (type) => {
     if (typeof(type) === 'object') {
       let typeKey = Object.keys(type);
-      // let typeValues = Object.values(type).join(' ');
       return typeKey 
     }
     else return type;
@@ -66,23 +63,37 @@ export const PropsTable = (props) => {
     });
   };
 
+  // for oneOf proptype: create options prop to pass into <Select /> 
+  // for oneOfType proptype: dont want <Select />, return a string
   const getOptionsForSelect = (type) => {
-    let keys = Object.keys(type).toString();
     let values = Object.values(type)[0];
-    let newArray = [];
+    if (Object.keys(type).join() === 'oneOf'){
+    let optionsArray = [];
     values.forEach(function(value){
-      newArray.push({value: value, label: value})
-    })
-    return newArray;
+      if (typeof(value) !== 'object'){
+      optionsArray.push({value: value, label: value})
+      }
+      else {
+        let arrayValue = Object.entries(value).join().split(',')
+        optionsArray.push({value: arrayValue, label: arrayValue.join(' ') })
+      }
+    }) 
+    return <Select options={optionsArray} />;
+    }
+    if (Object.keys(type).join() === 'oneOfType'){
+      let oneOfTypeArray = []
+      values.forEach(function(value){
+        if (typeof(value) !== 'object'){
+         oneOfTypeArray.push(value)
+        }
+        else {
+          let arrayValue = Object.entries(value).join().split(',')
+          oneOfTypeArray.push(arrayValue.join('-'))
+        }
+      }) 
+    return oneOfTypeArray.join(' or ')
+    }
   }
-
-// //practicing recursion
-//   const reverseString = (string) => {
-//     if (string === "") {
-//       return "";
-//     } 
-//     else  return reverseString(string.substr(1)) + string.charAt(0);
-//   }
 
   const displayMappedObject = mapGetProps();
 
