@@ -3,6 +3,7 @@ import Heading from '@atoms/Heading';
 import registry from '@catalog/registry.json'
 
 import Frame from './Frame'; // local Frame partial
+import Resizer from './Resizer'; // local Resizer partial
 
 const SpecimenContext = React.createContext({
   query: '',
@@ -36,7 +37,9 @@ const Specimen = (props) => {
               return (
                 <React.Fragment>
                   <Heading level='h3'>{value.query}:<Badge variant="inline">{entry.category}</Badge></Heading>
-                  <Frame component={value.query} />
+                  <Resizer>
+                    <Frame component={value.query} />
+                  </Resizer>
                 </React.Fragment>
               );
             } else {

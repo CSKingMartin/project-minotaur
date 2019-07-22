@@ -4,25 +4,23 @@ import ReactDOM from 'react-dom';
 export class Frame extends React.Component {
   constructor(props) {
     super(props);
+
+    this.frame = React.createRef();
   };
 
   componentDidMount() {
-    this.node.addEventListener('load', () => this.handleLoad());
-  }
-
-  componentWillUnmout() {
-    this.node.removeEventListener('load', () => this.handleLoad());
+    this.handleLoad();
   }
 
   handleLoad() {
-    setTimeout(() => {
-      if (this.node.contentDocument) {
-        this.iframeHead = this.node.contentDocument.head;
-        this.iframeRoot = this.node.contentDocument.body;
+    if (this.frame.current) {
+      this.iframeHead = this.frame.current.contentDocument.head;
+      this.iframeRoot = this.frame.current.contentDocument.body;
 
-        this.forceUpdate();
-      }
-    }, 1000);
+      this.forceUpdate();
+    } else {
+      setTimeout(handleLoad(), 500);
+    }
   }
 
   render() {
@@ -45,7 +43,7 @@ export class Frame extends React.Component {
     return (
       <div className="Specimen__iframe-wrapper">
         <p className={this.iframeRoot ? 'Specimen__iframe-loading is-active' : 'Specimen__iframe-loading' }>...loading...</p>
-        <iframe srcDoc={`<!DOCTYPE html>`} className="Specimen__iframe" ref={node => this.node = node} {...rest}>
+        <iframe srcDoc={`<!DOCTYPE html>`} className="Specimen__iframe" ref={this.frame} {...rest}>
           {this.iframeHead && ReactDOM.createPortal(<link rel="stylesheet" href="/_next/static/css/styles.chunk.css" />, this.iframeHead)}
           {this.iframeRoot && ReactDOM.createPortal(<DynamicComponent />, this.iframeRoot)}
         </iframe>
