@@ -29,6 +29,29 @@
     justify-content: space-between;
     margin: 0 auto;
 
+    &-bar {
+      height: 1rem;
+      position: absolute;
+      width: 100%;
+    }
+
+    &-button {
+      border: 1px solid #ccc;
+      background-color: #fefefe;
+      bottom: 0;
+      cursor: pointer;
+      display: block;
+      left: 0;
+      margin: 0 auto;
+      position: absolute;
+      right: 0;
+      top: 0;
+
+      &:hover {
+        background-color: #fafafa;
+      }
+    }
+
     & > *:not(.Specimen__drag-handle) {
       flex: 1;
     }
