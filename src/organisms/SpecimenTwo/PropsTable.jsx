@@ -5,6 +5,7 @@ import Input from '@molecules/Input';
 import Select from '@molecules/Select';
 import TextArea from '@atoms/TextArea';
 import Toggle from '@molecules/Toggle';
+import TableInput from './props-table-input';
  
 
 export const PropsTable = (props) => {
@@ -12,6 +13,9 @@ export const PropsTable = (props) => {
     className,
     children,
     query,
+    propName,
+    newProps,
+    setProps,
     ...rest
   } = props;
 
@@ -23,6 +27,7 @@ export const PropsTable = (props) => {
   const getProps = registry[query].props
   const getDefaultProps = registry[query].defaultProps;
   const [state, setState] = useState(getProps);
+  const [value, setValue] = useState('')
 
   const updateStateWithDefaultProps = (getDefaultProps,state) => {
     let propState = Object.keys(state).reduce((o, key) => ({...o, [key]: ''}),{} )
@@ -36,27 +41,40 @@ export const PropsTable = (props) => {
     return propState
   }
 
-  const handleChange = (event,propName) => {
-    setState(state[propname] = event.target.value )
+  const handleChange = (type, event) => {
+    let newValue = event.target.value;
+    let newState = state;
+    setValue(event.target.value);
+    newState[type] = newValue;
+    setState(newState);
+    setProps(state)
+    // console.log("newProps", newProps)
+    
   }
 
   useEffect(() => {
-    setState(updateStateWithDefaultProps(getDefaultProps, state))
-  }, [])
+    setState(updateStateWithDefaultProps(getDefaultProps, state));
+  }, []);
+  
 
   const separateByPropType = (type, defaultValue, propName) => {
+    let tableInput = (
+      <input 
+        onChange={()=>handleChange(propName, event)} 
+        placeholder={defaultValue} 
+        name={propName}  
+      />)
+ 
     if (typeof(type) !== 'object') {
       switch(type){
         case 'string':
-          return <Input placeholder={defaultValue} />
+          return tableInput;
         case 'node' :
-          return <Input placeholder={defaultValue} propname={propName} onChange={() => handleChange(propName)}/>;
+          return tableInput;
         case 'node.isRequired' :
-          return <Input placeholder={defaultValue}  propname={propName}/>;
-        case 'oneOf':
-          return <Select />;
+          return tableInput;
         case 'bool':
-      return <Toggle defaultActive={defaultValue} propname={propName}  />;
+      return <Toggle />;
         case 'object' :
           return "object";
         default : 
@@ -66,7 +84,6 @@ export const PropsTable = (props) => {
     return getOptionsForSelect(type)
   }
 
-  // checking for PropTypes.object
   const checkPropType = (type) => {
     if (typeof(type) === 'object') {
       return Object.keys(type) 
@@ -86,22 +103,13 @@ export const PropsTable = (props) => {
     });
   };
 
-  // This func is looking at object propTypes specifically
-  // for oneOf proptype: create options prop to pass into <Select /> 
-  // for oneOfType proptype: dont want <Select />, return a string
+  // 'oneOf' proptype returns <Select />  &&  oneOfType returns a string
   const getOptionsForSelect = (type) => {
     let values = Object.values(type)[0];
-
     if (Object.keys(type).join() === 'oneOf'){
       let optionsArray = [];
       values.forEach(function(value){
-        if (typeof(value) !== 'object'){
         optionsArray.push({value: value, label: value})
-        }
-        else {
-          let arrayValue = Object.entries(value).join().split(',')
-          optionsArray.push({value: arrayValue, label: arrayValue.join(' ') })
-        }
       }) 
       return <Select options={optionsArray} />;
     }
@@ -115,7 +123,8 @@ export const PropsTable = (props) => {
   }
 
   const displayMappedObject = mapGetProps();
-  // console.log("state change", state)
+  console.log(state)
+ 
   
   return (
     <div className={stack} {...rest} >

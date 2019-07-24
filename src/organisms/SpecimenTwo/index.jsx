@@ -23,27 +23,34 @@ const Specimen = (props) => {
     className
   ]);
 
+  const [propsState, setPropsState] = useState({});
+
   return (
     <SpecimenContext.Provider
       value={{
         query: query,
         // props: => needs to be defaultProps, then new data when PropsTable is updated
+        props: propsState,
+        setPropsState: setPropsState
       }}
     >
       <div className={stack} {...rest}>
         <SpecimenContext.Consumer>
           {(value) => {
             const entry = registry[value.query];
-
+            const newProps = propsState;
+            console.log(newProps);
+            const setProps = setPropsState
+       
             if (entry) {
               return (
                 <React.Fragment>
                   <Heading level='h3'>{value.query}:<Badge variant="inline">{entry.category}</Badge></Heading>
                   <Resizer>
-                    <Frame component={value.query} />
+                    <Frame component={value.query} newProps={newProps} />
                     {/* <Frame component={value.query} props={value.props} /> */}
                   </Resizer>
-                  <PropsTable query={value.query} />
+                  <PropsTable query={value.query} newProps={newProps} setProps={setProps}/>
                   {/* <PropsTable query={value.query} defaultProps={entry.defaultProps} /> */}
                 </React.Fragment>
               );

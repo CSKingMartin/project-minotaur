@@ -6,6 +6,9 @@ export class Frame extends React.Component {
     super(props);
 
     this.frame = React.createRef();
+    // this.state = {
+    //   props: this.props.newProps
+    // }
   };
 
   componentDidMount() {
@@ -28,14 +31,23 @@ export class Frame extends React.Component {
       component,
       options,
       children,
+      newProps,
       ...rest
     } = this.props;
 
     const queryLiteral = `./${component}/index.jsx`;
     const ImportedComponent = cache[queryLiteral].default;
 
+    /*
+      1.  The 'Dynamic' component render pattern / lifecycle is really ambigious
+      2.  We know our value up to the 'DynamicComponent' is working
+      3.  Best guess: we need to store the previous props, find differences
+          between it and the new props, and run a forceUpdate() or another function
+          like that in order to solve.
+    */
+
     const DynamicComponent = () => (
-      <ImportedComponent>
+      <ImportedComponent newProps={newProps}>
         Lorem ipsum
       </ImportedComponent>
     );
