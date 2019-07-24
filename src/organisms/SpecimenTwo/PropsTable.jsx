@@ -1,8 +1,10 @@
+import { useState, useEffect } from 'react';
+import Button from '@atoms/Button';
 import registry from '@catalog/registry.json';
+import Input from '@molecules/Input';
+import Select from '@molecules/Select';
 import TextArea from '@atoms/TextArea';
 import Toggle from '@molecules/Toggle';
-import Select from '@molecules/Select';
-import Input from '@molecules/Input';
  
 
 export const PropsTable = (props) => {
@@ -19,35 +21,55 @@ export const PropsTable = (props) => {
   ]);
 
   const getProps = registry[query].props
+  const getDefaultProps = registry[query].defaultProps;
+  const [state, setState] = useState(getProps);
 
+  const updateStateWithDefaultProps = (getDefaultProps,state) => {
+    let propState = Object.keys(state).reduce((o, key) => ({...o, [key]: ''}),{} )
+    Object.keys(propState).forEach((key) => {
+      Object.keys(getDefaultProps).forEach((defaultKey) => {
+        if (key === defaultKey) {
+          propState[key] = getDefaultProps[defaultKey]
+        } 
+      })
+    })
+    return propState
+  }
 
-  const separateByPropType = (type) => {
+  const handleChange = (event,propName) => {
+    setState(state[propname] = event.target.value )
+  }
+
+  useEffect(() => {
+    setState(updateStateWithDefaultProps(getDefaultProps, state))
+  }, [])
+
+  const separateByPropType = (type, defaultValue, propName) => {
     if (typeof(type) !== 'object') {
       switch(type){
         case 'string':
-          return <Input />
+          return <Input placeholder={defaultValue} />
         case 'node' :
-          return <Input />;
+          return <Input placeholder={defaultValue} propname={propName} onChange={() => handleChange(propName)}/>;
         case 'node.isRequired' :
-          return <Input />;
+          return <Input placeholder={defaultValue}  propname={propName}/>;
         case 'oneOf':
           return <Select />;
         case 'bool':
-          return <Toggle />;
+      return <Toggle defaultActive={defaultValue} propname={propName}  />;
         case 'object' :
           return "object";
         default : 
           return "default return";
       } 
-    } else 
+    }  
     return getOptionsForSelect(type)
   }
 
   // checking for PropTypes.object
   const checkPropType = (type) => {
     if (typeof(type) === 'object') {
-      let typeKey = Object.keys(type);
-      return typeKey 
+      return Object.keys(type) 
     }
     else return type;
   };
@@ -58,51 +80,52 @@ export const PropsTable = (props) => {
         <div key={index} className="wrapper">
           <span  className="key-column">{getProps[prop].name}: </span>
           <span className="value-column" >{checkPropType(getProps[prop].type)}</span>
-          <span className="input-column" >{separateByPropType(getProps[prop].type)}</span>
+          <span className="input-column" >{separateByPropType(getProps[prop].type, getDefaultProps[prop], getProps[prop].name) }</span>
         </div>
       );
     });
   };
 
+  // This func is looking at object propTypes specifically
   // for oneOf proptype: create options prop to pass into <Select /> 
   // for oneOfType proptype: dont want <Select />, return a string
   const getOptionsForSelect = (type) => {
     let values = Object.values(type)[0];
+
     if (Object.keys(type).join() === 'oneOf'){
-    let optionsArray = [];
-    values.forEach(function(value){
-      if (typeof(value) !== 'object'){
-      optionsArray.push({value: value, label: value})
-      }
-      else {
-        let arrayValue = Object.entries(value).join().split(',')
-        optionsArray.push({value: arrayValue, label: arrayValue.join(' ') })
-      }
-    }) 
-    return <Select options={optionsArray} />;
+      let optionsArray = [];
+      values.forEach(function(value){
+        if (typeof(value) !== 'object'){
+        optionsArray.push({value: value, label: value})
+        }
+        else {
+          let arrayValue = Object.entries(value).join().split(',')
+          optionsArray.push({value: arrayValue, label: arrayValue.join(' ') })
+        }
+      }) 
+      return <Select options={optionsArray} />;
     }
     if (Object.keys(type).join() === 'oneOfType'){
       let oneOfTypeArray = []
       values.forEach(function(value){
-        if (typeof(value) !== 'object'){
          oneOfTypeArray.push(value)
-        }
-        else {
-          let arrayValue = Object.entries(value).join().split(',')
-          oneOfTypeArray.push(arrayValue.join('-'))
-        }
       }) 
     return oneOfTypeArray.join(' or ')
     }
   }
 
   const displayMappedObject = mapGetProps();
-
+  // console.log("state change", state)
+  
   return (
     <div className={stack} {...rest} >
-      <h6>{query}</h6>
-      {children}
-      {displayMappedObject}
+    <form onSubmit={() => handleSubmit}>
+      <div>
+        <h6>{query}</h6>
+        {children}
+        {displayMappedObject}
+        </div>
+      </form>
     </div>
   );
 };
