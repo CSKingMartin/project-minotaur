@@ -31,6 +31,7 @@
 
     &-bar {
       height: 1rem;
+      overflow: visible;
       position: absolute;
       width: 100%;
     }
@@ -47,9 +48,14 @@
       right: 0;
       top: 0;
 
-      &:hover {
+      &.is-active {
         background-color: #fafafa;
       }
+    }
+
+    &-label {
+      display: block;
+      margin: 0 auto;
     }
 
     & > *:not(.Specimen__drag-handle) {
