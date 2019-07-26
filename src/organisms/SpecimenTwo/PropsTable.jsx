@@ -152,7 +152,6 @@ export class PropsTable extends React.Component {
           <Frame component={this.props.query} propState={this.props.propState}/>
         </Resizer>
         <div className="Specimen2">
-          <h6>{this.props.query}</h6>
           {this.mapGetProps()}
         </div>
       </React.Fragment>

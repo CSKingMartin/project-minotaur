@@ -21,7 +21,7 @@ const Specimen = (props) => {
   return (
   <div className={stack} {...rest}>
     <React.Fragment>
-      <Heading level='h3'>{query}:<Badge variant="inline">{entry.category}</Badge></Heading>
+      <Heading level='h4'>{query} <Badge variant="default">{entry.category}</Badge></Heading>
       <PropsTable query={query} propState={propState} setPropState={setPropState}/>
     </React.Fragment>
   </div>
