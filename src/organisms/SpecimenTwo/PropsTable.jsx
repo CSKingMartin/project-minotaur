@@ -3,96 +3,162 @@ import TextArea from '@atoms/TextArea';
 import Toggle from '@molecules/Toggle';
 import Select from '@molecules/Select';
 import Input from '@molecules/Input';
- 
+import Frame from './Frame'; // local Frame partial
+import Resizer from './Resizer'; // local Resizer partial
+import React, {useRef} from 'react';
 
-export const PropsTable = (props) => {
-  const {
-    className,
-    children,
-    query,
-    ...rest
-  } = props;
+export class PropsTable extends React.Component {
 
-  const stack = utilities.createClassStack([
-    'Specimen2',
-    className
-  ]);
+  constructor(props) {
+    super(props);
 
-  const getProps = registry[query].props
-  // const getDefaultProps = registry[query]. => defaultProps not listed in registry?
+    this.state = {
+      tableProps : {},
+      queryProps : registry[this.props.query].props,
+    }
+  }
 
-  const separateByPropType = (type) => {
+  componentDidMount(){
+    this.assigntableProps();
+  }
+
+  assigntableProps = () => {
+    Object.keys(registry[this.props.query].props).map(name => {
+      const copyProps = registry[this.props.query].props;
+      const copyDefaultProps = registry[this.props.query].defaultProps;
+
+      let emptyObject = {}
+
+      if(copyDefaultProps[name]){
+        let currentState = this.state.tableProps;
+        emptyObject = copyDefaultProps[name];
+        currentState[name] = emptyObject;
+        this.setState({ tableProps: currentState });
+      }
+      else{
+        let currentState = this.state.tableProps;
+        this.setState({ tableProps: currentState });
+      }
+    })
+
+    this.props.setPropState(this.state.tableProps);
+  }
+
+  getPropType = (prop) => {
+    if (typeof(prop.type) === 'object') {
+      let typeKey = Object.keys(prop.type);
+      return typeKey;
+    }
+    else return prop.type;
+  }
+
+  handleChange = (event, propName) => {
+    const copyProps = this.state.tableProps;
+    copyProps[propName] = event.target.value;
+    this.setState({ tableProps: copyProps });
+    this.props.setPropState(this.state.tableProps)
+  }
+
+  handleClick = (event, propName) => {
+    const copyProps = this.state.tableProps;
+    copyProps[propName] = event.target.checked;
+    this.setState({ tableProps: copyProps });
+    this.props.setPropState(this.state.tableProps)
+  }
+
+  handleSelect = (value, propName) => {
+    const copyProps = this.state.tableProps;
+    copyProps[propName] = value;
+    this.setState({ tableProps: copyProps });
+    this.props.setPropState(this.state.tableProps)
+  }
+
+  selectInputForPropType = (propType) => {
+    let props = this.state.tableProps;
+    let type = propType.type;
+    let name = propType.name;
+
     if (typeof(type) !== 'object') {
       switch(type){
         case 'string':
-          return <Input />
+          return <input
+                  type="text"
+                  name={name}
+                  placeholder={props[name]}
+                  onChange={() => this.handleChange(event, propType.name)}
+                  />;
         case 'node' :
-          return <Input />;
+          return <input
+                  type="text"
+                  name={name}
+                  placeholder={props[name]}
+                  onChange= {() => this.handleChange(event, name)}
+                  />;
         case 'node.isRequired' :
-          return <Input />;
-        case 'oneOf':
-          return <Select />;
+          return <input
+                  type="text"
+                  name={name}
+                  placeholder={props[name]}
+                />;
+        case 'number':
+          return <input
+                  type="number"
+                  name={name}
+                  placeholder={props[name]}
+                  onChange={() => this.handleChange(event, propType.name)}
+                  />;
         case 'bool':
-          return <Toggle />;
+          return <Toggle
+                  type="checkbox"
+                  bool={props[name]}
+                  name={name}
+                  onClick={() => this.handleClick(event, name)}
+                  />;
         case 'object' :
           return "object";
-        default : 
+        default :
           return "default return";
-      } 
-    } else 
-    console.log(getOptionsForSelect(type))
-    return <Select options={getOptionsForSelect(type)}/>
+      }
+    }
+    return <Select options={this.selectOptions(propType.type)} onSelect={this.handleSelect} propName={name}/>
   }
 
-  // checking for PropTypes.object
-  const checkPropType = (type) => {
-    if (typeof(type) === 'object') {
-      let typeKey = Object.keys(type);
-      // let typeValues = Object.values(type).join(' ');
-      return typeKey 
-    }
-    else return type;
-  };
+  selectOptions = (type) => {
+    let options = Object.values(type)[0];
+    let optionArray = [];
+    options.map(option => {
+      optionArray.push({value: option, label: option});
+    })
 
-  const mapGetProps = () => {
-    return Object.keys(getProps).map((prop,index) => {
+    return optionArray;
+  }
+
+  mapGetProps = () => {
+    return Object.keys(this.state.queryProps).map((prop,index) => {
       return (
         <div key={index} className="wrapper">
-          <span  className="key-column">{getProps[prop].name}: </span>
-          <span className="value-column" >{checkPropType(getProps[prop].type)}</span>
-          <span className="input-column" >{separateByPropType(getProps[prop].type)}</span>
+          <span className="key-column">{prop}: </span>
+          <span className="value-column" >{this.getPropType(this.state.queryProps[prop])}</span>
+          <span className="input-column" >{this.selectInputForPropType(this.state.queryProps[prop])}</span>
         </div>
       );
     });
   };
 
-  const getOptionsForSelect = (type) => {
-    let keys = Object.keys(type).toString();
-    let values = Object.values(type)[0];
-    let newArray = [];
-    values.forEach(function(value){
-      newArray.push({value: value, label: value})
-    })
-    return newArray;
+  render() {
+    return (
+      <React.Fragment>
+        <Resizer>
+          <Frame component={this.props.query} propState={this.props.propState}/>
+        </Resizer>
+        <div className="Specimen2">
+          <h6>{this.props.query}</h6>
+          {this.mapGetProps()}
+        </div>
+      </React.Fragment>
+    );
   }
 
-// //practicing recursion
-//   const reverseString = (string) => {
-//     if (string === "") {
-//       return "";
-//     } 
-//     else  return reverseString(string.substr(1)) + string.charAt(0);
-//   }
-
-  const displayMappedObject = mapGetProps();
-
-  return (
-    <div className={stack} {...rest} >
-      <h6>{query}</h6>
-      {children}
-      {displayMappedObject}
-    </div>
-  );
 };
 
 export default PropsTable;

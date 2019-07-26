@@ -29,7 +29,7 @@ Button.defaultProps = {
 };
 
 Button.propTypes = {
-  tagName: PropTypes.string,
+  tagName: PropTypes.oneOf(['button', 'a']),
   className: PropTypes.string,
   variant: PropTypes.oneOf(['default', 'secondary']),
   href: PropTypes.string,

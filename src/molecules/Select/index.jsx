@@ -7,10 +7,13 @@ export const Select = (props) => {
     children,
     label,
     options,
+    test,
+    onSelect,
+    propName,
     ...rest
   } = props;
 
-  const state = { 
+  const state = {
     selectedOption: options[0]
   };
 
@@ -19,17 +22,17 @@ export const Select = (props) => {
   const handleChange = (selectedOption) => {
     state.selectedOption = selectedOption;
     setSelected(state.selectedOption);
+    props.onSelect(selectedOption.value, props.propName)
   };
 
   const { selectedOption } = state.selectedOption;
 
   return(
     <div className={className} {...rest}>
-      {label && <Label>{label}</Label>}
       <ReactSelect
         className="Select"
         defaultValue={options[0]}
-        name="select-options" 
+        name="select-options"
         onChange={handleChange}
         options={options}
       />

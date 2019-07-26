@@ -1,27 +1,30 @@
-const ToggleExample= (props) => {
-  return(<div>
-    {props.isActive ? 
+const ToggleExample = (props) => {
+  return (
+    <div>
+    {props.isActive ?
       <p className="Toggle__on">Toggle switch "ON"</p> :
       <p className="Toggle__off">Toggle switch "OFF"</p>
-    }     
-  </div>)
+    }
+  </div> )
 };
 
 export class Toggle extends React.Component{
   constructor(props) {
     super(props);
+
     this.state = {
-      isActive: false
+      isActive: this.props.bool
     };
     this.toggleSwitch = this.toggleSwitch.bind(this);
   };
 
   toggleSwitch(){
-    /* This function is equivalent to function being used:
-    this.state.isActive ? this.setState({ isActive: false }) : this.setState({ isActive: true}); 
-    */
     this.setState({ isActive: !this.state.isActive })
   };
+
+  componentDidMount(){
+    this.setState({ isActive: this.props.bool })
+  }
 
   render(){
     const {
@@ -30,11 +33,13 @@ export class Toggle extends React.Component{
     return(
       <React.Fragment>
         <div className="Toggle">
-          <label> 
+          <label>
           OFF
-            <input  
+            <input
               type="checkbox"
               onChange={this.toggleSwitch}
+              onClick={this.props.onClick}
+              checked={this.state.isActive}
             >
             </input>
           <span className="lever"></span>
@@ -53,4 +58,3 @@ Toggle.propTypes = {
 }
 
 export default Toggle;
-

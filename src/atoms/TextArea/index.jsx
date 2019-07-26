@@ -31,7 +31,8 @@ export const TextArea = (props) => {
 };
 
 TextArea.propTypes = {
-  className: PropTypes.string
+  className: PropTypes.string,
+  max: PropTypes.number
 };
 
 export default TextArea;
