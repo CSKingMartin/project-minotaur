@@ -7,7 +7,6 @@ const Specimen = (props) => {
   const {
     className,
     query,
-    tableProps,
     ...rest
   } = props;
 
