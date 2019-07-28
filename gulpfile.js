@@ -107,16 +107,22 @@ gulp.task('registry', () => gulp.src('src/**/**/index.jsx')
         if (name !== '') {
           const value = defaultProp.substring(defaultProp.indexOf(':') + 2);
 
+
           if (value !== '') {
             let truevalue = value.replace(/['"]+/g, ''); // getting rid of quotes
             truevalue = truevalue.replace(',', ''); // getting rid of commas
             truevalue = truevalue.replace('\n', ''); //getting rid of new lines
-            if (truevalue.startsWith("false")) {
+            if(truevalue.startsWith("false")){
               truevalue = false;
             }
-            if (truevalue === "true") {
+            if(truevalue == "true"){
               truevalue = true;
             }
+            //defaultPropsObject.name = name;
+            //defaultPropsObject.value = truevalue
+            // const returnObject[name] =  truevalue }
+            //console.log(name, truevalue);
+            //defaultPropsObject = { name, truevalue };
             entry.defaultProps[name] = truevalue;
           }
         }

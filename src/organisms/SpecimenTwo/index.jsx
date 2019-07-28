@@ -1,4 +1,5 @@
 import Badge from '@atoms/Badge';
+import Button from '@atoms/Button';
 import Heading from '@atoms/Heading';
 import registry from '@catalog/registry.json'
 
@@ -6,10 +7,12 @@ import Frame from './Frame'; // local Frame partial
 import Resizer from './Resizer'; // local Resizer partial
 import PropsTable from './PropsTable'; // local PropsTable partial
 
-const SpecimenContext = React.createContext({
-  query: '',
-  onChange: () => {}
-});
+// const SpecimenContext = React.createContext({
+//   query: '',
+//   onChange: () => {},
+//   newProps: {},
+//   setProps: () => {}
+// });
 
 const Specimen = (props) => {
   const {
@@ -23,44 +26,17 @@ const Specimen = (props) => {
     className
   ]);
 
-  const [propsState, setPropsState] = useState({});
+  // const [propState, setPropState] = useState(null);
+  const entry = registry[query];
 
   return (
-    <SpecimenContext.Provider
-      value={{
-        query: query,
-        // props: => needs to be defaultProps, then new data when PropsTable is updated
-        props: propsState,
-        setPropsState: setPropsState
-      }}
-    >
+ 
       <div className={stack} {...rest}>
-        <SpecimenContext.Consumer>
-          {(value) => {
-            const entry = registry[value.query];
-            const newProps = propsState;
-            console.log(newProps);
-            const setProps = setPropsState
-       
-            if (entry) {
-              return (
-                <React.Fragment>
-                  <Heading level='h3'>{value.query}:<Badge variant="inline">{entry.category}</Badge></Heading>
-                  <Resizer>
-                    <Frame component={value.query} newProps={newProps} />
-                    {/* <Frame component={value.query} props={value.props} /> */}
-                  </Resizer>
-                  <PropsTable query={value.query} newProps={newProps} setProps={setProps}/>
-                  {/* <PropsTable query={value.query} defaultProps={entry.defaultProps} /> */}
-                </React.Fragment>
-              );
-            } else {
-              return <p>I'm sorry we errored :(</p>
-            }
-          }}
-        </SpecimenContext.Consumer>
+        <React.Fragment>
+          <Heading level='h3'>{query}:<Badge variant="inline">{entry.category}</Badge></Heading>        
+          <PropsTable query={query}/>
+        </React.Fragment>
       </div>
-    </SpecimenContext.Provider>
   );
 };
 

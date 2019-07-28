@@ -11,7 +11,7 @@ export class Toggle extends React.Component{
   constructor(props) {
     super(props);
     this.state = {
-      isActive: false
+      isActive: this.props.defaultValue ? this.props.defaultValue : false
     };
     this.toggleSwitch = this.toggleSwitch.bind(this);
   };
@@ -29,16 +29,18 @@ export class Toggle extends React.Component{
     } = this.props
     return(
       <React.Fragment>
-        <div className="Toggle">
+        <div className="Toggle" ref={this.toggleRef}>
           <label> 
-          OFF
+          False
             <input  
               type="checkbox"
               onChange={this.toggleSwitch}
+              checked={this.state.isActive}
+              onClick={this.props.onClick}
             >
             </input>
           <span className="lever"></span>
-          ON
+          True
           </label>
         </div>
         <ToggleExample isActive={this.state.isActive}/>

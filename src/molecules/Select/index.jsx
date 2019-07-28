@@ -7,6 +7,9 @@ export const Select = (props) => {
     children,
     label,
     options,
+    onSelect,
+    type,
+    propName,
     ...rest
   } = props;
 
@@ -19,6 +22,7 @@ export const Select = (props) => {
   const handleChange = (selectedOption) => {
     state.selectedOption = selectedOption;
     setSelected(state.selectedOption);
+    onSelect(propName,state.selectedOption)
   };
 
   const { selectedOption } = state.selectedOption;
@@ -32,6 +36,7 @@ export const Select = (props) => {
         name="select-options" 
         onChange={handleChange}
         options={options}
+     
       />
     </div>
   );

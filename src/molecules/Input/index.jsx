@@ -61,6 +61,7 @@ export const Input = (props) => {
         onBlur={() => init(true)}
         onChange={callAll(updateState, additionalChange)}
         ref={reference}
+        defaultValue={placeholder}
       />
       <Expandable
         className="Input__error"

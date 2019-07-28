@@ -1,18 +1,35 @@
 import cache from '@catalog/bundle';
 import ReactDOM from 'react-dom';
+import { memo } from 'react';
 
 export class Frame extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+      propState: this.props.propState
+    }
 
     this.frame = React.createRef();
-    // this.state = {
-    //   props: this.props.newProps
-    // }
+    this.updatePropState = this.updatePropState.bind(this)
+   
   };
 
   componentDidMount() {
     this.handleLoad();
+    // this.setState({propState: this.props.propState })
+  }
+
+
+  componentDidUpdate(prevProps, prevState){
+    // let newProps = this.props.propState
+    // console.log(prevState)
+    // if(newProps !== prevState ) {
+    //  this.updatePropState(newProps)
+    // }
+  }
+ 
+  updatePropState(newState){
+    this.setState({propState: newState})
   }
 
   handleLoad() {
@@ -27,16 +44,16 @@ export class Frame extends React.Component {
   }
 
   render() {
-    const {
-      component,
-      options,
-      children,
-      newProps,
-      ...rest
-    } = this.props;
+  // console.log(this.state)
+    // const {
+    //   component,
+    //   options,
+    //   children,
+    //   ...rest
+    // } = this.props;
 
-    const queryLiteral = `./${component}/index.jsx`;
-    const ImportedComponent = cache[queryLiteral].default;
+    const queryLiteral = `./${this.props.component}/index.jsx`;
+    let ImportedComponent = cache[queryLiteral].default;
 
     /*
       1.  The 'Dynamic' component render pattern / lifecycle is really ambigious
@@ -46,8 +63,8 @@ export class Frame extends React.Component {
           like that in order to solve.
     */
 
-    const DynamicComponent = () => (
-      <ImportedComponent newProps={newProps}>
+    let DynamicComponent = () => (
+      <ImportedComponent {...this.props.propState}>
         Lorem ipsum
       </ImportedComponent>
     );
@@ -55,7 +72,7 @@ export class Frame extends React.Component {
     return (
       <div className="Specimen__iframe-wrapper">
         <p className={this.iframeRoot ? 'Specimen__iframe-loading is-active' : 'Specimen__iframe-loading' }>...loading...</p>
-        <iframe srcDoc={`<!DOCTYPE html>`} className="Specimen__iframe" ref={this.frame} {...rest}>
+        <iframe srcDoc={`<!DOCTYPE html>`} className="Specimen__iframe" ref={this.frame}>
           {this.iframeHead && ReactDOM.createPortal(<link rel="stylesheet" href="/_next/static/css/styles.chunk.css" />, this.iframeHead)}
           {this.iframeRoot && ReactDOM.createPortal(<DynamicComponent />, this.iframeRoot)}
         </iframe>
