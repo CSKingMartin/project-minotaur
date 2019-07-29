@@ -20,6 +20,7 @@ export class PropsTable extends React.Component {
 
   componentDidMount(){
     this.assignTableProps();
+    console.log(this.state.tableProps)
   }
 
   assignTableProps = () => {
@@ -37,6 +38,8 @@ export class PropsTable extends React.Component {
       }
       else{
         let currentState = this.state.tableProps;
+        emptyObject = copyDefaultProps[name];
+        currentState[name] = emptyObject;
         this.setState({ tableProps: currentState });
       }
     })
@@ -56,7 +59,6 @@ export class PropsTable extends React.Component {
     const copyProps = this.state.tableProps;
     const inputValue = event.target.value;
     const optionsArray = inputValue.split(",");
-    console.log(optionsArray)
     const optionsArrayRefined = this.createOptions(optionsArray);
     copyProps[propName] = optionsArrayRefined;
     this.setState({ tableProps: copyProps });
@@ -105,6 +107,13 @@ export class PropsTable extends React.Component {
                   placeholder={props[name]}
                   onChange={() => this.handleChange(event, propType.name)}
                   />;
+        case 'string.isRequired':
+          return <input
+                  type="text"
+                  name={name}
+                  placeholder={props[name]}
+                  onChange={() => this.handleChange(event, propType.name)}
+                  />;
         case 'node' :
           return <input
                   type="text"
@@ -117,6 +126,7 @@ export class PropsTable extends React.Component {
                   type="text"
                   name={name}
                   placeholder={props[name]}
+                  onChange= {() => this.handleChange(event, name)}
                 />;
         case 'number':
           return <input
@@ -126,10 +136,11 @@ export class PropsTable extends React.Component {
                   onChange={() => this.handleChange(event, propType.name)}
                   />;
         case 'bool':
+          console.log("isActive: ", props[name])
           return <Toggle
                   type="checkbox"
-                  bool={props[name]}
                   name={name}
+                  isActive={props[name]}
                   onClick={() => this.handleClick(event, name)}
                   />;
         case 'object' :
