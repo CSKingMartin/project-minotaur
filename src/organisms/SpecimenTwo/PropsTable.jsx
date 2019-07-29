@@ -20,7 +20,6 @@ export class PropsTable extends React.Component {
 
   componentDidMount(){
     this.assignTableProps();
-    console.log(this.state.tableProps)
   }
 
   assignTableProps = () => {
@@ -136,7 +135,6 @@ export class PropsTable extends React.Component {
                   onChange={() => this.handleChange(event, propType.name)}
                   />;
         case 'bool':
-          console.log("isActive: ", props[name])
           return <Toggle
                   type="checkbox"
                   name={name}
