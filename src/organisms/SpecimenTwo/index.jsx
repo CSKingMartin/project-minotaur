@@ -19,12 +19,13 @@ const Specimen = (props) => {
   const entry = registry[query];
 
   return (
-  <div className={stack} {...rest}>
-    <React.Fragment>
-      <Heading level='h4'>{query} <Badge variant="default">{entry.category}</Badge></Heading>
-      <PropsTable query={query} propState={propState} setPropState={setPropState}/>
-    </React.Fragment>
-  </div>
+    entry ?
+    <div className={stack} {...rest}>
+      <React.Fragment>
+        <Heading level='h4'>{query} <Badge variant="default">{entry.category}</Badge></Heading>
+        <PropsTable query={query} propState={propState} setPropState={setPropState}/>
+      </React.Fragment>
+    </div> : <p>Sorry, this component does not exist</p>
   );
 };
 
