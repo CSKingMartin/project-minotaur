@@ -58,6 +58,6 @@ export class Toggle extends React.Component{
 Toggle.propTypes = {
   isActive: PropTypes.bool,
   onChange: PropTypes.func
-}
+};
 
 export default Toggle;
