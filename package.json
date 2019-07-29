@@ -8,7 +8,8 @@
     "now-build": "next build ./src",
     "build": "next build ./src",
     "start": "next start ./src",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "./node_modules/.bin/eslint"
   },
   "directories": {
     "source": "./src"
@@ -22,7 +23,7 @@
     "copy-webpack-plugin": "^5.0.2",
     "cssnano": "^4.1.10",
     "eslint": "^5.16.0",
-    "eslint-config-airbnb": "^17.1.0",
+    "eslint-config-airbnb": "^17.1.1",
     "eslint-loader": "^2.1.2",
     "eslint-plugin-import": "^2.17.3",
     "eslint-plugin-jsx-a11y": "^6.2.1",
@@ -57,8 +58,8 @@
     "react-select": "^3.0.4",
     "react-stateful-context": "^1.1.1",
     "resize-observer-polyfill": "^1.5.1",
+    "styled-components": "^4.3.2",
     "svg-inline-loader": "^0.8.0",
-    "url-loader": "^2.0.0",
-    "styled-components": "^4.3.2"
+    "url-loader": "^2.0.0"
   }
 }

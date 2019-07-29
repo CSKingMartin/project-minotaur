@@ -44,7 +44,6 @@ export const PropsTable = (props) => {
   }
   const [state, setState] = useState(()=> {
     const initialState = updateStateWithDefaultProps();
-    // setPropState(initialState)
     return initialState;
   })
 
@@ -54,27 +53,32 @@ export const PropsTable = (props) => {
     return initialState;
   })
 
+  const setNewPropState = () => {
+    setPropState(state);
+  };
+  
+
   const handleChange = (type, event) => {
-    let newState = state;
+    const newState = state;
     newState[type] = event.target.value;
     setState(newState);
-    setNewPropState;  
-  }
+    setPropState(newState);
+  };
 
   const handleClick = (type, event) => {
-    let newState = state;
+    const newState = state;
     newState[type] = event.target.checked;
     setState(newState);
-    setPropState(newState) 
-  }
+    // setPropState(newState) 
+  };
 
   const handleSelect = (type, selected) => {
-    let newState = state;
+    const newState = state;
     newState[type] = selected.value;
     setState(newState);
-    setPropState(newState)   
+    setPropState(newState);
     console.log("newState: ",newState, "propState:",propState, "state: ",state)
-  }
+  };
 
   // useEffect(()=>{
   //   setPropState(state)
@@ -118,7 +122,7 @@ export const PropsTable = (props) => {
   };
 
   const mapGetProps = () => {
-    return Object.keys(getProps).map((prop,index) => {
+    return Object.keys(getProps).map((prop, index) => {
       return (
         <div key={index} className="wrapper">
           <span  className="key-column">{getProps[prop].name}: </span>
@@ -130,7 +134,7 @@ export const PropsTable = (props) => {
   };
 
   // 'oneOf' proptype returns <Select />  &&  oneOfType returns a string
-  const getOptionsForSelect = (type, propName) => {
+  const getOptionsForSelect = (type, name) => {
     let values = Object.values(type)[0];
     let keys = Object.keys(type).join()
     if (keys === 'oneOf'){
@@ -141,7 +145,7 @@ export const PropsTable = (props) => {
       return <Select 
                 options={optionsArray} 
                 type={keys} 
-                propName={propName} 
+                propName={name} 
                 onSelect={handleSelect}  
               />;
     }

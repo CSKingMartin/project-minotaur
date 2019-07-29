@@ -14,18 +14,23 @@ export class Frame extends React.Component {
    
   };
 
+
   componentDidMount() {
+    console.log('propState: frame, ', JSON.stringify(this.state.propState));
     this.handleLoad();
     // this.setState({propState: this.props.propState })
   }
 
 
-  componentDidUpdate(prevProps, prevState){
-    // let newProps = this.props.propState
-    // console.log(prevState)
-    // if(newProps !== prevState ) {
-    //  this.updatePropState(newProps)
-    // }
+  componentDidUpdate(prevProps, prevState) {
+    console.log('this.state: ', prevState);
+    console.log('prevprops: ', prevProps);
+    // console.log('this.props.propState', JSON.stringify(this.props.propState));
+
+    if (JSON.stringify(prevProps.propState) !== JSON.stringify(this.props.propState)) {
+      // this.setState({ propState: this.props.propState });
+      console.log('not same')
+    }
   }
  
   updatePropState(newState){
@@ -44,13 +49,13 @@ export class Frame extends React.Component {
   }
 
   render() {
-  // console.log(this.state)
-    // const {
-    //   component,
-    //   options,
-    //   children,
-    //   ...rest
-    // } = this.props;
+  console.log(this.state)
+    const {
+      component,
+      options,
+      children,
+      ...rest
+    } = this.props;
 
     const queryLiteral = `./${this.props.component}/index.jsx`;
     let ImportedComponent = cache[queryLiteral].default;
@@ -64,9 +69,8 @@ export class Frame extends React.Component {
     */
 
     let DynamicComponent = () => (
-      <ImportedComponent {...this.props.propState}>
-        Lorem ipsum
-      </ImportedComponent>
+      <ImportedComponent {...this.props.propState} />
+
     );
 
     return (
