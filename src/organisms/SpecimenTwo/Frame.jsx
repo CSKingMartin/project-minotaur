@@ -28,9 +28,7 @@ export class Frame extends React.Component {
     let ImportedComponent = cache[queryLiteral].default;
 
     let DynamicComponent = () => (
-        <ImportedComponent {...this.props.propState}>
-          Lorem ipsum
-        </ImportedComponent>
+        <ImportedComponent {...this.props.propState}/>
     );
 
     return (

@@ -19,10 +19,10 @@ export class PropsTable extends React.Component {
   }
 
   componentDidMount(){
-    this.assigntableProps();
+    this.assignTableProps();
   }
 
-  assigntableProps = () => {
+  assignTableProps = () => {
     Object.keys(registry[this.props.query].props).map(name => {
       const copyProps = registry[this.props.query].props;
       const copyDefaultProps = registry[this.props.query].defaultProps;
@@ -50,6 +50,17 @@ export class PropsTable extends React.Component {
       return typeKey;
     }
     else return prop.type;
+  }
+
+  handleArray = (event, propName) => {
+    const copyProps = this.state.tableProps;
+    const inputValue = event.target.value;
+    const optionsArray = inputValue.split(",");
+    console.log(optionsArray)
+    const optionsArrayRefined = this.createOptions(optionsArray);
+    copyProps[propName] = optionsArrayRefined;
+    this.setState({ tableProps: copyProps });
+    this.props.setPropState(this.state.tableProps)
   }
 
   handleChange = (event, propName) => {
@@ -80,6 +91,13 @@ export class PropsTable extends React.Component {
 
     if (typeof(type) !== 'object') {
       switch(type){
+        case 'array' :
+          return <input
+                  type="text"
+                  name={name}
+                  placeholder={props[name]}
+                  onChange={() => this.handleArray(event, propType.name)}
+                  />
         case 'string':
           return <input
                   type="text"
@@ -124,9 +142,19 @@ export class PropsTable extends React.Component {
   }
 
   selectOptions = (type) => {
-    let options = Object.values(type)[0];
-    let optionArray = [];
+    const options = Object.values(type)[0];
+    const optionArray = [];
     options.map(option => {
+      optionArray.push({value: option, label: option});
+    })
+
+    return optionArray;
+  }
+
+  createOptions = (arr) => {
+
+    const optionArray = [];
+    arr.map(option => {
       optionArray.push({value: option, label: option});
     })
 

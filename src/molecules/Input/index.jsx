@@ -12,15 +12,12 @@ export const Input = (props) => {
     errorMessage,
     additionalChange,
     regex,
-    ref,
     ...rest
   } = props;
 
   const [loaded, init] = useState(false);
   const [value, setValue] = useState('');
   const [valid, setValidation] = useState(true);
-
-  const reference = React.createRef(ref);
 
   const callAll = (...fns) => (...args) => fns.forEach((fn) => fn && fn(...args));
 
@@ -61,7 +58,6 @@ export const Input = (props) => {
         placeholder={placeholder}
         onBlur={() => init(true)}
         onChange={callAll(updateState, additionalChange)}
-        ref={ref}
       />
       <Expandable
         className="Input__error"
@@ -83,7 +79,6 @@ Input.defaultProps = {
 Input.propTypes = {
   className: PropTypes.string,
   id: PropTypes.string,
-  ref: PropTypes.string,
   regex: PropTypes.string,
   name: PropTypes.string,
   label: PropTypes.string,
