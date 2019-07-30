@@ -122,6 +122,7 @@ export class PropsTable extends React.Component {
         case 'number':
           return <input
                   type="number"
+                  min="0"
                   name={name}
                   placeholder={props[name]}
                   onChange={() => this.handleChange(event, propType.name)}

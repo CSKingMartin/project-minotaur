@@ -17,6 +17,14 @@ export const TextArea = (props) => {
     setcharacterCount(props.max - length);
   };
 
+  const displayMaxChar = () => {
+    if(props.max) {
+      return (<p className="TextArea__word-counter">{characterCount}/{props.max}</p> )
+    } else {
+      return (<p className="TextArea__word-counter">{characterCount}/{props.max}</p> )
+    }
+  }
+
   return (
     <div className={stack}>
     <textarea
@@ -25,7 +33,7 @@ export const TextArea = (props) => {
       onChange={(e) => handleChange(e)}
       maxLength={props.max}
     />
-    <p className="TextArea__word-counter">{characterCount}/{props.max}</p>
+    { props.max ? <p className="TextArea__word-counter">{characterCount}/{props.max}</p> : null}
     </div>
   );
 };
