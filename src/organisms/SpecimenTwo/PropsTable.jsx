@@ -29,18 +29,10 @@ export class PropsTable extends React.Component {
 
       let emptyObject = {}
 
-      if(copyDefaultProps[name]){
-        let currentState = this.state.tableProps;
-        emptyObject = copyDefaultProps[name];
-        currentState[name] = emptyObject;
-        this.setState({ tableProps: currentState });
-      }
-      else{
-        let currentState = this.state.tableProps;
-        emptyObject = copyDefaultProps[name];
-        currentState[name] = emptyObject;
-        this.setState({ tableProps: currentState });
-      }
+      let currentState = this.state.tableProps;
+      emptyObject = copyDefaultProps[name];
+      currentState[name] = emptyObject;
+      this.setState({ tableProps: currentState });
     })
 
     this.props.setPropState(this.state.tableProps);
