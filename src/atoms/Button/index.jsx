@@ -19,7 +19,7 @@ export const Button = (props) => {
   const Tag = href ? 'a' : tagName;
 
   return (
-    <Tag className={stack} {...rest}>{children}</Tag>
+    <Tag className={stack} href={href} {...rest}>{children}</Tag>
   );
 };
 
@@ -29,7 +29,7 @@ Button.defaultProps = {
 };
 
 Button.propTypes = {
-  tagName: PropTypes.string,
+  tagName: PropTypes.oneOf(['button', 'a']),
   className: PropTypes.string,
   variant: PropTypes.oneOf(['default', 'secondary']),
   href: PropTypes.string,

@@ -1,40 +1,47 @@
 import {default as ReactSelect} from 'react-select';
 import Label from '@atoms/Label';
+import React, { useState, useEffect } from 'react';
+import Wrapper from '@atoms/Wrapper'
 
 export const Select = (props) => {
  const {
     className,
-    children,
-    label,
     options,
+    onSelect,
+    propName,
     ...rest
   } = props;
-
-  const state = { 
-    selectedOption: options[0]
-  };
 
   const [selected, setSelected] = useState(options[0]);
 
   const handleChange = (selectedOption) => {
-    state.selectedOption = selectedOption;
-    setSelected(state.selectedOption);
+    setSelected(selectedOption);
+    props.onSelect(selectedOption.value, props.propName)
   };
 
-  const { selectedOption } = state.selectedOption;
-
   return(
-    <div className={className} {...rest}>
-      {label && <Label>{label}</Label>}
+    <span>
       <ReactSelect
-        className="Select"
-        defaultValue={options[0]}
-        name="select-options" 
+        defaultValue={selected}
+        name="select-options"
         onChange={handleChange}
         options={options}
+        value={selected}
+        {...rest}
       />
-    </div>
+    </span>
   );
 }
+
+Select.defaultProps = {
+  options: [{ value: 'Default', label: 'Default' }],
+  onSelect: () => {}
+};
+
+Select.propTypes = {
+  className: PropTypes.string,
+  options: PropTypes.array,
+  onSelect: PropTypes.func
+};
 
 export default Select;

@@ -80,7 +80,7 @@ export const Expandable = (props) => {
 };
 
 Expandable.defaultProps = {
-  startOpen: false, // NO start closed
+  startOpen: false,
   closeHeight: '1rem'
 };
 
@@ -90,10 +90,7 @@ Expandable.propTypes = {
   closeHeight: PropTypes.string,
   forceExpand: PropTypes.bool,
   forwardedRef: PropTypes.object,
-  toggleElement: PropTypes.oneOfType([
-    PropTypes.node,
-    PropTypes.oneOf(['none'])
-  ]),
+  toggleElement: PropTypes.node,
   children: PropTypes.node
 };
 

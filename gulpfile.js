@@ -42,14 +42,13 @@ gulp.task('registry', () => gulp.src('src/**/**/index.jsx')
     /* GET PROPS */
     const startOfProps = contents.substring(contents.indexOf('.propTypes = {') + 17);
     const props = startOfProps.substring(0, startOfProps.indexOf('};')).split('\n  ');
-    
+
     props.forEach((prop) => {
       const propsObject = {};
       const name = prop.substring(0, prop.indexOf(':'));
       if (name !== '') {
         const getType = (string) => {
           let returnValue;
-
           if (string.indexOf('oneOfType') !== -1) {
             const returnObject = [];
             const prefix = contents.substring(contents.indexOf('oneOfType('));
@@ -74,13 +73,11 @@ gulp.task('registry', () => gulp.src('src/**/**/index.jsx')
                 testString = testString.substring(testString.length);
               }
             }
-            
+
             returnValue = { 'oneOfType': returnObject };
           } else if (string.indexOf('oneOf') !== -1) {
-            // console.log(string);
-            const prefix = contents.substring(contents.indexOf('oneOf('));
+            const prefix = string.substring(string.indexOf('oneOf(') + 6);
             const value = prefix.substring(prefix.indexOf('[') + 2, prefix.indexOf(']') - 1);
-            // console.log(value);
             returnValue = { 'oneOf': value.split("', '") };
           } else {
             returnValue = string;
@@ -90,15 +87,46 @@ gulp.task('registry', () => gulp.src('src/**/**/index.jsx')
         };
 
         const type = prop.substring(prop.indexOf('PropTypes.') + 10, prop.length - 1);
-
         propsObject.name = name;
         propsObject.type = getType(type);
         entry.props[name] = propsObject;
       }
     });
 
+    /* GET DEFAULT PROPS */
+    entry.defaultProps = {}
+
+    if(contents.indexOf('.defaultProps = {') != -1){
+      const startOfDefaultProps = contents.substring(contents.indexOf('.defaultProps = {') + 17);
+      const defaultProps = startOfDefaultProps.substring(0, startOfDefaultProps.indexOf('};')).split('\n  ');
+
+      defaultProps.forEach((defaultProp) => {
+        const defaultPropsObject = {};
+        const name = defaultProp.substring(0, defaultProp.indexOf(':'));
+
+        if (name !== '') {
+          const value = defaultProp.substring(defaultProp.indexOf(':') + 2);
+
+
+          if (value !== '') {
+            let alteredValue = value.replace(/['"]+/g, ''); // getting rid of quotes
+            alteredValue = alteredValue.replace(',', ''); // getting rid of commas
+            alteredValue = alteredValue.replace('\n', ''); //getting rid of new lines
+            if(alteredValue.startsWith("false")){
+              alteredValue = false;
+            }
+            if(alteredValue == "true"){
+              alteredValue = true;
+            }
+
+            entry.defaultProps[name] = alteredValue;
+          }
+        }
+      });
+    }
+
     entry.inherits = [];
-    
+
     registry[entry.name] = entry;
 
     cb(null, file);
@@ -125,7 +153,7 @@ gulp.task('registry', () => gulp.src('src/**/**/index.jsx')
     }
     cb(null, file);
   })).on('end', () => {
-    fs.writeFileSync('./src/registry.json', JSON.stringify(registry));
+    fs.writeFileSync('./src/registry.json', JSON.stringify(registry, null, "\t"));
   }));
 
 gulp.task('generateSvgSprite', () => gulp.src('src/atoms/Icon/assets/*.svg')

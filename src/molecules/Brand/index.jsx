@@ -7,7 +7,6 @@ export const Brand = (props) => {
   const {
     className,
     variant,
-    children,
     ...rest
   } = props;
 
@@ -44,7 +43,6 @@ Brand.defaultProps = {
 Brand.propTypes = {
   className: PropTypes.string,
   variant: PropTypes.oneOf(['default', 'dark']),
-  children: PropTypes.node
 };
 
 export default Brand;

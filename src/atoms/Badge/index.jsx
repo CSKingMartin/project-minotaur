@@ -23,7 +23,7 @@ export const Badge = (props) => {
 
 Badge.defaultProps = {
   color: 'blue',
-  children: 'Please specify children for this element' // eslint-disable-line
+  children: 'Please specify children for this element'
 };
 
 Badge.propTypes = {

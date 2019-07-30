@@ -19,8 +19,6 @@ export const Input = (props) => {
   const [value, setValue] = useState('');
   const [valid, setValidation] = useState(true);
 
-  const reference = React.createRef();
-
   const callAll = (...fns) => (...args) => fns.forEach((fn) => fn && fn(...args));
 
   const validate = () => {
@@ -60,7 +58,6 @@ export const Input = (props) => {
         placeholder={placeholder}
         onBlur={() => init(true)}
         onChange={callAll(updateState, additionalChange)}
-        ref={reference}
       />
       <Expandable
         className="Input__error"
