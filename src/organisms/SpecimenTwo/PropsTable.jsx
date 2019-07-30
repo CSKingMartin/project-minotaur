@@ -85,42 +85,48 @@ export class PropsTable extends React.Component {
     if (typeof(type) !== 'object') {
       switch(type){
         case 'array' :
-          return <input
+          return <
+                  input
                   type="text"
                   name={name}
                   placeholder={props[name]}
                   onChange={() => this.handleArray(event, propType.name)}
                   />
         case 'string':
-          return <input
+          return <
+                  input
                   type="text"
                   name={name}
                   placeholder={props[name]}
                   onChange={() => this.handleChange(event, propType.name)}
                   />;
         case 'string.isRequired':
-          return <input
+          return <
+                  input
                   type="text"
                   name={name}
                   placeholder={props[name]}
                   onChange={() => this.handleChange(event, propType.name)}
                   />;
         case 'node' :
-          return <input
+          return <
+                  input
                   type="text"
                   name={name}
                   placeholder={props[name]}
                   onChange= {() => this.handleChange(event, name)}
                   />;
         case 'node.isRequired' :
-          return <input
+          return <
+                  input
                   type="text"
                   name={name}
                   placeholder={props[name]}
                   onChange= {() => this.handleChange(event, name)}
                 />;
         case 'number':
-          return <input
+          return <
+                  input
                   type="number"
                   min="0"
                   name={name}
@@ -128,12 +134,13 @@ export class PropsTable extends React.Component {
                   onChange={() => this.handleChange(event, propType.name)}
                   />;
         case 'bool':
-          return <Toggle
+          return <
+                  Toggle
                   type="checkbox"
                   name={name}
                   isActive={props[name]}
                   onClick={() => this.handleClick(event, name)}
-                  />;
+                />;
         case 'object' :
           return "object";
         default :

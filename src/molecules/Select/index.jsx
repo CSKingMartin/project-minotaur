@@ -23,6 +23,7 @@ export const Select = (props) => {
     <span>
       <ReactSelect
         defaultValue={selected}
+        instanceId={selected}
         name="select-options"
         onChange={handleChange}
         options={options}
