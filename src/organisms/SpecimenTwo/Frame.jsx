@@ -23,6 +23,12 @@ export class Frame extends React.Component {
   }
 
   render() {
+    const {
+      component,
+      options,
+      children,
+      ...rest
+    } = this.props;
 
     const queryLiteral = `./${this.props.component}/index.jsx`;
     let ImportedComponent = cache[queryLiteral].default;
@@ -32,7 +38,6 @@ export class Frame extends React.Component {
     );
 
     return (
-
       <div className="Specimen__iframe-wrapper">
         <p className={this.iframeRoot ? 'Specimen__iframe-loading is-active' : 'Specimen__iframe-loading' }>...loading...</p>
         <iframe srcDoc={`<!DOCTYPE html>`} className="Specimen__iframe" ref={this.frame}>

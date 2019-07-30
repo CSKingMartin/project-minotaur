@@ -55,6 +55,10 @@ export class Toggle extends React.Component{
   };
 };
 
+Toggle.defaultProps = {
+  isActive: false
+};
+
 Toggle.propTypes = {
   isActive: PropTypes.bool,
   onChange: PropTypes.func
