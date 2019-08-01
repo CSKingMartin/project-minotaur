@@ -5,7 +5,6 @@
   --color-seafoam: #00b28f;
   --color-lite-grey: #e6e6e6;
   --color-abyss: #0f3a45;
-  --color-abyss--light: color(var(--color-abyss) alpha(85%));
   --color-abyss--sub: #5d767d;
 
   /* grayscale */

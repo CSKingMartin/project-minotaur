@@ -1,5 +1,6 @@
 import Expandable from '@molecules/Expandable';
 import Label from '@atoms/Label';
+import callAll from '@lib/utilities';
 
 export const Input = (props) => {
   const {
@@ -10,7 +11,7 @@ export const Input = (props) => {
     placeholder,
     isRequired,
     errorMessage,
-    additionalChange,
+    onChange,
     regex,
     ...rest
   } = props;
@@ -18,8 +19,6 @@ export const Input = (props) => {
   const [loaded, init] = useState(false);
   const [value, setValue] = useState('');
   const [valid, setValidation] = useState(true);
-
-  const callAll = (...fns) => (...args) => fns.forEach((fn) => fn && fn(...args));
 
   const validate = () => {
     if (value.length === 0) {
@@ -31,6 +30,8 @@ export const Input = (props) => {
       setValidation(true);
     }
   };
+
+  const callAll = (...fns) => (...args) => fns.forEach((fn) => fn && fn(...args));
 
   useEffect(() => {
     if (loaded) {
@@ -57,7 +58,7 @@ export const Input = (props) => {
         id={name}
         placeholder={placeholder}
         onBlur={() => init(true)}
-        onChange={callAll(updateState, additionalChange)}
+        onChange={(e) => callAll(updateState(e), onChange(e))}
       />
       <Expandable
         className="Input__error"

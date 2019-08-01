@@ -1,20 +1,16 @@
 .Toggle {
+  cursor: pointer;
+  display: inline-block;
   margin: 1rem;
 
-  &__on {
-    color: var(--color-robins-egg);
-  }
-
-  &__off {
-    color: var(--color-black);
-  }
-
-  label {
+  &__label {
     cursor: pointer;
   }
-  label .lever {
+
+  &__lever {
     background-color: var(--color-gray);
     border-radius: 1rem;
+    cursor: pointer;
     display: inline-block;
     height: 0.875rem;
     margin: 0 0.625rem;
@@ -25,7 +21,7 @@
     width: 2.25rem;
 
     &::before, &::after {
-      content: "";
+      content: '';
       display: inline-block;
       position: absolute;
     }
@@ -58,19 +54,19 @@
     opacity: 0;
     position: absolute;
     width: 0;
+  }
 
-    &:checked + .lever:after {
-      animation-duration: .25s;
-      animation-name: switchOn;
-      animation-play-state: running;
-      left: 18px;
-    }
+  &.is-active .Toggle__lever:after {
+    animation-duration: .25s;
+    animation-name: switchOn;
+    animation-play-state: running;
+    left: 18px;
+  }
 
-    &:checked + .lever:before {
-      animation-duration: .25s;
-      animation-name: leverChange;
-      width: 2.25rem;
-    }
+  &.is-active .Toggle__lever:before {
+    animation-duration: .25s;
+    animation-name: leverChange;
+    width: 2.25rem;
   }
 }
 

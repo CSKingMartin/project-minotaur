@@ -1,29 +1,88 @@
 .Select {
+  display: inline-block;
+  position: relative;
   width: 100%;
-  margin: 2px;
 
-  &__large{
-    width: 45%;
-  }
+  &__control {
+    align-items: center;
+    border: 1px solid var(--color-lite-grey);
+    border-radius: 3px;
+    cursor: pointer;
+    display: flex;
+    padding: 0.25rem 0.5rem;
+    transition: border-color 0.25s;
 
-  &__medium{
-    width: 30%;
-  }
-
-  &__small{
-    width: 15%;
-  }
-
-  @media (--small) {
-    &__small {
-      min-width: 8rem;
+    &:hover {
+      border-color: var(--color-robins-egg);
     }
-    &__medium {
-      min-width: 12rem;
+
+    p {
+      flex: 1;
     }
-    &__large {
-      min-width: 16rem;
+
+    &-icon {
+      height: 1.125rem;
+      margin-left: 1rem;
+      transform: rotate(90deg);
+      transition: transform 0.1s;
+      width: 1.125rem;
+    }
+  }
+
+  &__panel {
+    background-color: var(--color-white);
+    border: 1px solid var(--color-lite-grey);
+    display: flex;
+    flex-direction: column;
+    margin-top: 0.25rem;
+    padding: 0.25rem;
+    position: fixed;
+    width: 100%;
+    z-index: 5;
+
+    &-option {
+      border-radius: 1px;
+      cursor: pointer;
+      padding: 0 0.5rem;
+
+      &.is-active {
+        border: 1px solid var(--color-abyss);
+      }
+
+      &:hover {
+        background-color: var(--color-abyss);
+        color: var(--color-white);
+      }
+    }
+  }
+
+  &.is-open {
+    .Select__control-icon {
+      transform: rotate(-90deg);
+    }
+  }
+
+  &--default {
+    max-width: 12rem;
+
+    .Select__panel {
+      max-width: 12rem;
+    }
+  }
+
+  &--small {
+    max-width: 8rem;
+
+    .Select__panel {
+      max-width: 8rem;
+    }
+  }
+
+  &--large {
+    max-width: 16rem;
+
+    .Select__panel {
+      max-width: 16rem;
     }
   }
 }
-

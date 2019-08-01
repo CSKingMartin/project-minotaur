@@ -1,58 +1,49 @@
-const ToggleExample = (props) => {
-  return (
-    <div>
-    {props.isActive ?
-      <p className="Toggle__on">Toggle switch "ON"</p> :
-      <p className="Toggle__off">Toggle switch "OFF"</p>
+import Label from '@atoms/Label';
+
+const Toggle = (props) => {
+  const {
+    className,
+    onChange,
+    onClick,
+    startActive,
+    label,
+    ...rest
+  } = props;
+
+  const [isActive, toggleSwitch] = useState(startActive);
+
+  const handleClick = (props) => {
+    toggleSwitch(!isActive);
+
+    if (onChange) {
+      onChange(!isActive); // pass !isActive 'cause that value hasn't changed yet
     }
-  </div> )
+  };
+
+  const stack = utilities.createClassStack([
+    'Toggle',
+    isActive && 'is-active',
+    className
+  ]);
+
+  return (
+    <div className={stack} onClick={() => handleClick()} {...rest}>
+      <input
+        type="checkbox"
+        role="switch"
+        aria-checked={isActive}
+      >
+      </input>
+      <Label className="Toggle__label">
+        <span className="Toggle__lever"></span>
+        {label}
+      </Label>
+    </div>
+  )
 };
 
-export class Toggle extends React.Component{
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      isActive: this.props.isActive
-    };
-
-    this.toggleSwitch = this.toggleSwitch.bind(this);
-  };
-
-  toggleSwitch(){
-    this.setState({ isActive: !this.state.isActive })
-  };
-
-  componentDidMount(){
-    this.setState({ isActive: this.props.isActive })
-  }
-
-  render(){
-    const {
-      onChange,
-      onClick
-    } = this.props
-
-    return(
-      <React.Fragment>
-        <div className="Toggle">
-          <label>
-          OFF
-            <input
-              type="checkbox"
-              onChange={this.toggleSwitch}
-              onClick={this.props.onClick}
-              checked={this.props.isActive}
-            >
-            </input>
-          <span className="lever"></span>
-          ON
-          </label>
-        </div>
-        <ToggleExample isActive={this.state.isActive}/>
-      </React.Fragment>
-    )
-  };
+Toggle.defaultProps = {
+  startActive: false
 };
 
 Toggle.propTypes = {

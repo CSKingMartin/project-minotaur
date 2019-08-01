@@ -20,4 +20,8 @@ Card.propTypes = {
   className: PropTypes.string
 };
 
+Card.defaultProps = {
+  children: 'Lorem ipsum'
+};
+
 export default Card;

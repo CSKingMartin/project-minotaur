@@ -2,32 +2,86 @@ import Badge from '@atoms/Badge';
 import Heading from '@atoms/Heading';
 import registry from '@catalog/registry.json'
 import PropsTable from './PropsTable'; // local PropsTable partial
+import Frame from './Frame'; // local Frame partial
+import Resizer from './Resizer'; // local Resizer partial
 
-const Specimen = (props) => {
-  const {
-    className,
-    query,
-    ...rest
-  } = props;
+class Specimen extends React.Component {
+  constructor(props) {
+    super(props);
 
-  const stack = utilities.createClassStack([
-    'Specimen',
-    className
-  ]);
+    this.state = {
+      props: {} 
+    };
 
-  const [propState, setPropState] = useState();
-  const entry = registry[query];
+    this.update = this.update.bind(this);
+    this.formatProps = this.formatProps.bind(this);
+  }
 
-  return (
-    entry ?
-    <div className={stack} {...rest}>
-      <React.Fragment>
+  componentDidMount() {
+    this.setState(state => ({
+      props: registry[this.props.query].props
+    }));
+  }
+
+  update(newProps) {
+    this.setState(state => ({
+      props: newProps
+    }));
+  };
+
+  formatProps(props) {
+    const formattedProps = {};
+
+    Object.keys(props).map(key => {
+      formattedProps[props[key].name] = props[key].value;
+    });
+
+    return formattedProps;
+  };
+
+  render() {
+    const {
+      className,
+      query,
+      ...rest
+    } = this.props;
+
+    const entry = registry[query] || undefined;
+    const defaultProps = entry.defaultProps;
+
+    const mergeProps = (props, defaultProps) => {
+      const mergedProps = props;
+
+      Object.keys(defaultProps).map(key => {
+        if (defaultProps[key]) {
+          mergedProps[key].value = defaultProps[key];
+        }
+      });
+
+      return mergedProps;
+    };
+
+    mergeProps(entry.props, defaultProps);
+
+    const stack = utilities.createClassStack([
+      'Specimen',
+      className
+    ]);
+
+    const propState = {};
+
+    return (
+      entry ?
+      <div className={stack} {...rest}>
         <Heading level='h4'>{query} <Badge variant="default">{entry.category}</Badge></Heading>
-        <PropsTable query={query} propState={propState} setPropState={setPropState}/>
-      </React.Fragment>
-    </div> : <p>Sorry, this component does not exist</p>
-  );
-};
+        <Resizer>
+          <Frame componentName={query} componentProps={this.formatProps(this.state.props)} />
+        </Resizer>
+        <PropsTable componentProps={this.state.props} query={query} sendProps={this.update} />
+      </div> : <p>Sorry, this component does not exist</p>
+    )
+  }
+}
 
 Specimen.propTypes = {
   query: PropTypes.string.isRequired

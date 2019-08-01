@@ -34,4 +34,10 @@
     display: block;
     width: 100%;
   }
+
+  &[disabled] {
+    border-color: var(--color-gray);
+    color: var(--color-gray);
+    cursor: not-allowed;
+  }
 }
