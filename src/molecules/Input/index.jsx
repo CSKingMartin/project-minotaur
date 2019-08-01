@@ -49,6 +49,14 @@ export const Input = (props) => {
     setValue(e.target.value);
   };
 
+  const handleChange = (e) => {
+    updateState(e);
+
+    if (onChange) {
+      onChange(e);
+    };
+  };
+
   return (
     <div className={stack} {...rest}>
       {label && <Label htmlFor={name}>{label}</Label>}
@@ -58,7 +66,7 @@ export const Input = (props) => {
         id={name}
         placeholder={placeholder}
         onBlur={() => init(true)}
-        onChange={(e) => callAll(updateState(e), onChange(e))}
+        onChange={(e) => handleChange(e)}
       />
       <Expandable
         className="Input__error"

@@ -1,5 +1,5 @@
-import DragHandle from './DragHandle';
-import ResizerBar from './ResizerBar';
+import DragHandle from '@organisms/SpecimenTwo/DragHandle';
+import ResizerBar from '@organisms/SpecimenTwo/ResizerBar';
 
 export class Resizer extends React.Component {
   constructor(props) {
@@ -65,12 +65,8 @@ export class Resizer extends React.Component {
     ]);
 
     return (
-      <div className={stack}>
-        <ResizerBar
-          onClick={this.onClick}
-          width={this.state.temporaryWidth || this.state.maxWidth}
-        />
-        <div className="Specimen__resizer-inner" style={{maxWidth: this.state.temporaryWidth || 'unset'}} ref={this.elem} {...rest}>
+      <React.Fragment>
+        <div className={stack} style={{maxWidth: this.state.temporaryWidth || 'unset'}} ref={this.elem} {...rest}>
           <DragHandle
             side="left"
             onStart={this.onStart}
@@ -89,7 +85,11 @@ export class Resizer extends React.Component {
             position={this.state.offset}
           />
         </div>
-      </div>
+        <ResizerBar
+          onClick={this.onClick}
+          width={this.state.temporaryWidth || this.state.maxWidth}
+        />
+      </React.Fragment>
     );
   }
 };
