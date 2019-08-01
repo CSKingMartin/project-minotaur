@@ -11,7 +11,6 @@ import GlobalFooter from '@organisms/GlobalFooter';
 import '../bundle.css.jsx';
 import '../bundle.js';
 import svg from '@static/svgs/svg/bundle.svg';
-import Wrapper from '@atoms/Wrapper';
 
 class MyApp extends App {
   static async getInitialProps({ Component, ctx }) {
@@ -40,9 +39,7 @@ class MyApp extends App {
             <GlobalHeader />
           </PageShell__header>
           <PageShell__main>
-            <Wrapper>
-              <Component {...pageProps} />
-            </Wrapper>
+            <Component {...pageProps} />
           </PageShell__main>
           <PageShell__footer>
             <GlobalFooter />
