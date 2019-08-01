@@ -1,11 +1,10 @@
-import Editor from '@molecules/Editor';
-import Specimen from '@organisms/Specimen';
+<!-- import Editor from '@molecules/Editor'; -->
+<!-- import Specimen from '@organisms/Specimen'; -->
 import Button from '@atoms/Button';
 import Heading from '@atoms/Heading';
 import Rhythm from '@atoms/Rhythm';
 import Wrapper from '@atoms/Wrapper';
 
-<StatefulContext.Provider>
 <Wrapper size="body">
   <Rhythm>
     <Wrapper>
@@ -14,26 +13,5 @@ import Wrapper from '@atoms/Wrapper';
         <Heading level="h3">Default button</Heading>
       </Rhythm>
     </Wrapper>
-    <Specimen hideCode>
-      <Button>This is a button</Button>
-    </Specimen>
-    <Wrapper>
-      <Heading level="h3">Secondary button</Heading>
-    </Wrapper>
-    <Specimen
-      hideResizer
-      Editors={({ quickEditors }) => (
-        <div>
-          <Editor.Text name="buttonText" defaultValue="Hello, Minotaur"></Editor.Text>
-          <Editor.Select name="variant" label="Variant" defaultValue={'secondary'} options={['default', 'secondary']}></Editor.Select>
-        </div>
-      )}>
-      {({ buttonText, isDisabled, variant }) =>
-        <React.Fragment>
-          <Button variant={variant}>{buttonText}</Button>
-        </React.Fragment>
-      }
-    </Specimen>
   </Rhythm>
 </Wrapper>
-</StatefulContext.Provider>

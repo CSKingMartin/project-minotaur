@@ -1,69 +1,87 @@
-import PropTypes from 'prop-types';
-import React from 'react';
+import DragHandle from './DragHandle';
 
-class Resizer extends React.Component {
-  handleResize(width) {
-    const { handleResize } = this.props;
+export class Resizer extends React.Component {
+  constructor(props) {
+    super(props);
 
-    handleResize({ width });
+    this.state = {
+      offset: 0,
+      isResizing: false
+    };
+
+    this.elem = React.createRef();
+
+    this.onDrag = this.onDrag.bind(this);
+    this.onStop = this.onStop.bind(this);
+    this.onStart = this.onStart.bind(this);
+  };
+
+  componentDidMount() {
+    this.setState(() => ({
+      maxWidth: this.elem.current.clientWidth
+    }));
+  };
+
+  onStart() {
+    this.setState(() => ({
+      isResizing: true
+    }));
   }
 
-  renderWidth(width, name) {
-    const isInfinity = width === Infinity;
-    const { screenWidth } = this.props;
+  onStop() {
+    this.setState(() => ({
+      isResizing: false,
+      maxWidth: this.state.temporaryWidth,
+      temporaryWidth: -1
+    }));
+  }
 
-    return (
-      <button
-        onClick={() => this.handleResize(width)}
-        className="Resizer__button"
-        type="button"
-        style={{
-          display: isInfinity || screenWidth > width + 32 ? 'block' : 'none',
-          maxWidth: isInfinity ? undefined : `${width}px`,
-          zIndex: isInfinity ? 100 : 10000 - width
-        }}
-      >
-        {name}
-      </button>
-    );
+  onDrag(x) {
+    this.setState(() => ({
+      offset: x,
+      temporaryWidth: this.state.maxWidth - (x * 2)
+    }));
   }
 
   render() {
-    const { maxWidth, previewHeight } = this.props;
+    const {
+      className,
+      children,
+      ...rest
+    } = this.props;
+
+    const stack = utilities.createClassStack([
+      'Specimen__resizer',
+      className
+    ]);
 
     return (
-      <div className="Resizer">
-        <div
-          className="Resizer__current"
-          style={{ maxWidth: maxWidth === Infinity ? undefined : `${maxWidth}px` }}
-        >
-          <span>{ maxWidth === Infinity ? 'Full Width' : `${maxWidth}px` }</span>
-          &nbsp; &times; &nbsp;
-          <span>{`${previewHeight}px`}</span>
-        </div>
-
-        <div className="Resizer__button-wrapper">
-          {this.renderWidth(Infinity, 'Full Width')}
-          {this.renderWidth(2560, '4k – 2560px')}
-          {this.renderWidth(1920, 'Desktop – 1920px')}
-          {this.renderWidth(1440, 'Laptop Large – 1440px')}
-          {this.renderWidth(1280, 'Laptop Medium – 1280px')}
-          {this.renderWidth(1024, 'Laptop – 1024px')}
-          {this.renderWidth(768, 'Tablet – 768px')}
-          {this.renderWidth(425, 'Mobile Large – 425px')}
-          {this.renderWidth(375, 'Mobile Medium – 375px')}
-          {this.renderWidth(320, 'Mobile Small – 320px')}
-        </div>
+      <div className={stack} style={{maxWidth: this.state.temporaryWidth || 'unset'}} ref={this.elem} {...rest}>
+        <DragHandle
+          side="left"
+          onStart={this.onStart}
+          onDrag={this.onDrag}
+          onStop={this.onStop}
+          isActive={this.state.isResizing}
+          position={this.state.offset}
+        />
+          {children}
+        <DragHandle
+          side="right"
+          onStart={this.onStart}
+          onDrag={this.onDrag}
+          onStop={this.onStop}
+          isActive={this.state.isResizing}
+          position={this.state.offset}
+        />
       </div>
     );
   }
-}
+};
 
 Resizer.propTypes = {
-  maxWidth: PropTypes.number,
-  screenWidth: PropTypes.number,
-  previewHeight: PropTypes.number,
-  handleResize: PropTypes.func
+  className: PropTypes.string,
+  children: PropTypes.node
 };
 
 export default Resizer;

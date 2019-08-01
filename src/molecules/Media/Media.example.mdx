@@ -1,9 +1,7 @@
-import Editor from '@molecules/Editor';
 import Heading from '@atoms/Heading';
 import Image from '@atoms/Image';
 import { Media, Media__body, Media__figure } from '@molecules/Media';
 import Rhythm from '@atoms/Rhythm';
-import Specimen from '@organisms/Specimen';
 import Wrapper from '@atoms/Wrapper';
 
 <StatefulContext.Provider>
@@ -19,32 +17,15 @@ import Wrapper from '@atoms/Wrapper';
           and the other `Media__figure`. Figure wraps the chosen media, while Body is intended to house the content.
         </p>
         <Heading level="h3">Default example</Heading>
+        <Media>
+          <Media__body>
+            Voluptate magna consectetur duis cupidatat quis ad laboris ex.
+          </Media__body>
+          <Media__figure>
+            <Image src="https://picsum.photos/200/300" href="test-image"/>
+          </Media__figure>
+        </Media>
       </Rhythm>
     </Wrapper>
-    <Specimen
-      hideResizer
-      Editors={({ quickEditors }) => (
-        <div>
-          <Editor.Text
-            name="content"
-            defaultValue="Culpa reprehenderit irure dolore duis in consequat voluptate ea excepteur non ut velit ullamco aute ad ea laboris veniam amet cupidatat aute ullamco tempor eu ea mollit dolore sit sed duis dolore non dolor nostrud ut irure adipisicing velit."
-          />
-          <Editor.Select name="align" label="align" defaultValue={'top'} options={['top', 'center', 'bottom']}></Editor.Select>
-        </div>
-      )}>
-      {({ content, align }) =>
-        <React.Fragment>
-          <Media align={align}>
-            <Media__body>
-              {content}
-            </Media__body>
-            <Media__figure>
-              <Image src="https://picsum.photos/200" alt="testing testing 123" />
-            </Media__figure>
-          </Media>
-        </React.Fragment>
-      }
-    </Specimen>
-
   </Rhythm>
 </StatefulContext.Provider>
