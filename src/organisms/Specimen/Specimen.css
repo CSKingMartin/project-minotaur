@@ -10,6 +10,7 @@
 
   &__iframe {
     border: 1px dashed #ddd;
+    margin-top: 1.25rem;
     transition: border-color 0.2s;
     width: 100%;
 
@@ -20,6 +21,7 @@
     &-wrapper {
       position: relative;
       max-width: 100%;
+      width: 100%;
     }
   }
 
@@ -29,6 +31,7 @@
       overflow: visible;
       position: absolute;
       width: 100%;
+      z-index: 5;
     }
 
     &-button {
@@ -56,6 +59,7 @@
     }
 
     &-label {
+      pointer-events: none;
       display: block;
       margin: 0 auto;
     }
@@ -67,7 +71,7 @@
 
   &__drag-handle {
     cursor: ew-resize;
-    height: 2rem;
+    height: 100%;
     width: 2rem;
     z-index: 2;
 
@@ -81,7 +85,8 @@
       width: 0.375rem;
     }
 
-    &.is-active {
+    &.react-draggable-dragging {
+      width: 5rem;
       .Specimen__drag-handle__inner {
         border-color: var(--color-abyss);
       }

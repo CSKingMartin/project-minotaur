@@ -1,6 +1,8 @@
 import DragHandle from './DragHandle';
 import ResizerBar from './ResizerBar';
 
+import ReactResizeDetector from 'react-resize-detector';
+
 export class Resizer extends React.Component {
   constructor(props) {
     super(props);
@@ -16,6 +18,7 @@ export class Resizer extends React.Component {
     this.onStop = this.onStop.bind(this);
     this.onStart = this.onStart.bind(this);
     this.onClick = this.onClick.bind(this);
+    this.onWidthChange = this.onWidthChange.bind(this);
   };
 
   componentDidMount() {
@@ -52,6 +55,12 @@ export class Resizer extends React.Component {
     }));
   }
 
+  onWidthChange(width) {
+    this.setState(() => ({
+      pageWidth: width
+    }));
+  }
+
   render() {
     const {
       className,
@@ -66,9 +75,10 @@ export class Resizer extends React.Component {
 
     return (
       <div className={stack}>
+        <ReactResizeDetector className="Specimen__resize-detector" handleWidth onResize={this.onWidthChange} />
         <ResizerBar
           onClick={this.onClick}
-          width={this.state.temporaryWidth || this.state.maxWidth}
+          width={this.state.pageWidth || Infinity}
         />
         <div className="Specimen__resizer-inner" style={{maxWidth: this.state.temporaryWidth || 'unset'}} ref={this.elem} {...rest}>
           <DragHandle
@@ -76,7 +86,6 @@ export class Resizer extends React.Component {
             onStart={this.onStart}
             onDrag={this.onDrag}
             onStop={this.onStop}
-            isActive={this.state.isResizing}
             position={this.state.offset}
           />
             {children}
@@ -85,7 +94,6 @@ export class Resizer extends React.Component {
             onStart={this.onStart}
             onDrag={this.onDrag}
             onStop={this.onStop}
-            isActive={this.state.isResizing}
             position={this.state.offset}
           />
         </div>

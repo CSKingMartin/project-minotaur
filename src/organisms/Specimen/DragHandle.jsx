@@ -7,16 +7,15 @@ export const DragHandle = (props) => {
     onStart,
     onStop,
     onDrag,
-    isActive,
     ...rest
   } = props;
 
   const stack = utilities.createClassStack([
     'Specimen__drag-handle',
     `Specimen__drag-handle--${side}`,
-    isActive && 'is-active',
     className
   ]);
+
 
   const dragReturn = (value) => side === 'left' ? value : (-1 * value);
 

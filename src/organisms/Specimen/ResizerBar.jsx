@@ -22,7 +22,7 @@ export const ResizerBar__button = (props) => {
 
   const concatLabel = `${label} - ${width}px`
 
-  if (width < containerWidth) {
+  if (width <= containerWidth) {
     return (
       <button
         className={buttonStack}
