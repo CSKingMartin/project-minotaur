@@ -15,7 +15,8 @@ export const Wrapper = (props) => {
   const {
     size,
     className,
-    children
+    children,
+    ...rest
   } = props;
 
   const stack = utilities.createClassStack([
@@ -25,7 +26,7 @@ export const Wrapper = (props) => {
   ]);
 
   return (
-    <div className={stack}>
+    <div className={stack} {...rest}>
       {children}
     </div>
   );
@@ -36,7 +37,7 @@ Wrapper.defaultProps = {
 };
 
 Wrapper.propTypes = {
-  size: PropTypes.oneOf(['default', 'content', 'wide', 'body']),
+  size: PropTypes.oneOf(['default', 'small', 'wide']),
   className: PropTypes.string,
   children: PropTypes.node
 };

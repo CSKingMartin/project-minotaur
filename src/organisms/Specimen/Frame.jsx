@@ -1,11 +1,15 @@
 import cache from '@catalog/bundle';
 import ReactDOM from 'react-dom';
 
+import Button from '@atoms/Button';
+import Wrapper from '@atoms/Wrapper';
+
 export class Frame extends React.Component {
   constructor(props) {
     super(props);
 
     this.frame = React.createRef();
+    this.handleClick = this.handleClick.bind(this);
   };
 
   componentDidMount() {
@@ -20,6 +24,11 @@ export class Frame extends React.Component {
     } else {
       setTimeout(handleLoad(), 500);
     }
+  }
+
+  handleClick() {
+    console.log('working');
+    this.forceUpdate();
   }
 
   render() {
@@ -43,6 +52,10 @@ export class Frame extends React.Component {
           {this.iframeHead && ReactDOM.createPortal(<link rel="stylesheet" href="/_next/static/css/styles.chunk.css" />, this.iframeHead)}
           {this.iframeRoot && ReactDOM.createPortal(<DynamicComponent/>, this.iframeRoot)}
         </iframe>
+        <Wrapper size="small" className="Specimen__reload-wrapper">
+          <p>Something not right?</p>
+          <Button onClick={this.handleClick}>Refresh</Button>
+        </Wrapper>
       </div>
     );
   };

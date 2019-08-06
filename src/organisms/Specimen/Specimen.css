@@ -25,12 +25,34 @@
     }
   }
 
+  &__table-wrapper {
+    display: flex;
+  }
+
+  &__props-table {
+    border: 1px solid var(--color-gray);
+    border-radius: 3px;
+    width: 100%;
+  }
+
+  &__reload-wrapper {
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+
+    & > *:first-child {
+      margin-right: 1rem;
+    }
+  }
+
   &__resizer {
     &-bar {
       height: 1rem;
+      left: 0;
       overflow: visible;
       position: absolute;
-      width: 100%;
+      width: 100vw;
       z-index: 5;
     }
 

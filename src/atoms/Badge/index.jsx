@@ -10,7 +10,6 @@ export const Badge = (props) => {
   const stack = utilities.createClassStack([
     'Badge',
     `Badge--${color}`,
-    `Badge--${variant}`,
     className
   ]);
 
@@ -23,12 +22,12 @@ export const Badge = (props) => {
 
 Badge.defaultProps = {
   color: 'blue',
-  children: 'Please specify children for this element'
+  children: 'No children provided!'
 };
 
 Badge.propTypes = {
   children: PropTypes.node.isRequired,
-  variant: PropTypes.oneOf(['default', 'inline']),
+  variant: PropTypes.oneOf(['default']),
   color: PropTypes.oneOf(['blue', 'green', 'red', 'yellow', 'orange']),
   className: PropTypes.string
 };

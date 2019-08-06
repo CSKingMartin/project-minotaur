@@ -9,12 +9,6 @@
 	padding: 0 0.5rem;
 	transition: border-color 0.5s;
 
-	&--inline {
-		margin-left: 0.5rem;
-		position: absolute;
-		top: 13px;
-	}
-
 	&--blue {
 		background-color: var(--color-robins-egg);
 		color: var(--color-white);

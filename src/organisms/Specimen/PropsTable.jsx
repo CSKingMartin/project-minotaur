@@ -276,7 +276,7 @@ export class PropsTable extends React.Component {
     };
 
     return (
-      <Table {...rest}>
+      <Table className="Specimen__props-table" {...rest}>
         <Table.Head>
           <Table.Row>
             <Table.Header>Name</Table.Header>

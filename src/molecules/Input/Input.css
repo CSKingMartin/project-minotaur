@@ -1,6 +1,6 @@
 .Input {
   & > * {
-    display: block;
+    /*display: block;*/
   }
 
   &__error {

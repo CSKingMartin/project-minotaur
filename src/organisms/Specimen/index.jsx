@@ -78,12 +78,12 @@ class Specimen extends React.Component {
       <div className={stack} {...rest}>
         <Rhythm>
           <Wrapper>
-            <Heading level='h4'>{query} <Badge variant="default">{entry.category}</Badge></Heading>
+            <Heading level='h4'>{query} <Badge >{entry.category}</Badge></Heading>
           </Wrapper>
           <Resizer>
             <Frame componentName={query} componentProps={this.formatProps(this.state.props)} />
           </Resizer>
-          <Wrapper>
+          <Wrapper size="small" className="Specimen__table-wrapper">
             <PropsTable componentProps={this.state.props} query={query} sendProps={this.update} />
           </Wrapper>
         </Rhythm>

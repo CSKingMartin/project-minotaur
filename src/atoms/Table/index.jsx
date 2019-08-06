@@ -9,7 +9,8 @@ import TableContext from './TableContext';
 export const Table = (props) => {
   const {
     className,
-    children
+    children,
+    ...rest
   } = props;
 
   const stack = utilities.createClassStack([
@@ -17,14 +18,8 @@ export const Table = (props) => {
     className
   ]);
 
-  // const [visibility, toggleVisibility] = useState(false);
-
-  // <TableContext.Provider value={{visibility, toggleVisibility}}>
-  //   <div className="Table">{children}</div>
-  // </TableContext.Provider>
-
   return (
-    <div className={stack}>
+    <div className={stack} {...rest}>
       <table className="Table__table">{children}</table>
     </div>
   );
